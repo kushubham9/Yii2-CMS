@@ -10,8 +10,15 @@ return [
     'id' => 'app-backend',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
-    'bootstrap' => ['log'],
-    'modules' => [],
+    'bootstrap' => ['log','gii'],
+    'modules' => [
+        'gridview' => [
+            'class' => '\kartik\grid\Module',
+        ],
+        'gii' => [
+            'class' => 'yii\gii\Module',
+        ]
+    ],
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-backend',
@@ -37,14 +44,15 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        /*
+        'gridview' => [
+            'class' => '\kartik\grid\Module',
+        ],
+
         'urlManager' => [
             'enablePrettyUrl' => true,
-            'showScriptName' => false,
-            'rules' => [
-            ],
+            'showScriptName' => false
         ],
-        */
+
     ],
     'params' => $params,
 ];
