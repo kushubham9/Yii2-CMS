@@ -14,8 +14,8 @@ use yii\behaviors\TimestampBehavior;
  * @property string $password_hash
  * @property string $password_reset_token
  * @property string $email
- * @property integer $created_at
- * @property integer $updated_at
+ * @property string $created_at
+ * @property string $updated_at
  * @property integer $status
  *
  * @property \common\models\Comment[] $comments
@@ -34,16 +34,19 @@ class User extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['username', 'auth_key', 'password_hash', 'email', 'created_at', 'updated_at'], 'required'],
-            [['created_at', 'updated_at', 'status'], 'integer'],
-            [['username', 'password_hash', 'password_reset_token', 'email'], 'string', 'max' => 255],
+            [['username', 'auth_key', 'password_hash', 'email','status'], 'required'],
+            [['created_at', 'updated_at'], 'safe'],
+            [['status'], 'integer'],
+            [['username'], 'string', 'max' => 25],
             [['auth_key'], 'string', 'max' => 32],
+            [['password_hash', 'password_reset_token'], 'string', 'max' => 255],
+            [['email'], 'string', 'max' => 50],
             [['username'], 'unique'],
             [['email'], 'unique'],
             [['password_reset_token'], 'unique']
         ];
     }
-    
+
     /**
      * @inheritdoc
      */
@@ -103,9 +106,14 @@ class User extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getUsermetas()
+//    public function getUsermetas()
+//    {
+//        return $this->hasMany(\common\models\Usermeta::className(), ['user_id' => 'id'])->inverseOf('user');
+//    }
+
+    public function getUsermeta()
     {
-        return $this->hasMany(\common\models\Usermeta::className(), ['user_id' => 'id'])->inverseOf('user');
+        return $this->hasOne(\common\models\Usermeta::className(), ['user_id' => 'id'])->inverseOf('user');
     }
     
 /**

@@ -23,9 +23,7 @@ use common\models\base\User as BaseUser;
  */
 class User extends BaseUser implements IdentityInterface
 {
-    const STATUS_DELETED = 0;
-    const STATUS_ACTIVE = 10;
-
+    const ACTIVE_STATUS = 1;
 
     /**
      * @inheritdoc
@@ -40,9 +38,7 @@ class User extends BaseUser implements IdentityInterface
      */
     public function behaviors()
     {
-        return [
-            TimestampBehavior::className(),
-        ];
+        return parent::behaviors();
     }
 
     /**
@@ -50,10 +46,7 @@ class User extends BaseUser implements IdentityInterface
      */
     public function rules()
     {
-        return [
-            ['status', 'default', 'value' => self::STATUS_ACTIVE],
-            ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
-        ];
+        return parent::rules();
     }
 
     /**
@@ -61,7 +54,7 @@ class User extends BaseUser implements IdentityInterface
      */
     public static function findIdentity($id)
     {
-        return static::findOne(['id' => $id, 'status' => self::STATUS_ACTIVE]);
+        return static::findOne(['id' => $id, 'status' => self::ACTIVE_STATUS]);
     }
 
     /**
@@ -80,7 +73,7 @@ class User extends BaseUser implements IdentityInterface
      */
     public static function findByUsername($username)
     {
-        return static::findOne(['username' => $username, 'status' => self::STATUS_ACTIVE]);
+        return static::findOne(['username' => $username]);
     }
 
     /**
@@ -96,8 +89,7 @@ class User extends BaseUser implements IdentityInterface
         }
 
         return static::findOne([
-            'password_reset_token' => $token,
-            'status' => self::STATUS_ACTIVE,
+            'password_reset_token' => $token
         ]);
     }
 
@@ -186,4 +178,6 @@ class User extends BaseUser implements IdentityInterface
     {
         $this->password_reset_token = null;
     }
+
+
 }

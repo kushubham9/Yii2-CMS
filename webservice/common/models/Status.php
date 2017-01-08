@@ -3,6 +3,7 @@
 namespace common\models;
 
 use \common\models\base\Status as BaseStatus;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "status".
@@ -22,5 +23,9 @@ class Status extends BaseStatus
             [['name'], 'unique']
         ]);
     }
-	
+
+    public function getUserDropDown()
+    {
+        return ArrayHelper::map(self::findAll([1,2]), 'id', 'name');
+    }
 }

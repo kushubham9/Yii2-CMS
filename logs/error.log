@@ -1,0 +1,17 @@
+2017/01/07 23:52:50 [error] 22723#0: *301 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught yii\base\ErrorException: Object of class yii\db\ActiveQuery could not be converted to string in /Users/Shu/Sites/cms.build/htdocs/webservice/backend/controllers/UserController.php:65
+Stack trace:
+#0 /Users/Shu/Sites/cms.build/htdocs/webservice/backend/controllers/UserController.php(65): yii\base\ErrorHandler->handleError(4096, 'Object of class...', '/Users/Shu/Site...', 65, Array)
+#1 [internal function]: backend\controllers\UserController->actionView('kushubham9')
+#2 /Users/Shu/Sites/cms.build/htdocs/webservice/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#3 /Users/Shu/Sites/cms.build/htdocs/webservice/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#4 /Users/Shu/Sites/cms.build/htdocs/webservice/vendor/yiisoft/yii2/base/Module.php(454): yii\base\Controller->runAction('view', Array)
+#5 /Users/Shu/Sites/cms.build/htdocs/webservice/vendor/yiisoft/yii2/web/Application.php(100): yii\base\Modu" while reading response header from upstream, client: 127.0.0.1, server: backend.cms.build, request: "GET /user/view?username=kushubham9 HTTP/1.1", upstream: "fastcgi://127.0.0.1:9000", host: "backend.cms.build"
+2017/01/07 23:53:51 [error] 22723#0: *301 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught yii\base\ErrorException: Array to string conversion in /Users/Shu/Sites/cms.build/htdocs/webservice/backend/controllers/UserController.php:65
+Stack trace:
+#0 /Users/Shu/Sites/cms.build/htdocs/webservice/backend/controllers/UserController.php(65): yii\base\ErrorHandler->handleError(8, 'Array to string...', '/Users/Shu/Site...', 65, Array)
+#1 [internal function]: backend\controllers\UserController->actionView('kushubham9')
+#2 /Users/Shu/Sites/cms.build/htdocs/webservice/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#3 /Users/Shu/Sites/cms.build/htdocs/webservice/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#4 /Users/Shu/Sites/cms.build/htdocs/webservice/vendor/yiisoft/yii2/base/Module.php(454): yii\base\Controller->runAction('view', Array)
+#5 /Users/Shu/Sites/cms.build/htdocs/webservice/vendor/yiisoft/yii2/web/Application.php(100): yii\base\Module->runAction('user/view', Array)
+#6 /Users/" while reading response header from upstream, client: 127.0.0.1, server: backend.cms.build, request: "GET /user/view?username=kushubham9 HTTP/1.1", upstream: "fastcgi://127.0.0.1:9000", host: "backend.cms.build"

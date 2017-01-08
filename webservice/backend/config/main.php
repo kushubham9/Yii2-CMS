@@ -26,6 +26,7 @@ return [
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
+            'loginUrl' => ['site/login'],
             'identityCookie' => ['name' => '_identity-backend', 'httpOnly' => true],
         ],
         'session' => [
@@ -49,8 +50,13 @@ return [
         ],
 
         'urlManager' => [
+            'class' => 'yii\web\UrlManager',
+            'showScriptName' => false,
             'enablePrettyUrl' => true,
-            'showScriptName' => false
+            'rules' => array(
+                '<controller:\w+>/<id:\d+>' => '<controller>/view',
+                '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
+            ),
         ],
 
     ],

@@ -37,12 +37,11 @@ class Usermeta extends \yii\db\ActiveRecord
     {
         return [
             [['about'], 'string'],
-            [['updated_at', 'created_at'], 'required'],
             [['updated_at', 'created_at'], 'safe'],
             [['user_id', 'profile_pic'], 'integer'],
             [['first_name', 'last_name', 'nickname'], 'string', 'max' => 50],
             [['gender'], 'string', 'max' => 1],
-            [['website', 'social_fb', 'social_google', 'social_linkedin'], 'string', 'max' => 255]
+            [['website', 'social_fb', 'social_google', 'social_linkedin'], 'string', 'max' => 255],
         ];
     }
     
@@ -66,10 +65,10 @@ class Usermeta extends \yii\db\ActiveRecord
             'nickname' => 'Nickname',
             'gender' => 'Gender',
             'about' => 'About',
-            'website' => 'Website',
-            'social_fb' => 'Social Fb',
-            'social_google' => 'Social Google',
-            'social_linkedin' => 'Social Linkedin',
+            'website' => 'Website URL',
+            'social_fb' => 'Facebook',
+            'social_google' => 'Google +',
+            'social_linkedin' => 'Linkedin',
             'user_id' => 'User ID',
             'profile_pic' => 'Profile Pic',
         ];
