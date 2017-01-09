@@ -76,7 +76,7 @@ class UserSearch extends BaseUser
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id' => $this->id,
+            'user.id' => $this->id,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'status' => $this->status,

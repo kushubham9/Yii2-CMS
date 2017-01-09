@@ -21,7 +21,7 @@ use common\models\LoginForm;
 
 class UserController extends Controller
 {
-    public $defaultAction = 'register';
+    public $defaultAction = 'index';
 
     /**
      * @return array

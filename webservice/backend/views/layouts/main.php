@@ -9,8 +9,10 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use common\widgets\Alert;
+use backend\assets\wyswyg;
 
 AppAsset::register($this);
+wyswyg::register($this);
 ?>
 
 <?php $this->beginPage() ?>
@@ -85,14 +87,14 @@ AppAsset::register($this);
 
                         <li class="treeview">
                             <a href="#">
-                                <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                                <i class="fa fa-dashboard"></i> <span>Users</span>
                                 <span class="pull-right-container">
                                     <i class="fa fa-angle-left pull-right"></i>
                                 </span>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="../../index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
-                                <li><a href="../../index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
+                                <li><a href="<?= \yii\helpers\Url::to(['user/index'])?>"><i class="fa fa-circle-o"></i>List</a></li>
+                                <li><a href="<?= \yii\helpers\Url::to(['user/register'])?>"><i class="fa fa-circle-o"></i>Register User</a></li>
                             </ul>
                         </li>
                     </ul>
