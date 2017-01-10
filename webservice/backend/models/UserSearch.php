@@ -77,13 +77,13 @@ class UserSearch extends BaseUser
         // grid filtering conditions
         $query->andFilterWhere([
             'user.id' => $this->id,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
-            'status' => $this->status,
+            'user.created_at' => $this->created_at,
+            'user.updated_at' => $this->updated_at,
+            'user.status' => $this->status,
         ]);
 
-        $query->andFilterWhere(['like', 'username', $this->username])
-            ->andFilterWhere(['like', 'email', $this->email])
+        $query->andFilterWhere(['like', 'um.username', $this->username])
+            ->andFilterWhere(['like', 'um.email', $this->email])
             ->andFilterWhere(['like', 'um.first_name', $this->firstName]);
 
         return $dataProvider;

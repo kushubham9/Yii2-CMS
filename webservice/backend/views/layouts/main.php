@@ -12,7 +12,6 @@ use common\widgets\Alert;
 use backend\assets\wyswyg;
 
 AppAsset::register($this);
-wyswyg::register($this);
 ?>
 
 <?php $this->beginPage() ?>
@@ -85,6 +84,30 @@ wyswyg::register($this);
                     <ul class="sidebar-menu">
                         <li class="header">MAIN NAVIGATION</li>
 
+                        <li><a href="<?= \yii\helpers\Url::to(['site/index']); ?>"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-dashboard"></i> <span>Posts</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="<?= \yii\helpers\Url::to(['user/index'])?>"><i class="fa fa-circle-o"></i>All Posts</a></li>
+                                <li><a href="<?= \yii\helpers\Url::to(['user/index'])?>"><i class="fa fa-circle-o"></i>Add New</a></li>
+                                <li><a href="<?= \yii\helpers\Url::to(['user/register'])?>"><i class="fa fa-circle-o"></i>Categories</a></li>
+                                <li><a href="<?= \yii\helpers\Url::to(['user/register'])?>"><i class="fa fa-circle-o"></i>Tags</a></li>
+                            </ul>
+                        </li>
+
+                        <li><a href="../documentation/index.html"><i class="fa fa-book"></i> <span>Comments</span></a></li>
+
+                        <li><a href="../documentation/index.html"><i class="fa fa-book"></i> <span>Advertisement</span></a></li>
+
+                        <li><a href="../documentation/index.html"><i class="fa fa-book"></i> <span>Settings</span></a></li>
+
+
                         <li class="treeview">
                             <a href="#">
                                 <i class="fa fa-dashboard"></i> <span>Users</span>
@@ -93,8 +116,9 @@ wyswyg::register($this);
                                 </span>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="<?= \yii\helpers\Url::to(['user/index'])?>"><i class="fa fa-circle-o"></i>List</a></li>
-                                <li><a href="<?= \yii\helpers\Url::to(['user/register'])?>"><i class="fa fa-circle-o"></i>Register User</a></li>
+                                <li><a href="<?= \yii\helpers\Url::to(['user/index'])?>"><i class="fa fa-circle-o"></i>All Users</a></li>
+                                <li><a href="<?= \yii\helpers\Url::to(['user/register'])?>"><i class="fa fa-circle-o"></i>Add New</a></li>
+                                <li><a href="<?= \yii\helpers\Url::to(['user/register'])?>"><i class="fa fa-circle-o"></i>Your Profile</a></li>
                             </ul>
                         </li>
                     </ul>

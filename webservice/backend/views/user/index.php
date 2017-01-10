@@ -1,6 +1,6 @@
 <?php
 use yii\bootstrap\Html;
-use yii\grid\GridView;
+use kartik\grid\GridView;
 use yii\helpers\Url;
 
 $this->title = 'Registered Users';
@@ -36,7 +36,16 @@ $this->params['breadcrumbs'][] = 'Users';
                         ],
                         'username',
                         'email:email',
-                        'created_at:date',
+                        [
+                            'class' => '\kartik\grid\DataColumn',
+                            'attribute' => 'created_at',
+                            'filterType' => GridView::FILTER_DATE,
+                            'label' => 'Registration Date',
+
+                            'hAlign'=>'center',
+                            'vAlign'=>'middle',
+                            'format'=>'date'
+                        ],
                         [
                             'attribute' => 'status',
                             'label' => 'Status',
@@ -46,10 +55,10 @@ $this->params['breadcrumbs'][] = 'Users';
                                             return $model->status == backend\models\User::ACTIVE_STATUS ?
                                                 '<span class="label label-success">'.$model->status0->name.'</span>'
                                                 :'<span class="label label-danger">'.$model->status0->name.'</span>';
-                                        }
+                                        },
+                            'filter' => Html::activeDropDownList($searchModel,'status',(new \common\models\Status())->getUserDropDown(),['prompt'=>'Select','class'=>'form-control'])
                         ],
-                        [
-                                'class' => 'yii\grid\ActionColumn',
+                        [   'class' => 'yii\grid\ActionColumn',
                             'urlCreator' => function ($action, $model, $key, $index) {
                                 if ($action === 'update') {
                                     return Url::toRoute([$action, 'username' => $model->username]);
@@ -60,6 +69,11 @@ $this->params['breadcrumbs'][] = 'Users';
                             }
                         ],
                     ],
+                    'bordered'=>true,
+                    'striped'=>true,
+                    'condensed'=>true,
+                    'responsive'=>true,
+                    'hover'=>true,
                 ]); ?>
             </div>
     </div>

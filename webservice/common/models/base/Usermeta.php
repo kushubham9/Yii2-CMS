@@ -37,7 +37,6 @@ class Usermeta extends \yii\db\ActiveRecord
     {
         return [
             [['about'], 'string'],
-            [['updated_at', 'created_at'], 'safe'],
             [['user_id', 'profile_pic'], 'integer'],
             [['first_name', 'last_name', 'nickname'], 'string', 'max' => 50],
             [['gender'], 'string', 'max' => 1],
@@ -89,20 +88,5 @@ class Usermeta extends \yii\db\ActiveRecord
     {
         return $this->hasOne(\common\models\User::className(), ['id' => 'user_id'])->inverseOf('usermetas');
     }
-    
-/**
-     * @inheritdoc
-     * @return array mixed
-     */ 
-    public function behaviors()
-    {
-        return [
-            'timestamp' => [
-                'class' => TimestampBehavior::className(),
-                'createdAtAttribute' => 'created_at',
-                'updatedAtAttribute' => 'updated_at',
-                'value' => new \yii\db\Expression('NOW()'),
-            ],
-        ];
-    }
+
 }

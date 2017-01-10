@@ -23,6 +23,6 @@ class AppAsset extends AssetBundle
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
         'backend\assets\FontAwesome',
-        'backend\assets\IonIcons',
+//        'backend\assets\IonIcons',
     ];
 }

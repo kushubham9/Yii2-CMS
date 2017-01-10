@@ -14,5 +14,5 @@ class FontAwesome extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
 
-    public $css = ['font-awesome/css/font-awesome.css'];
+    public $css = ['https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css'];
 }
