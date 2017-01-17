@@ -2,37 +2,31 @@
 /**
  * Created by PhpStorm.
  * User: Shu
- * Date: 08/01/17
- * Time: 4:20 PM
+ * Date: 15/01/17
+ * Time: 3:15 PM
  */
 
 namespace backend\models;
-
-use yii\base\Model;
-use backend\models\User as BaseUser;
+use common\models\Constants;
 use yii\data\ActiveDataProvider;
 use yii\helpers\ArrayHelper;
 
-class UserSearch extends BaseUser
+class PostSearch extends Post
 {
     public function rules()
     {
         return [
             [['id','status'],'integer'],
-            [['id','email','created_at','updated_at','statusName', 'username','um.first_name'],'safe']
+            [['id','title','user_id','updated_at','um.first_name','catList','tagList', 'CategoryID'],'safe']
         ];
-    }
-    public function scenario()
-    {
-        return Model::scenarios();
     }
 
     public function attributes()
     {
         return ArrayHelper::merge(parent::attributes(),
-                    ['um.first_name',
-                    'um.last_name',
-                    'st.name']);
+            [
+                'um.first_name','um.last_name', 'catList', 'tagList', 'CategoryID'
+            ]);
     }
 
     /**
@@ -45,13 +39,10 @@ class UserSearch extends BaseUser
     public function search($params)
     {
         $query = self::find();
-        $query->joinWith(['usermeta um'])->joinWith(['status0 st'])
-            ->select([
-                'user.*',
-                'um.first_name',
-                'um.last_name',
-                'st.name',
-            ]);
+        $query->select([
+                'post.*',
+            ])
+            ->orderBy('post.id DESC');
 
         // add conditions that should always apply here
 
@@ -69,17 +60,15 @@ class UserSearch extends BaseUser
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'user.id' => $this->id,
-            'user.created_at' => $this->created_at,
-            'user.updated_at' => $this->updated_at,
-            'user.status' => $this->status,
+            'post.id' => $this->id,
+            'post.updated_at' => $this->updated_at,
+            'post.category' => $this->category,
+            'post.status' => $this->status,
+            'post.user_id' => $this->user_id,
         ]);
 
-        $query->andFilterWhere(['like', 'um.username', $this->username])
-            ->andFilterWhere(['like', 'um.email', $this->email])
-            ->andFilterWhere(['like', 'um.first_name', $this->getAttributes(['um.first_name'])]);
+        $query->andFilterWhere(['like', 'post.title', $this->title]);
 
         return $dataProvider;
     }
-
 }

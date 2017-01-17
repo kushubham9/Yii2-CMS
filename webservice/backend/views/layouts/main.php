@@ -9,7 +9,6 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use common\widgets\Alert;
-use backend\assets\wyswyg;
 
 AppAsset::register($this);
 ?>
@@ -94,10 +93,10 @@ AppAsset::register($this);
                                 </span>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="<?= \yii\helpers\Url::to(['user/index'])?>"><i class="fa fa-circle-o"></i>All Posts</a></li>
-                                <li><a href="<?= \yii\helpers\Url::to(['user/index'])?>"><i class="fa fa-circle-o"></i>Add New</a></li>
-                                <li><a href="<?= \yii\helpers\Url::to(['user/register'])?>"><i class="fa fa-circle-o"></i>Categories</a></li>
-                                <li><a href="<?= \yii\helpers\Url::to(['user/register'])?>"><i class="fa fa-circle-o"></i>Tags</a></li>
+                                <li><a href="<?= \yii\helpers\Url::to(['post/index'])?>"><i class="fa fa-circle-o"></i>All Posts</a></li>
+                                <li><a href="<?= \yii\helpers\Url::to(['post/create'])?>"><i class="fa fa-circle-o"></i>Add New</a></li>
+                                <li><a href="<?= \yii\helpers\Url::to(['category/index'])?>"><i class="fa fa-circle-o"></i>Categories</a></li>
+                                <li><a href="<?= \yii\helpers\Url::to(['taxinomy/index'])?>"><i class="fa fa-circle-o"></i>Tags</a></li>
                             </ul>
                         </li>
 

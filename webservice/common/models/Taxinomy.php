@@ -14,12 +14,15 @@ class Taxinomy extends BaseTaxinomy
      */
     public function rules()
     {
-        return array_replace_recursive(parent::rules(),
+        return
 	    [
-            [['type', 'value', 'created_at', 'updated_at'], 'required'],
+            ['value', 'filter', 'filter' => function ($value) {
+                return ucfirst(strtolower(trim($value)));
+            }],
+            [['type', 'value'], 'required'],
             [['created_at', 'updated_at'], 'safe'],
             [['type', 'value'], 'string', 'max' => 255]
-        ]);
+        ];
     }
 	
 }

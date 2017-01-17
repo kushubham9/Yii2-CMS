@@ -28,13 +28,17 @@ $this->params['breadcrumbs'][] = 'Users';
                     'dataProvider' => $dataProvider,
                     'filterModel' => $searchModel,
                     'columns' => [
-//                       ['class' => 'yii\grid\SerialColumn'],
-                        'id',
-                        [
-                            'attribute' => 'firstName',
-                            'label' => 'First Name',
-                        ],
+                       ['class' => 'yii\grid\SerialColumn'],
                         'username',
+                        [
+                            'attribute' => 'um.first_name',
+                            'label' => 'Name',
+                            'value' => function($model)
+                                    {
+                                        return $model->fullName;
+                                    }
+                        ],
+
                         'email:email',
                         [
                             'class' => '\kartik\grid\DataColumn',
@@ -50,7 +54,7 @@ $this->params['breadcrumbs'][] = 'Users';
                             'attribute' => 'status',
                             'label' => 'Status',
                             'format' => 'html',
-                            'value' => function ($model, $searchModel)
+                            'value' => function ($model)
                                         {
                                             return $model->status == backend\models\User::ACTIVE_STATUS ?
                                                 '<span class="label label-success">'.$model->status0->name.'</span>'
@@ -58,7 +62,8 @@ $this->params['breadcrumbs'][] = 'Users';
                                         },
                             'filter' => Html::activeDropDownList($searchModel,'status',(new \common\models\Status())->getUserDropDown(),['prompt'=>'Select','class'=>'form-control'])
                         ],
-                        [   'class' => 'yii\grid\ActionColumn',
+                        [
+                            'class' => 'yii\grid\ActionColumn',
                             'urlCreator' => function ($action, $model, $key, $index) {
                                 if ($action === 'update') {
                                     return Url::toRoute([$action, 'username' => $model->username]);

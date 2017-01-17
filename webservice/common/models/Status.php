@@ -4,6 +4,7 @@ namespace common\models;
 
 use \common\models\base\Status as BaseStatus;
 use yii\helpers\ArrayHelper;
+use common\models\Constants;
 
 /**
  * This is the model class for table "status".
@@ -27,5 +28,10 @@ class Status extends BaseStatus
     public function getUserDropDown()
     {
         return ArrayHelper::map(self::findAll([1,2]), 'id', 'name');
+    }
+
+    public static function getPostDropDown()
+    {
+        return ArrayHelper::map(self::findAll(Constants::POST_STATUS_LIST), 'id', 'name');
     }
 }

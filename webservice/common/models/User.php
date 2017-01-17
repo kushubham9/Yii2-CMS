@@ -1,11 +1,13 @@
 <?php
 namespace common\models;
 
+use phpDocumentor\Reflection\Types\Self_;
 use Yii;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
 use yii\web\IdentityInterface;
 use common\models\base\User as BaseUser;
+use yii\helpers\ArrayHelper;
 
 /**
  * User model
@@ -179,5 +181,15 @@ class User extends BaseUser implements IdentityInterface
         $this->password_reset_token = null;
     }
 
+    public function getFullName()
+    {
+        return $this->usermeta->first_name. ' ' . $this->usermeta->last_name;
+    }
+
+    public static function getActiveUserDropDown()
+    {
+
+        return ArrayHelper::map(self::findAll(['status'=>Constants::ACTIVE_USERS_STATUS]), 'id', 'username');
+    }
 
 }

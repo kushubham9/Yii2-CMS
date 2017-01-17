@@ -18,4 +18,6 @@ class wyswyg extends AssetBundle
     public $js = [
         'bootstrap3-wysihtml5.all.js'
     ];
+
+    public $depends = ['yii\web\YiiAsset'];
 }

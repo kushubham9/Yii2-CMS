@@ -58,9 +58,4 @@ class User extends BaseUser
         ],parent::rules());
     }
 
-    public function getFullName()
-    {
-        return $this->usermeta->first_name. ' ' . $this->usermeta->last_name;
-    }
-
 }

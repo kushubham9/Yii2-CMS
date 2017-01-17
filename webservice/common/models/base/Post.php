@@ -2,8 +2,10 @@
 
 namespace common\models\base;
 
+use common\models\Constants;
 use Yii;
 use yii\behaviors\TimestampBehavior;
+use yii\behaviors\SluggableBehavior;
 
 /**
  * This is the base model class for table "post".
@@ -27,8 +29,8 @@ use yii\behaviors\TimestampBehavior;
  * @property \common\models\User $user
  * @property \common\models\PostCategory[] $postCategories
  * @property \common\models\Category[] $categories
- * @property \common\models\PostTaximony[] $postTaximonies
- * @property \common\models\Taximony[] $taximonies
+ * @property \common\models\PostTaxinomy[] $postTaximonies
+ * @property \common\models\Taxinomy[] $taximonies
  */
 class Post extends \yii\db\ActiveRecord
 {
@@ -127,20 +129,20 @@ class Post extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getPostTaximonies()
+    public function getPostTaxinomies()
     {
-        return $this->hasMany(\common\models\PostTaximony::className(), ['post_id' => 'id'])->inverseOf('post');
+        return $this->hasMany(\common\models\PostTaxinomy::className(), ['post_id' => 'id'])->inverseOf('post');
     }
         
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getTaximonies()
+    public function getTaxinomies()
     {
-        return $this->hasMany(\common\models\Taximony::className(), ['id' => 'taximony_id'])->viaTable('post_taximony', ['post_id' => 'id']);
+        return $this->hasMany(\common\models\Taxinomy::className(), ['id' => 'taxinomy_id'])->viaTable('post_Taxinomy', ['post_id' => 'id']);
     }
-    
-/**
+
+    /**
      * @inheritdoc
      * @return array mixed
      */ 
@@ -152,6 +154,10 @@ class Post extends \yii\db\ActiveRecord
                 'createdAtAttribute' => 'created_at',
                 'updatedAtAttribute' => 'updated_at',
                 'value' => new \yii\db\Expression('NOW()'),
+            ],
+            [
+                'class' => SluggableBehavior::className(),
+                'attribute' => 'title',
             ],
         ];
     }
