@@ -62,7 +62,7 @@ class PostController extends Controller
     public function actionCreate()
     {
         $post_model = new Post();
-        $post_model->scenario = POST::SCENARIO_CREATEPOST;
+        $post_model->scenario = Post::SCENARIO_CREATEPOST;
         if ($post_model->load(Yii::$app->request->post()) && $post_model->validate())
         {
             $post_model->doRegister();
@@ -80,7 +80,6 @@ class PostController extends Controller
         if (!$post_model)
         {
             throw new NotFoundHttpException('Invalid Post ID Specified.');
-            return;
         }
 
         $post_model->scenario = POST::SCENARIO_UPDATEPOST;
@@ -101,7 +100,6 @@ class PostController extends Controller
         if ($post_model==null)
         {
             throw new NotFoundHttpException('Invalid Post ID');
-            return;
         }
         $post_model->delete();
         $this->redirect(['post/index']);
@@ -113,25 +111,15 @@ class PostController extends Controller
         $posts = Yii::$app->request->post('selection');
 
         if (empty($posts) || sizeof($posts)==0)
-            $this->setAlertMessage("No Posts Selected. Action not performed.", false);
+            Yii::$app->session->setFlash('danger','No Posts Selected. Action not performed.');
 
         if ($action == self::BULKACTION_DELETE)
         {
             if (Post::deleteAll(['id'=>$posts]))
-                $this->setAlertMessage('Posts Deleted.');
+                Yii::$app->session->setFlash('success','Posts Deleted.');
         }
         $this->redirect(['post/index']);
     }
 
-    /**
-     * @param $message String
-     * @param $isSuccess boolean
-     */
-    private function setAlertMessage($message, $isSuccess=true)
-    {
-        if ($isSuccess)
-            Yii::$app->session->setFlash('success', $message);
-        else
-            Yii::$app->session->setFlash('danger', $message);
-    }
+
 }

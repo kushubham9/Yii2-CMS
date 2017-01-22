@@ -17,7 +17,7 @@ class PostSearch extends Post
     {
         return [
             [['id','status'],'integer'],
-            [['id','title','user_id','updated_at','um.first_name','catList','tagList', 'CategoryID'],'safe']
+            [['id','title','user_id','updated_at','cat.id'],'safe']
         ];
     }
 
@@ -25,7 +25,7 @@ class PostSearch extends Post
     {
         return ArrayHelper::merge(parent::attributes(),
             [
-                'um.first_name','um.last_name', 'catList', 'tagList', 'CategoryID'
+                'cat.id'
             ]);
     }
 
@@ -38,10 +38,11 @@ class PostSearch extends Post
      */
     public function search($params)
     {
-        $query = self::find();
+        $query = self::find()->where(['type'=>Constants::TYPE_POST]);
         $query->select([
                 'post.*',
             ])
+            ->joinWith('categories cat')
             ->orderBy('post.id DESC');
 
         // add conditions that should always apply here
@@ -62,7 +63,7 @@ class PostSearch extends Post
         $query->andFilterWhere([
             'post.id' => $this->id,
             'post.updated_at' => $this->updated_at,
-            'post.category' => $this->category,
+            'cat.id' => $this->getAttribute('cat.id'),
             'post.status' => $this->status,
             'post.user_id' => $this->user_id,
         ]);

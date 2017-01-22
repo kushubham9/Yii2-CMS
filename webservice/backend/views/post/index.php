@@ -14,10 +14,10 @@ $this->params['breadcrumbs'][] = 'Posts';
 <div class="row">
     <div class="col-sm-12">
         <div class="box box-primary">
-
-            <div class="box-header with-border">
-                <h3 class="box-title"><?= $this->title;?></h3>
-            </div>
+<!---->
+<!--            <div class="box-header with-border">-->
+<!--                <h3 class="box-title"></h3>-->
+<!--            </div>-->
 
             <div class="box-body">
 
@@ -25,9 +25,10 @@ $this->params['breadcrumbs'][] = 'Posts';
                 <div class="form-group">
                     <div class="col-sm-3">
                         <p>
-                            <?=Html::dropDownList('action','',['Publish'=>\backend\controllers\PostController::BULKACTION_PUBLISH,
-                                                                'Hide'=>\backend\controllers\PostController::BULKACTION_HIDE,
-                                                                'Delete'=>\backend\controllers\PostController::BULKACTION_DELETE],
+                            <?=Html::dropDownList('action','',[
+                                    \backend\controllers\PostController::BULKACTION_PUBLISH=>'Publish',
+                                    \backend\controllers\PostController::BULKACTION_HIDE=>'Hide',
+                                    \backend\controllers\PostController::BULKACTION_DELETE=>'Delete',],
                                                             ['class'=>'form-control', 'prompt'=>'Bulk Action'])?>
                         </p>
                     </div>
@@ -51,7 +52,7 @@ $this->params['breadcrumbs'][] = 'Posts';
                         ],
                         'title',
                         [
-                            'attribute' => 'um.first_name',
+                            'attribute' => 'user_id',
                             'label' => 'Author',
                             'value' => function($model) {
                                 if ($model->user!=null && $model->user->usermeta != null)
@@ -62,11 +63,12 @@ $this->params['breadcrumbs'][] = 'Posts';
                             },
                             'filter' => (new \common\models\User())::getActiveUserDropDown(),
                             'filterType'=>GridView::FILTER_SELECT2,
+                            'filterInputOptions'=>['placeholder'=>'Any Author','multiple'=>'multiple'],
                         ],
 
                         [
                             'header' => 'Category',
-                            'attribute' => 'categories.id',
+                            'attribute' => 'cat.id',
                             'value' => function($model)
                             {
                                 if ($model->categories)
@@ -77,6 +79,8 @@ $this->params['breadcrumbs'][] = 'Posts';
                             },
                             'filterType'=>GridView::FILTER_SELECT2,
                             'filter' => (new \common\models\Category())::getCategoryDropdown(),
+                            'filterInputOptions'=>['placeholder'=>'Any Category','multiple'=>'multiple'],
+
                         ],
                         [
                             'label' => 'Tags',
@@ -114,12 +118,13 @@ $this->params['breadcrumbs'][] = 'Posts';
                                     ?'<span class="label label-success">'.$model->status0->name.'</span>'
                                     :'<span class="label label-danger">'.$model->status0->name.'</span>';
                             },
-//                            'filter' => Html::activeDropDownList($searchModel,'status',(new \common\models\Status())->getPostDropDown(),['prompt'=>'Select','class'=>'form-control']),
-                            'filter' => (new \common\models\Status())->getPostDropDown(),
-                            'filterType'=>GridView::FILTER_SELECT2,
-                            'filterWidgetOptions'=>[
-                                'pluginOptions'=>['allowClear'=>true],
-                            ],
+                            'filter' => Html::activeDropDownList($searchModel,'status',(new \common\models\Status())->getPostDropDown(),['prompt'=>'Select','class'=>'form-control']),
+//                            'filter' => (new \common\models\Status())->getPostDropDown(),
+//                            'filterWidgetOptions'=>[
+//                                'pluginOptions'=>['allowClear'=>true],
+//                            ],
+//                            'filterInputOptions'=>['placeholder'=>'Any Status'],
+
                         ],
                         [
                             'class' => '\kartik\grid\DataColumn',
@@ -145,10 +150,13 @@ $this->params['breadcrumbs'][] = 'Posts';
                         ],
 
                     ],
-                    'bordered'=>true,
-                    'condensed'=>true,
-                    'striped'=>true,
-                    'hover'=>true,
+                    'pjax' => true,
+                    'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-page']],
+                    'panel' => [
+                        'type' => GridView::TYPE_PRIMARY,
+                        'heading' => '<span class="glyphicon glyphicon-book"></span>  '.$this->title,
+                    ],
+
                 ]); ?>
 
                 <?= Html::endForm();?>

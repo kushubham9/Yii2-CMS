@@ -4,12 +4,14 @@ namespace common\models\base;
 
 use Yii;
 use yii\behaviors\TimestampBehavior;
+use yii\behaviors\SluggableBehavior;
 
 /**
  * This is the base model class for table "taxinomy".
  *
  * @property integer $id
  * @property string $type
+ * @property string $slug
  * @property string $value
  * @property string $created_at
  * @property string $updated_at
@@ -27,9 +29,10 @@ class Taxinomy extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['type', 'value', 'created_at', 'updated_at'], 'required'],
+            [['type', 'value','slug'], 'required'],
+            [['slug'], 'unique'],
             [['created_at', 'updated_at'], 'safe'],
-            [['type', 'value'], 'string', 'max' => 255]
+            [['type', 'value', 'description','slug'], 'string', 'max' => 255]
         ];
     }
     
@@ -50,6 +53,8 @@ class Taxinomy extends \yii\db\ActiveRecord
             'id' => 'ID',
             'type' => 'Type',
             'value' => 'Value',
+            'description' => 'Description',
+            'slug' => 'Slug',
         ];
     }
     
@@ -81,6 +86,10 @@ class Taxinomy extends \yii\db\ActiveRecord
                 'createdAtAttribute' => 'created_at',
                 'updatedAtAttribute' => 'updated_at',
                 'value' => new \yii\db\Expression('NOW()'),
+            ],
+            [
+                'class' => SluggableBehavior::className(),
+                'attribute' => 'value',
             ],
         ];
     }

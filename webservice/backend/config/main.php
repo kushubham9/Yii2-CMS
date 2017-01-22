@@ -10,14 +10,26 @@ return [
     'id' => 'app-backend',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
-    'bootstrap' => ['log','gii'],
+    'bootstrap' => ['log','gii','common\config\globalsettings'],
     'modules' => [
         'gridview' => [
             'class' => '\kartik\grid\Module',
         ],
         'gii' => [
             'class' => 'yii\gii\Module',
-        ]
+        ],
+        'imagemanager' => [
+            'class' => 'noam148\imagemanager\Module',
+            //set accces rules ()
+            'canUploadImage' => true,
+            'canRemoveImage' => function(){
+                return true;
+            },
+            //add css files (to use in media manage selector iframe)
+            'cssFiles' => [
+                'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css',
+            ],
+        ],
     ],
     'components' => [
         'request' => [
@@ -45,9 +57,6 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        'gridview' => [
-            'class' => '\kartik\grid\Module',
-        ],
 
         'urlManager' => [
             'class' => 'yii\web\UrlManager',
@@ -57,6 +66,17 @@ return [
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
             ),
+        ],
+        'imagemanager' => [
+            'class' => 'noam148\imagemanager\components\ImageManagerGetPath',
+            //set media path (outside the web folder is possible)
+            'mediaPath' => 'uploads',
+            //path relative web folder to store the cache images
+            'cachePath' => 'cache',
+            //use filename (seo friendly) for resized images else use a hash
+            'useFilename' => true,
+            //show full url (for example in case of a API)
+            'absoluteUrl' => true,
         ],
 
     ],

@@ -4,6 +4,7 @@ namespace common\models\base;
 
 use Yii;
 use yii\behaviors\TimestampBehavior;
+use yii\behaviors\SluggableBehavior;
 
 /**
  * This is the base model class for table "category".
@@ -11,6 +12,7 @@ use yii\behaviors\TimestampBehavior;
  * @property integer $id
  * @property string $name
  * @property string $slug
+ * @property string $description
  * @property string $created_at
  * @property string $updated_at
  *
@@ -27,10 +29,12 @@ class Category extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'slug'], 'required'],
+            [['name'], 'required'],
             [['created_at', 'updated_at'], 'safe'],
             [['name'], 'string', 'max' => 50],
             [['slug'], 'string', 'max' => 255],
+            [['description'], 'string', 'max' => 255],
+            [['description'], 'default', 'value' => null],
             [['slug'], 'unique']
         ];
     }
@@ -52,6 +56,7 @@ class Category extends \yii\db\ActiveRecord
             'id' => 'ID',
             'name' => 'Name',
             'slug' => 'Slug',
+            'description' => 'Description'
         ];
     }
     
@@ -83,6 +88,10 @@ class Category extends \yii\db\ActiveRecord
                 'createdAtAttribute' => 'created_at',
                 'updatedAtAttribute' => 'updated_at',
                 'value' => new \yii\db\Expression('NOW()'),
+            ],
+            [
+                'class' => SluggableBehavior::className(),
+                'attribute' => 'name',
             ],
         ];
     }

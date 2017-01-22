@@ -34,4 +34,5 @@ class Status extends BaseStatus
     {
         return ArrayHelper::map(self::findAll(Constants::POST_STATUS_LIST), 'id', 'name');
     }
+
 }

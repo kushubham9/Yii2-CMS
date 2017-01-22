@@ -2,14 +2,12 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use backend\assets\Select2;
-use backend\assets\wyswyg;
 use common\models\Constants;
+use dosamigos\tinymce\TinyMce;
 
 Select2::register($this);
-wyswyg::register($this);
 
 $this->registerJs("$('select').select2();");
-$this->registerJs('$(".wysiwyg").wysihtml5();');
 
 /* @var $post_model backend\models\Post */
 /* @var $usermeta_model common\models\Usermeta */
@@ -48,7 +46,38 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?php $form = ActiveForm::begin(['layout'=>'default']); ?>
                 <?= $form->errorSummary([$post_model]); ?>
                 <?= $form->field($post_model,'title')->textInput(['placeholder'=>'Post Title'])->label('Post Title'); ?>
-                <?= $form->field($post_model,'content')->textarea(['rows'=>15,'style'=>'width:100%', 'class'=>'wysiwyg'])->label('Post Content'); ?>
+                <?= $form->field($post_model, 'content')->widget(TinyMce::className(), [
+                    'options' => ['rows' => 20],
+                    'clientOptions' => [
+                        'file_browser_callback' => new yii\web\JsExpression("function(field_name, url, type, win) {
+            window.open('".yii\helpers\Url::to(['imagemanager/manager', 'view-mode'=>'iframe', 'select-type'=>'tinymce',])."&tag_name='+field_name,'','width=800,height=540 ,toolbar=no,status=no,menubar=no,scrollbars=no,resizable=no');
+        }"),
+                        'plugins' => [
+                            "advlist autolink lists link charmap print preview anchor",
+                            "searchreplace visualblocks code fullscreen",
+                            "insertdatetime media table contextmenu paste image"
+                        ],
+                        'relative_urls'=> false,
+                        'document_base_url'=> '\'//backend.cms.dev/',
+                        'toolbar' => "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
+                    ]
+                ]);
+                    ?>
+
+                <?php
+//                $form->field($post_model, 'content')->widget(TinyMCE::className(), [
+//                    'clientOptions' => [
+//                        'language' => 'ru',
+//                        'menubar' => false,
+//                        'height' => 500,
+//                        'image_dimensions' => false,
+//                        'plugins' => [
+//                            'advlist autolink lists link image charmap print preview anchor searchreplace visualblocks code contextmenu table',
+//                        ],
+//                        'toolbar' => 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | code',
+//                    ],
+//                ]);
+?>
                 <div class="row">
                     <div class="col-sm-6">
                         <?=$form->field($post_model,'category')

@@ -93,13 +93,26 @@ AppAsset::register($this);
                                 </span>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="<?= \yii\helpers\Url::to(['post/index'])?>"><i class="fa fa-circle-o"></i>All Posts</a></li>
-                                <li><a href="<?= \yii\helpers\Url::to(['post/create'])?>"><i class="fa fa-circle-o"></i>Add New</a></li>
-                                <li><a href="<?= \yii\helpers\Url::to(['category/index'])?>"><i class="fa fa-circle-o"></i>Categories</a></li>
-                                <li><a href="<?= \yii\helpers\Url::to(['taxinomy/index'])?>"><i class="fa fa-circle-o"></i>Tags</a></li>
+                                <li><a href="<?= \yii\helpers\Url::to(['/post/index'])?>"><i class="fa fa-circle-o"></i>All Posts</a></li>
+                                <li><a href="<?= \yii\helpers\Url::to(['/post/create'])?>"><i class="fa fa-circle-o"></i>Add New</a></li>
+                                <li><a href="<?= \yii\helpers\Url::to(['/category/index'])?>"><i class="fa fa-circle-o"></i>Categories</a></li>
+                                <li><a href="<?= \yii\helpers\Url::to(['/taxinomy/index'])?>"><i class="fa fa-circle-o"></i>Tags</a></li>
                             </ul>
                         </li>
 
+                        <li><a href="<?= \yii\helpers\Url::to(['/imagemanager'])?>"><i class="fa fa-book"></i> <span>Media</span></a></li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-dashboard"></i> <span>Pages</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="<?= \yii\helpers\Url::to(['/page/index'])?>"><i class="fa fa-circle-o"></i>All Pages</a></li>
+                                <li><a href="<?= \yii\helpers\Url::to(['/page/create'])?>"><i class="fa fa-circle-o"></i>Add New</a></li>
+                            </ul>
+                        </li>
                         <li><a href="../documentation/index.html"><i class="fa fa-book"></i> <span>Comments</span></a></li>
 
                         <li><a href="../documentation/index.html"><i class="fa fa-book"></i> <span>Advertisement</span></a></li>
