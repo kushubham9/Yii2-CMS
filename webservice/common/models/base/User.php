@@ -43,7 +43,8 @@ class User extends \yii\db\ActiveRecord
             [['email'], 'string', 'max' => 50],
             [['username'], 'unique'],
             [['email'], 'unique'],
-            [['password_reset_token'], 'unique']
+            [['password_reset_token'], 'unique'],
+            [['fullName'],'safe']
         ];
     }
 
@@ -68,6 +69,7 @@ class User extends \yii\db\ActiveRecord
             'password_reset_token' => 'Password Reset Token',
             'email' => 'Email',
             'status' => 'Status',
+            'fullName' => 'Full Name'
         ];
     }
     
@@ -130,5 +132,10 @@ class User extends \yii\db\ActiveRecord
                 'value' => new \yii\db\Expression('NOW()'),
             ],
         ];
+    }
+
+    public function getFullName()
+    {
+        return $this->usermeta->first_name. ' ' . $this->usermeta->last_name;
     }
 }

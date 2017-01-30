@@ -26,15 +26,41 @@ class globalsettings implements BootstrapInterface
      */
 
     public function bootstrap($app) {
-        //  Yii::$app->cache->flush();
+
+        //Global Settings Stored as params.
+//          Yii::$app->cache->flush();
         $settings = $this->db->cache(function($db)
                         {
                             return $db->createCommand("SELECT name,value FROM option")->queryAll();
                         });
-        // Now let's load the settings into the global params array
 
         foreach ($settings as $key => $val) {
             Yii::$app->params['settings'][$val['name']] = $val['value'];
+        }
+
+        // User Information Stored as Params
+        if (Yii::$app->user->id)
+        {
+            $user_options = $this->db->cache(function($db)
+            {
+                return $db->createCommand(
+                    "SELECT 
+                        user.id as user_id, 
+                        user.email as user_email, 
+                        user.username as user_username, 
+                        usermeta.first_name as user_fname, 
+                        usermeta.nickname as user_nickname, 
+                        usermeta.last_name as user_lname,
+                        usermeta.profile_pic as user_image 
+                      from USER INNER JOIN usermeta on 
+                        user.id = usermeta.user_id 
+                      where user.id = ".Yii::$app->user->id)->queryOne();
+            });
+
+            foreach ($user_options as $key=>$val)
+            {
+                Yii::$app->params['user_details'][$key] = $val;
+            }
         }
     }
 

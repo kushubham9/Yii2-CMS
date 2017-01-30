@@ -19,6 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
 
             <div class="box-body">
+                <?= $form->errorSummary([$model]); ?>
                 <?php $form = ActiveForm::begin(); ?>
                 <?= $form->field($model, 'name')->textInput(['maxlength' => 50])->hint('The name is how it appears on your site.') ?>
                 <?= $form->field($model, 'slug')->textInput(['maxlength' => 255])->hint('The name is how it appears on your site.') ?>

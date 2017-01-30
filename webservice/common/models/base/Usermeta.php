@@ -41,6 +41,8 @@ class Usermeta extends \yii\db\ActiveRecord
             [['first_name', 'last_name', 'nickname'], 'string', 'max' => 50],
             [['gender'], 'string', 'max' => 1],
             [['website', 'social_fb', 'social_google', 'social_linkedin'], 'string', 'max' => 255],
+            [['about','first_name','last_name','gender','website','social_fb','social_google','social_linkedin','nickname'],'filter','filter'=>'trim'],
+            [['updated_at','created_at','profile_pic'],'safe'],
         ];
     }
     

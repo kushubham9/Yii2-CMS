@@ -25,8 +25,8 @@ class Post extends BasePost
     public function scenarios()
     {
         $scenarios = parent::scenarios();
-        $scenarios[Post::SCENARIO_CREATEPOST] = ['title','type','user_id', 'slug', 'content','status','comment_allowed','category','taxinomy'];
-        $scenarios[Post::SCENARIO_UPDATEPOST] = ['title','type','user_id', 'slug', 'content','status','comment_allowed','category','taxinomy'];
+        $scenarios[Post::SCENARIO_CREATEPOST] = ['title','type','user_id', 'slug', 'content','status','comment_allowed','category','taxinomy','featured_image'];
+        $scenarios[Post::SCENARIO_UPDATEPOST] = ['title','type','user_id', 'slug', 'content','status','comment_allowed','category','taxinomy','featured_image'];
         return $scenarios;
     }
 
@@ -41,7 +41,7 @@ class Post extends BasePost
             [['content'], 'string'],
             ['category', 'each', 'rule' => ['integer']],
             [['views', 'comment_allowed', 'status', 'user_id', 'featured_image'], 'integer'],
-            [['created_at', 'updated_at'], 'safe'],
+            [['created_at', 'updated_at', 'featured_image'], 'safe'],
             [['type', 'title', 'slug'], 'string', 'max' => 255],
             [['slug'], 'unique']
         ];

@@ -4,8 +4,8 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $user_model backend\models\User */
 /* @var $usermeta_model common\models\Usermeta */
+/* @var $user_model backend\models\User */
 
 $this->title = $user_model->fullName;
 
@@ -35,6 +35,11 @@ $this->params['breadcrumbs'][] = $user_model->fullName;
                     'model'=>$user_model,
                     'attributes' =>
                         [
+                            [
+                                'label' => 'Profile Pic',
+                                'format' => 'html',
+                                'value' => Html::img(\Yii::$app->imagemanager->getImagePath($user_model->usermeta->profile_pic, 200, 200,true))
+                            ],
                             'username',
                             'email:email',
                             [

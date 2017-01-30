@@ -28,10 +28,6 @@ AppAsset::register($this);
         <?php $this->beginBody() ?>
         <div class="wrapper">
             <header class="main-header">
-                <a href="<?= Yii::$app->homeUrl ?>">
-                    <span class="logo-mini"><b>A</b>LT</span>
-                    <span class="logo-lg"><b>Admin</b>LTE</span>
-                </a>
 
                 <?php
                     NavBar::begin([
@@ -52,7 +48,7 @@ AppAsset::register($this);
                             . Html::beginForm(['/site/logout'], 'post')
                             . Html::submitButton(
                                 'Logout (' . Yii::$app->user->identity->username . ')',
-                                ['class' => 'btn btn-link logout']
+                                ['class' => 'btn btn-primary logout']
                             )
                             . Html::endForm()
                             . '</li>';
@@ -72,10 +68,12 @@ AppAsset::register($this);
                     <!-- Sidebar user panel -->
                     <div class="user-panel">
                         <div class="pull-left image">
-                            <?=Html::img('@web/img/user2-160x160.jpg',['class'=>'img-circle']);?>
+                            <?=Html::img(
+                                \Yii::$app->imagemanager->getImagePath(\Yii::$app->params['user_details']['user_image'],60,60)
+                                    ,['class'=>'img-circle']);?>
                         </div>
                         <div class="pull-left info">
-                            <p>Alexander Pierce</p>
+                            <p><?= Yii::$app->params['user_details']['user_fname'] .' '. Yii::$app->params['user_details']['user_lname']; ?></p>
                             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                         </div>
                     </div>
@@ -130,7 +128,7 @@ AppAsset::register($this);
                             <ul class="treeview-menu">
                                 <li><a href="<?= \yii\helpers\Url::to(['user/index'])?>"><i class="fa fa-circle-o"></i>All Users</a></li>
                                 <li><a href="<?= \yii\helpers\Url::to(['user/register'])?>"><i class="fa fa-circle-o"></i>Add New</a></li>
-                                <li><a href="<?= \yii\helpers\Url::to(['user/register'])?>"><i class="fa fa-circle-o"></i>Your Profile</a></li>
+                                <li><a href="<?= \yii\helpers\Url::to(['/user/view','username'=>trim(Yii::$app->params['user_details']['user_username'])])?>"><i class="fa fa-circle-o"></i>Your Profile</a></li>
                             </ul>
                         </li>
                     </ul>

@@ -15,10 +15,6 @@ class Usermeta extends BaseUsermeta
      */
     public function rules()
     {
-//        return parent::rules();
-        return ArrayHelper::merge(
-        [
-            [['about','first_name','last_name','gender','website','social_fb','social_google','social_linkedin','nickname'],'filter','filter'=>'trim'],
-        ],parent::rules());
+        return parent::rules();
     }
 }

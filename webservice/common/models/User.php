@@ -181,10 +181,6 @@ class User extends BaseUser implements IdentityInterface
         $this->password_reset_token = null;
     }
 
-    public function getFullName()
-    {
-        return $this->usermeta->first_name. ' ' . $this->usermeta->last_name;
-    }
 
     public static function getActiveUserDropDown()
     {

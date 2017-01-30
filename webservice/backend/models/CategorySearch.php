@@ -46,6 +46,11 @@ class CategorySearch extends Category
         // add conditions that should always apply here
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort'=>[
+                'defaultOrder' => [
+                    'created_at' => SORT_DESC
+                ]
+            ]
         ]);
 
         $this->load($params);
@@ -61,8 +66,7 @@ class CategorySearch extends Category
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'description', $this->description])
-            ->orderBy('created_at desc');
+            ->andFilterWhere(['like', 'description', $this->description]);
 
         return $dataProvider;
     }

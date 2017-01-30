@@ -81,7 +81,6 @@ class PostController extends Controller
         {
             throw new NotFoundHttpException('Invalid Post ID Specified.');
         }
-
         $post_model->scenario = POST::SCENARIO_UPDATEPOST;
         if ($post_model->load(Yii::$app->request->post()) && $post_model->validate())
         {

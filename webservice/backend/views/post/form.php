@@ -50,8 +50,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     'options' => ['rows' => 20],
                     'clientOptions' => [
                         'file_browser_callback' => new yii\web\JsExpression("function(field_name, url, type, win) {
-            window.open('".yii\helpers\Url::to(['imagemanager/manager', 'view-mode'=>'iframe', 'select-type'=>'tinymce',])."&tag_name='+field_name,'','width=800,height=540 ,toolbar=no,status=no,menubar=no,scrollbars=no,resizable=no');
-        }"),
+                            window.open('".yii\helpers\Url::to(['imagemanager/manager', 'view-mode'=>'iframe', 'select-type'=>'tinymce',])."&tag_name='+field_name,'','width=800,height=540 ,toolbar=no,status=no,menubar=no,scrollbars=no,resizable=no');
+                        }"),
                         'plugins' => [
                             "advlist autolink lists link charmap print preview anchor",
                             "searchreplace visualblocks code fullscreen",
@@ -60,24 +60,9 @@ $this->params['breadcrumbs'][] = $this->title;
                         'relative_urls'=> false,
                         'document_base_url'=> '\'//backend.cms.dev/',
                         'toolbar' => "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
-                    ]
-                ]);
-                    ?>
+                        ]
+                    ]); ?>
 
-                <?php
-//                $form->field($post_model, 'content')->widget(TinyMCE::className(), [
-//                    'clientOptions' => [
-//                        'language' => 'ru',
-//                        'menubar' => false,
-//                        'height' => 500,
-//                        'image_dimensions' => false,
-//                        'plugins' => [
-//                            'advlist autolink lists link image charmap print preview anchor searchreplace visualblocks code contextmenu table',
-//                        ],
-//                        'toolbar' => 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | code',
-//                    ],
-//                ]);
-?>
                 <div class="row">
                     <div class="col-sm-6">
                         <?=$form->field($post_model,'category')
@@ -131,15 +116,33 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
             </div>
         </div>
-                <div class="form-group">
-                    <div class="col-sm-offset-3 col-md-offset-2 col-sm-6">
-                        <?= Html::submitButton($post_model->isNewRecord?'Create':'Update', ['class' => 'btn btn-primary', 'name' => 'create-button']) ?>
+
+        <div class="box box-info">
+            <div class="box-header with-border">
+                <h3 class="box-title">Featured Image</h3>
+            </div>
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <?php
+                        echo $form->field($post_model, 'featured_image')->widget(\noam148\imagemanager\components\ImageManagerInputWidget::className(), [
+                            'aspectRatio' => (16/9), //set the aspect ratio
+                            'showPreview' => true, //false to hide the preview
+                            'showDeletePickedImageConfirm' => false, //on true show warning before detach image
+                        ]);
+                        ?>
                     </div>
                 </div>
-                <?php ActiveForm::end();?>
             </div>
         </div>
 
+        <div class="form-group">
+            <div class="col-sm-6">
+                <?= Html::submitButton($post_model->isNewRecord?'Create':'Update', ['class' => 'btn btn-lg btn-primary', 'name' => 'create-button']) ?>
+            </div>
+        </div>
+        <?php ActiveForm::end();?>
     </div>
 </div>
+
 

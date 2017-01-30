@@ -31,12 +31,12 @@ $this->params['breadcrumbs'][] = 'Users';
                        ['class' => 'yii\grid\SerialColumn'],
                         'username',
                         [
-                            'attribute' => 'um.first_name',
+                            'attribute' => 'fullName',
                             'label' => 'Name',
-                            'value' => function($model)
-                                    {
-                                        return $model->fullName;
-                                    }
+                            'value' => function ($model)
+                            {
+                                return $model->usermeta->first_name. ' '.$model->usermeta->last_name;
+                            }
                         ],
 
                         'email:email',
@@ -45,7 +45,6 @@ $this->params['breadcrumbs'][] = 'Users';
                             'attribute' => 'created_at',
                             'filterType' => GridView::FILTER_DATE,
                             'label' => 'Registration Date',
-
                             'hAlign'=>'center',
                             'vAlign'=>'middle',
                             'format'=>'date'
