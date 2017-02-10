@@ -48,7 +48,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?= $form->field($user_model,'password_repeat',['inputOptions'=>['placeholder'=>'Leave blank if N/A']])->label('Password Repeat')->passwordInput(); ?>
                 <?php endif;?>
 
-                <?= $form->field($user_model,'status')->dropDownList($status,['prompt'=>'Select Status']); ?>
+                <?= $form->field($user_model,'status')->dropDownList(
+                        \common\models\Status::getStatusDropDown(\common\models\Constants::USER_STATUS_LIST),
+                        ['prompt'=>'Select Status']); ?>
 
             </div>
         </div>

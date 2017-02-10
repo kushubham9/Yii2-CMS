@@ -7,10 +7,10 @@ use yii\widgets\DetailView;
 /* @var $usermeta_model common\models\Usermeta */
 /* @var $user_model backend\models\User */
 
-$this->title = $user_model->fullName;
+$this->title = $user_model->usermeta->first_name. ' ' . $user_model->usermeta->last_name;
 
 $this->params['breadcrumbs'][] = ['label'=>'Users','url'=>['index']];
-$this->params['breadcrumbs'][] = $user_model->fullName;
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <div class="row">
@@ -60,9 +60,8 @@ $this->params['breadcrumbs'][] = $user_model->fullName;
                             ],
                             [
                                 'attribute' => 'status',
-//                                'value' => $user_model->status0->name,
                                 'format' => 'html',
-                                 'value' => $user_model::ACTIVE_STATUS == 1
+                                 'value' => (in_array($user_model->status, \common\models\Constants::ACTIVE_USERS_STATUS))
                                                 ? "<span class='label label-success'>{$user_model->status0->name}</span>"
                                                 : "<span class='label label-danger'>{$user_model->status0->name}</span>"
                             ],

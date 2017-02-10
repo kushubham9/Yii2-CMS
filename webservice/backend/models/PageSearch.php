@@ -40,7 +40,7 @@ class PageSearch extends Page
             'query' => $query,
             'sort' =>
             [
-                'defaultOrder' => 'updated_at DESC'
+                'defaultOrder' => 'created_at DESC'
             ]
         ]);
 

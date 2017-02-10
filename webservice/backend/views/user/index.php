@@ -55,11 +55,11 @@ $this->params['breadcrumbs'][] = 'Users';
                             'format' => 'html',
                             'value' => function ($model)
                                         {
-                                            return $model->status == backend\models\User::ACTIVE_STATUS ?
+                                            return (in_array($model->status, \common\models\Constants::ACTIVE_USERS_STATUS)) ?
                                                 '<span class="label label-success">'.$model->status0->name.'</span>'
                                                 :'<span class="label label-danger">'.$model->status0->name.'</span>';
                                         },
-                            'filter' => Html::activeDropDownList($searchModel,'status',(new \common\models\Status())->getUserDropDown(),['prompt'=>'Select','class'=>'form-control'])
+                            'filter' => Html::activeDropDownList($searchModel,'status',(new \common\models\Status())->getStatusDropDown(\common\models\Constants::USER_STATUS_LIST),['prompt'=>'Select','class'=>'form-control'])
                         ],
                         [
                             'class' => 'yii\grid\ActionColumn',

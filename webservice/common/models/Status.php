@@ -35,4 +35,16 @@ class Status extends BaseStatus
         return ArrayHelper::map(self::findAll(Constants::POST_STATUS_LIST), 'id', 'name');
     }
 
+    /**
+     * @param $id array
+     * @return array
+     */
+    public static function getStatusDropDown($id = false)
+    {
+        if ($id)
+            return ArrayHelper::map(self::findAll($id), 'id', 'name');
+        else
+            return ArrayHelper::map(self::find()->all(),'id','name');
+    }
+
 }

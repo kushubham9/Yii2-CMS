@@ -63,7 +63,6 @@ class UserController extends Controller
         return $this->render('form',[
             'user_model'=>$user_model,
             'usermeta_model'=>$usermeta_model,
-            'status'=>(new Status())->getUserDropDown()
         ]);
     }
 
@@ -89,7 +88,6 @@ class UserController extends Controller
         return $this->render('form',[
             'user_model'=>$user_model,
             'usermeta_model'=>$usermeta_model,
-            'status'=>(new Status())->getUserDropDown()
         ]);
 
     }

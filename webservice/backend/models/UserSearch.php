@@ -57,6 +57,9 @@ class UserSearch extends BaseUser2
             'sort' => [
                 'attributes' =>
                     [
+                        'username',
+                        'email',
+                        'status',
                         'created_at' => [
                             'asc' => ['user.created_at' => SORT_ASC, 'user.updated_at' => SORT_ASC],
                             'desc' => ['user.created_at' => SORT_DESC, 'user.updated_at' => SORT_DESC],

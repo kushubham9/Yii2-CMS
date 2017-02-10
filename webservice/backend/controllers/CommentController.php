@@ -11,9 +11,29 @@ namespace backend\controllers;
 use Yii;
 use yii\web\Controller;
 use backend\models\CommentSearch;
+use yii\filters\AccessControl;
 
 class CommentController extends Controller
 {
+    /**
+     * @return array
+     */
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'actions' => ['index'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
+        ];
+    }
+
     public function actionIndex()
     {
         $searchModel = new CommentSearch();

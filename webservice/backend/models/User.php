@@ -8,18 +8,16 @@
 
 namespace backend\models;
 
+use common\models\Constants;
 use common\models\User as BaseUser;
 use yii\helpers\ArrayHelper;
 use yii\data\ActiveDataProvider;
 
 class User extends BaseUser
 {
-    const ACTIVE_STATUS = 1;
-
     const SCENARIO_LOGIN = 'login';
     const SCENARIO_REGISTER = 'register';
     const SCENARIO_UPDATE = 'update';
-
 
     public $password;
     public $password_repeat;
@@ -31,6 +29,30 @@ class User extends BaseUser
         $scenarios[self::SCENARIO_UPDATE] = ['password','password_repeat','username','email','status'];
         $scenarios[self::SCENARIO_LOGIN] = ['password','username'];
         return $scenarios;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function rules()
+    {
+        return [
+            [['username', 'auth_key', 'password_hash', 'email','status'], 'required'],
+            [['created_at', 'updated_at'], 'safe'],
+            [['status'], 'integer'],
+            [['status'], 'default', 'value'=>Constants::DEFAULT_USER_STATUS],
+            [['username'], 'string', 'max' => 25],
+            [['auth_key'], 'string', 'max' => 32],
+            [['password_hash', 'password_reset_token'], 'string', 'max' => 255],
+            [['email'], 'string', 'max' => 50],
+            [['username'], 'unique'],
+            [['email'], 'unique'],
+            [['password_reset_token'], 'unique'],
+            [['fullName'],'safe'],
+            [['password','password_repeat'],'required','on'=>self::SCENARIO_REGISTER],
+            [['password','password_repeat'],'string','min'=>6],
+            ['password_repeat','compare','compareAttribute'=>'password','message'=>"Doesn't match."]
+        ];
     }
 
     public function beforeValidate()
@@ -47,15 +69,6 @@ class User extends BaseUser
                     ['password'=>'Password'],
                     ['password_repeat'=>'Password Repeat']
                 ]);
-    }
-
-    public function rules()
-    {
-        return ArrayHelper::merge([
-            [['password','password_repeat'],'required','on'=>self::SCENARIO_REGISTER],
-            [['password','password_repeat'],'string','min'=>6],
-            ['password_repeat','compare','compareAttribute'=>'password','message'=>"Doesn't match."]
-        ],parent::rules());
     }
 
 }

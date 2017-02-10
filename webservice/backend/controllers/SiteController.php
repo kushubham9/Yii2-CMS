@@ -1,11 +1,14 @@
 <?php
 namespace backend\controllers;
 
+use common\models\Comment;
 use Yii;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
+use backend\models\Post;
+use backend\models\User;
 
 /**
  * Site controller
@@ -60,7 +63,14 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $post_model = new Post();
+        $user_model = new User();
+        $comment_model = new Comment();
+        return $this->render('index',
+                ['post_model' => $post_model,
+                'user_model' => $user_model,
+                'comment_model' => $comment_model]
+            );
     }
 
     /**
@@ -74,11 +84,12 @@ class SiteController extends Controller
             return $this->goHome();
         }
 
+        $this->layout = 'login';
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->goBack();
         } else {
-            return $this->render('login', [
+            return $this->render('temp_login', [
                 'model' => $model,
             ]);
         }
@@ -92,7 +103,6 @@ class SiteController extends Controller
     public function actionLogout()
     {
         Yii::$app->user->logout();
-
         return $this->goHome();
     }
 }

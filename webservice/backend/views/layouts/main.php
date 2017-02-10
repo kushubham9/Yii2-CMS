@@ -9,8 +9,10 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use common\widgets\Alert;
+use backend\assets\IonIcons;
 
 AppAsset::register($this);
+IonIcons::register($this);
 ?>
 
 <?php $this->beginPage() ?>
@@ -45,12 +47,13 @@ AppAsset::register($this);
                         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
                     } else {
                         $menuItems[] = '<li>'
-                            . Html::beginForm(['/site/logout'], 'post')
-                            . Html::submitButton(
-                                'Logout (' . Yii::$app->user->identity->username . ')',
-                                ['class' => 'btn btn-primary logout']
-                            )
-                            . Html::endForm()
+                            . Html::a('Logout',['/site/logout'],['data-method' => 'POST', 'data-confirm' => 'Are you sure you want to logout?'])
+//                            . Html::beginForm(['/site/logout'], 'post')
+//                            . Html::submitButton(
+//                                'Logout (' . Yii::$app->user->identity->username . ')',
+//                                ['class' => 'btn btn-primary btn-block logout']
+//                            )
+//                            . Html::endForm()
                             . '</li>';
                     }
                     echo Nav::widget([
@@ -68,20 +71,23 @@ AppAsset::register($this);
                     <!-- Sidebar user panel -->
                     <div class="user-panel">
                         <div class="pull-left image">
-                            <?=Html::img(
-                                \Yii::$app->imagemanager->getImagePath(\Yii::$app->params['user_details']['user_image'],60,60)
-                                    ,['class'=>'img-circle']);?>
+                            <?= Html::img(
+                                    \Yii::$app->imagemanager->getImagePath(\Yii::$app->params['user_details']['user_image'], 60, 60)
+                                    , ['class' => 'img-circle']);
+                            ?>
                         </div>
-                        <div class="pull-left info">
-                            <p><?= Yii::$app->params['user_details']['user_fname'] .' '. Yii::$app->params['user_details']['user_lname']; ?></p>
-                            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-                        </div>
+                        <?php if (!Yii::$app->user->isGuest):?>
+                            <div class="pull-left info">
+                                <p><?= Yii::$app->params['user_details']['user_fname'] .' '. Yii::$app->params['user_details']['user_lname']; ?></p>
+                                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                            </div>
+                        <?php endif;?>
                     </div>
 
                     <ul class="sidebar-menu">
                         <li class="header">MAIN NAVIGATION</li>
 
-                        <li><a href="<?= \yii\helpers\Url::to(['site/index']); ?>"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+                        <li><a href="<?= \yii\helpers\Url::to(['/site/index']); ?>"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
 
                         <li class="treeview">
                             <a href="#">
@@ -111,12 +117,9 @@ AppAsset::register($this);
                                 <li><a href="<?= \yii\helpers\Url::to(['/page/create'])?>"><i class="fa fa-circle-o"></i>Add New</a></li>
                             </ul>
                         </li>
-                        <li><a href="../documentation/index.html"><i class="fa fa-book"></i> <span>Comments</span></a></li>
+                        <li><a href="<?= \yii\helpers\Url::to(['/comment']) ?>"><i class="fa fa-book"></i> <span>Comments</span></a></li>
 
-                        <li><a href="../documentation/index.html"><i class="fa fa-book"></i> <span>Advertisement</span></a></li>
-
-                        <li><a href="../documentation/index.html"><i class="fa fa-book"></i> <span>Settings</span></a></li>
-
+                        <li><a href="<?= \yii\helpers\Url::to(['/ad']) ?>"><i class="fa fa-book"></i> <span>Advertisement</span></a></li>
 
                         <li class="treeview">
                             <a href="#">
@@ -126,11 +129,14 @@ AppAsset::register($this);
                                 </span>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="<?= \yii\helpers\Url::to(['user/index'])?>"><i class="fa fa-circle-o"></i>All Users</a></li>
-                                <li><a href="<?= \yii\helpers\Url::to(['user/register'])?>"><i class="fa fa-circle-o"></i>Add New</a></li>
+                                <li><a href="<?= \yii\helpers\Url::to(['/user/index'])?>"><i class="fa fa-circle-o"></i>All Users</a></li>
+                                <li><a href="<?= \yii\helpers\Url::to(['/user/register'])?>"><i class="fa fa-circle-o"></i>Add New</a></li>
                                 <li><a href="<?= \yii\helpers\Url::to(['/user/view','username'=>trim(Yii::$app->params['user_details']['user_username'])])?>"><i class="fa fa-circle-o"></i>Your Profile</a></li>
                             </ul>
                         </li>
+
+                        <li><a href="#"><i class="fa fa-book"></i> <span>Settings</span></a></li>
+
                     </ul>
                 </section>
             </aside>
