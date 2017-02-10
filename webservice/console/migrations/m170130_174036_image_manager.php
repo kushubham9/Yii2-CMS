@@ -5,7 +5,7 @@ use yii\db\Migration;
 /**
  * Handles the creation for table `ImageManager`.
  */
-class m160622_085710_create_ImageManager_table extends Migration
+class m170130_174036_image_manager extends Migration
 {
     /**
      * @inheritdoc
