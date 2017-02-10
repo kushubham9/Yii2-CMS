@@ -1,6 +1,7 @@
 <?php
 
 use yii\db\Migration;
+use yii\db\Expression;
 
 class m170210_194751_new_records_def extends Migration
 {
