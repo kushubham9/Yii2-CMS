@@ -52,7 +52,7 @@ class globalsettings implements BootstrapInterface
                         usermeta.nickname as user_nickname, 
                         usermeta.last_name as user_lname,
                         usermeta.profile_pic as user_image 
-                      from user INNER JOIN usermeta on 
+                      from user LEFT OUTER JOIN usermeta on 
                         user.id = usermeta.user_id 
                       where user.id = ".Yii::$app->user->id)->queryOne();
             });
