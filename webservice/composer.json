@@ -22,7 +22,7 @@
         "mootensai/yii2-enhanced-gii": "dev-master",
         "kartik-v/yii2-mpdf": "*",
         "noam148/yii2-image-manager": "dev-master",
-        "2amigos/yii2-tinymce-widget": "~1.1",
+        "2amigos/yii2-tinymce-widget": "~1.1"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
