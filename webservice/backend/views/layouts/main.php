@@ -78,7 +78,12 @@ IonIcons::register($this);
                         </div>
                         <?php if (!Yii::$app->user->isGuest):?>
                             <div class="pull-left info">
-                                <p><?= Yii::$app->params['user_details']['user_fname'] .' '. Yii::$app->params['user_details']['user_lname']; ?></p>
+                                <?php if (Yii::$app->params['user_details']['user_fname']):?>
+                                    <p><?= Yii::$app->params['user_details']['user_fname'] .' '. Yii::$app->params['user_details']['user_lname']; ?></p>
+                                <?php endif;?>
+                                <?php if (!Yii::$app->params['user_details']['user_fname']):?>
+                                    <p><?= Yii::$app->params['user_details']['user_username']; ?></p>
+                                <?php endif;?>
                                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                             </div>
                         <?php endif;?>
