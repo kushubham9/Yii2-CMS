@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "a37cec0415722f3ad25357acb2649005",
+    "content-hash": "9821e69aec60de57ef227657e9f1e761",
     "packages": [
         {
             "name": "2amigos/yii2-tinymce-widget",
@@ -2461,6 +2461,51 @@
             "time": "2016-12-12T10:42:18+00:00"
         },
         {
+            "name": "mrclay/minify",
+            "version": "2.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mrclay/minify.git",
+                "reference": "f4cb31135d288f951bb0af1f23a03d4c00ba9446"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mrclay/minify/zipball/f4cb31135d288f951bb0af1f23a03d4c00ba9446",
+                "reference": "f4cb31135d288f951bb0af1f23a03d4c00ba9446",
+                "shasum": ""
+            },
+            "require": {
+                "ext-pcre": "*",
+                "php": ">=5.2.1"
+            },
+            "require-dev": {
+                "tubalmartin/cssmin": "~2.4.8"
+            },
+            "suggest": {
+                "tubalmartin/cssmin": "Support minify with CSSMin (YUI PHP port)"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "min/lib/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Stephen Clay",
+                    "email": "steve@mrclay.org",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Minify is a PHP5 app that helps you follow several rules for client-side performance. It combines multiple CSS or Javascript files, removes unnecessary whitespace and comments, and serves them with gzip encoding and optimal client-side cache headers",
+            "homepage": "http://code.google.com/p/minify/",
+            "time": "2016-03-08T11:49:57+00:00"
+        },
+        {
             "name": "noam148/yii2-image-manager",
             "version": "dev-master",
             "source": {
@@ -2611,6 +2656,51 @@
                 "xlsx"
             ],
             "time": "2015-05-01T07:00:55+00:00"
+        },
+        {
+            "name": "rmrevin/yii2-minify-view",
+            "version": "1.14.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rmrevin/yii2-minify-view.git",
+                "reference": "1b84c6128bfd11b3e3cd827273efa6aa6ddd7870"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rmrevin/yii2-minify-view/zipball/1b84c6128bfd11b3e3cd827273efa6aa6ddd7870",
+                "reference": "1b84c6128bfd11b3e3cd827273efa6aa6ddd7870",
+                "shasum": ""
+            },
+            "require": {
+                "mrclay/minify": "~2.2",
+                "yiisoft/yii2": "2.0.*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "rmrevin\\yii\\minify\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Revin Roman",
+                    "email": "roman@rmrevin.com",
+                    "homepage": "https://rmrevin.com/"
+                }
+            ],
+            "description": "Yii2 View component with minification css & js",
+            "keywords": [
+                "JS",
+                "css",
+                "minify",
+                "view",
+                "yii2"
+            ],
+            "time": "2017-01-19T16:51:36+00:00"
         },
         {
             "name": "setasign/fpdi",
