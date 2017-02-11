@@ -35,7 +35,8 @@ $this->params['breadcrumbs'][] = 'Users';
                             'label' => 'Name',
                             'value' => function ($model)
                             {
-                                return $model->usermeta->first_name. ' '.$model->usermeta->last_name;
+                                if ($model->usermeta)
+                                    return $model->usermeta->first_name. ' '.$model->usermeta->last_name;
                             }
                         ],
 

@@ -7,7 +7,12 @@ use yii\widgets\DetailView;
 /* @var $usermeta_model common\models\Usermeta */
 /* @var $user_model backend\models\User */
 
-$this->title = $user_model->usermeta->first_name. ' ' . $user_model->usermeta->last_name;
+if ($user_model->usermeta)
+    $this->title = $user_model->usermeta->first_name. ' ' . $user_model->usermeta->last_name;
+
+else{
+    $this->title = $user_model->username;
+}
 
 $this->params['breadcrumbs'][] = ['label'=>'Users','url'=>['index']];
 $this->params['breadcrumbs'][] = $this->title;
@@ -38,25 +43,25 @@ $this->params['breadcrumbs'][] = $this->title;
                             [
                                 'label' => 'Profile Pic',
                                 'format' => 'html',
-                                'value' => Html::img(\Yii::$app->imagemanager->getImagePath($user_model->usermeta->profile_pic, 200, 200,true))
+                                'value' => $user_model->usermeta ? Html::img(\Yii::$app->imagemanager->getImagePath($user_model->usermeta->profile_pic, 200, 200,true)) : ""
                             ],
                             'username',
                             'email:email',
                             [
                                 'label' => 'First Name',
-                                'value' => $user_model->usermeta->first_name
+                                'value' => $user_model->usermeta ? $user_model->usermeta->first_name : "Not Set"
                             ],
                             [
                                 'label' => 'Last Name',
-                                'value' => $user_model->usermeta->last_name
+                                'value' => $user_model->usermeta ? $user_model->usermeta->last_name: "Not Set"
                             ],
                             [
                                 'label' => 'Nick Name',
-                                'value' => $user_model->usermeta->nickname
+                                'value' => $user_model->usermeta ? $user_model->usermeta->nickname: "Not Set"
                             ],
                             [
                                 'label' => 'Gender',
-                                'value' => $user_model->usermeta->gender == 'F' ? 'Female' : 'Male'
+                                'value' => $user_model->usermeta ? ($user_model->usermeta->gender == 'F' ? 'Female' : 'Male'): "Not Set"
                             ],
                             [
                                 'attribute' => 'status',
