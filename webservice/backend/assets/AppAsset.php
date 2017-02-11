@@ -14,7 +14,6 @@ class AppAsset extends AssetBundle
     public $css = [
         'css/AdminLTE.css',
         'css/skin-blue.css',
-        'http://fonts.googleapis.com/css?family=Open+Sans:400,700,800'
     ];
     public $js = [
         'js/app.js'
