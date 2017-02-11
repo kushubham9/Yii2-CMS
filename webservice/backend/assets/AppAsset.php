@@ -12,6 +12,7 @@ class AppAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
+        'http://fonts.googleapis.com/css?family=Open+Sans:400,700,800',
         'css/AdminLTE.css',
         'css/skin-blue.css',
     ];
