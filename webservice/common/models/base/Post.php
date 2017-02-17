@@ -139,7 +139,7 @@ class Post extends \yii\db\ActiveRecord
      */
     public function getTaxinomies()
     {
-        return $this->hasMany(\common\models\Taxinomy::className(), ['id' => 'taxinomy_id'])->viaTable('post_Taxinomy', ['post_id' => 'id']);
+        return $this->hasMany(\common\models\Taxinomy::className(), ['id' => 'taxinomy_id'])->viaTable('post_taxinomy', ['post_id' => 'id']);
     }
 
     /**
