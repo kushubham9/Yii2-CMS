@@ -6,12 +6,14 @@
  * Time: 3:15 PM
  */
 
-namespace backend\models;
+namespace frontend\models;
+
 use common\models\Constants;
 use yii\data\ActiveDataProvider;
 use yii\helpers\ArrayHelper;
+use common\models\Post;
 
-class PostSearch extends Post
+class Posts extends Post
 {
     public function rules()
     {
@@ -36,19 +38,16 @@ class PostSearch extends Post
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function featured($params)
     {
-        $query = self::find()->where(['type'=>Constants::TYPE_POST]);
-        $query->select([
-                'post.*',
-            ])
-            ->joinWith('categories cat')
-            ->orderBy('post.id DESC');
+        $query = self::find()->where(['type'=>Constants::TYPE_POST, 'status'=>Constants::DEFAULT_POST_STATUS]);
 
         // add conditions that should always apply here
-
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => [
+                'pageSize' => 5,
+            ],
             'sort' =>
             [
                 'defaultOrder' => [
@@ -65,17 +64,29 @@ class PostSearch extends Post
             // $query->where('0=1');
             return $dataProvider;
         }
+        return $dataProvider;
+    }
 
-        // grid filtering conditions
-        $query->andFilterWhere([
-            'post.id' => $this->id,
-            'post.updated_at' => $this->updated_at,
-            'cat.id' => $this->getAttribute('cat.id'),
-            'post.status' => $this->status,
-            'post.user_id' => $this->user_id,
+    public function featuredCat($catID)
+    {
+        $query = self::find()->where(['type'=>Constants::TYPE_POST, 'status'=>Constants::DEFAULT_POST_STATUS]);
+        $query->joinWith('postCategories cat');
+        $query->andWhere(['category_id'=>$catID]);
+
+        // add conditions that should always apply here
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'pagination' => [
+                'pageSize' => 5,
+            ],
+            'sort' =>
+                [
+                    'defaultOrder' => [
+                        'created_at' => SORT_DESC,
+                        'title' => SORT_ASC,
+                    ]
+                ]
         ]);
-
-        $query->andFilterWhere(['like', 'post.title', $this->title]);
 
         return $dataProvider;
     }

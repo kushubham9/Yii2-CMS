@@ -19,8 +19,8 @@ $this->params['breadcrumbs'][] = 'Update';
             </div>
             <div class="box-body">
                 <div class="taxinomy-update">
-                    <?= $form->errorSummary([$model]); ?>
                     <?php $form = ActiveForm::begin(['action'=>['taxinomy/create']]); ?>
+                    <?= $form->errorSummary([$model]); ?>
                     <?= $form->field($model,'value')->textInput(['maxlength'=>50])->label('Name')->hint('The name is how it appears on your site.'); ?>
                     <?= $form->field($model,'slug')->textInput(['maxlength'=>255, 'placeholder'=>'Auto Generated'])->label('Slug')->hint('The “slug” is the URL-friendly version of the name. It is usually all lowercase and contains only letters, numbers, and hyphens.'); ?>
                     <?= $form->field($model,'description')->textarea(['rows'=>3])->label('Description')->hint('The description is not prominent by default; however, some themes may show it.'); ?>

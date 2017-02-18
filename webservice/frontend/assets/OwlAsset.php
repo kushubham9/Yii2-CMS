@@ -7,9 +7,16 @@
  */
 
 namespace frontend\assets;
+use yii\web\AssetBundle;
 
-
-class OwlAsset
+class OwlAsset extends AssetBundle
 {
-
+    public $sourcePath = 'owl';
+    public $css = [
+        'owl.carousel.css',
+        'owl.theme.css',
+    ];
+    public $js = [
+        'owl.carousel.js'
+    ];
 }

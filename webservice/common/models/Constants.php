@@ -11,6 +11,20 @@ namespace common\models;
 
 class Constants
 {
+    const SITE_TITLE ="Daily Hawker";
+    const TAGLINE = "No Taglines Provided";
+    const SITE_DESCRIPTION = "This is a test description of the website.";
+
+    const FRONTEND_ADDRESS = "http://www.dailyhawker.com";
+    const BACKEND_ADDRESS = "http://backend.dailyhawker.com";
+    const LOGO_URL = "http://iamroy.in/client/blog/dist/img/logo.png";
+
+    const SOCIAL_FB = "";
+    const SOCIAL_GOOGLE = "";
+    const SOCIAL_TWITTER = "";
+    const SOCIAL_INSTAGRAM = "";
+    const SOCIAL_LINKEDIN = "";
+
     const TYPE_POST = "Post";
     const TYPE_PAGE = "Page";
     const TAXINOMY_TYPE_TAGS = "Tag";
