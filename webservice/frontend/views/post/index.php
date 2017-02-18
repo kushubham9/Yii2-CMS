@@ -9,6 +9,7 @@
  * @var post_model
  */
 $formatter = \Yii::$app->formatter;
+$this->title = $post_model->title;
 ?>
 
 <?php

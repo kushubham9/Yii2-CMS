@@ -9,7 +9,7 @@
 use yii\helpers\Url;
 use yii\bootstrap\Html;
 
-$this->title = 'My Yii Application';
+$this->title = \common\models\Constants::SITE_TITLE ." | ".\common\models\Constants::TAGLINE;
 ?>
 
 <?php
@@ -242,7 +242,7 @@ $this->title = 'My Yii Application';
                                         </a>
                                     </div>
                                     <div class="tz-infomation">
-                                        <h3 class="tz-post-title"><a href="<?=Url::to(['/post/'.$post->slug]);?>"><?= $j ."/ ".sizeof($featured_cat_model3)." ". $post->title; ?></a></h3>
+                                        <h3 class="tz-post-title"><a href="<?=Url::to(['/post/'.$post->slug]);?>"><?= $post->title; ?></a></h3>
                                         <span class="tz-featured-meta">
                                             <a href="<?= Url::to(['/user/'.$post->user->username]); ?>"> <?= $data['authorName'] ?></a> / <?= $formatter->asDate($post->created_at,'long') ?>
                                         </span>
