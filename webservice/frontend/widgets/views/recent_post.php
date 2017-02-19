@@ -16,7 +16,7 @@ use yii\helpers\Url;
                 </a>
             </div>
 
-            <h5><a href="single-blog.html"><?= $post->title ?></a></h5>
+            <h5><a href="<?= Url::to(['/post/'.$post->slug]); ?>"><?= $post->title ?></a></h5>
             <span class="recent-meta"> by <a href="<?= Url::to(['/user/'.$post->user->username]); ?>"> <?= $post->user->username; ?> /</a> <?= \Yii::$app->formatter->asDate($post->created_at, 'long'); ?> </span>
          </li>
     <?php

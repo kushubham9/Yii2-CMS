@@ -150,12 +150,23 @@ AppAsset::register($this);
                     </form>
                 </div>
                 <!--End search-->
-
             </div>
         </div>
 
     </header>
     <!--End header-->
+
+    <div class="tz-control">
+        <div class="container">
+            <!--Breadcrumbs-->
+            <?= Breadcrumbs::widget([
+                'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                'options' => ['class'=>'tz-breadcrumbs pull-left'],
+                'itemTemplate' => "<li>{link}<i class=\"fa fa-angle-right\"></i></li>\n"
+            ]) ?>
+
+        </div>
+    </div>
 
         <?= $content ?>
 

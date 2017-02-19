@@ -10,29 +10,14 @@
  */
 $formatter = \Yii::$app->formatter;
 $this->title = $post_model->title;
-?>
+use frontend\models\Posts;
 
-<?php
-function getPostInformation($model)
-{
-    //Get The First Category.
-    $categories = $model->categories;
-    if ($categories){
-        $data['primeCategory'] = $categories[0];
-    }
+$data = Posts::getPostInformation($post_model);
 
-    // Get the author of the post.
-    $author = $model->user;
-    // Author Name.
-    $data['authorName'] = ($author->usermeta)?$author->usermeta->first_name.' '.$author->usermeta->last_name : $author->username;
+$this->params['breadcrumbs'][] = ['label'=>'News','url'=>['/news']];
+$this->params['breadcrumbs'][] = ['label'=>$data['primeCategory']->name , 'url'=>['/news?category='.$data['primeCategory']->slug]];
+$this->params['breadcrumbs'][] = $this->title;
 
-    //Get the URL of the image.
-    $data['imageUrl'] = \Yii::$app->imagemanager->getImagePath($model->featured_image);
-
-    return $data;
-}
-
-$data = getPostInformation($post_model);
 ?>
 
 <div class="blog-post-sidebar">
