@@ -107,6 +107,10 @@ class Posts extends Post
             }
         }
 
+        if (isset($params['q'])){
+            $query->andFilterWhere(['like', 'lower(post.title)', $params['q']]);
+        }
+
         return $dataProvider;
     }
 

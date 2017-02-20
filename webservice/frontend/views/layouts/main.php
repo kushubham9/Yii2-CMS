@@ -11,6 +11,7 @@ use frontend\assets\AppAsset;
 use common\widgets\Alert;
 use yii\helpers\Url;
 use common\models\Constants;
+use yii\bootstrap\ActiveForm;
 
 AppAsset::register($this);
 ?>
@@ -144,10 +145,10 @@ AppAsset::register($this);
 
                 <!--Start search-->
                 <div class="tz-search pull-right">
-                    <form class="tz-form-search">
-                        <input type="text" name="s" class="input-width" value="" placeholder="Search...">
+                    <?= Html::beginForm(Url::to(['/news']),'get',['class'=>'tz-form-search']); ?>
+                        <input type="text" name="q" class="input-width" value="" placeholder="Search...">
                         <i class="fa fa-search tz-button-search"></i>
-                    </form>
+                    <?= Html::endForm();?>
                 </div>
                 <!--End search-->
             </div>

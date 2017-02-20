@@ -17,6 +17,7 @@ class Constants
 
     const FRONTEND_ADDRESS = "http://www.dailyhawker.com";
     const BACKEND_ADDRESS = "http://backend.dailyhawker.com";
+    const IMAGE_BASE_ADDRESS = "http://backend.dailyhawker.com";
     const LOGO_URL = "http://iamroy.in/client/blog/dist/img/logo.png";
 
     const SOCIAL_FB = "";

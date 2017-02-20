@@ -41,14 +41,16 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <?php
                                     $tags = $post_model->taxinomies;
                                 ?>
-                                Tags:
-                                <?php
+                                <strong>Tags:</strong>
+                                <div class="tagcloud" style="display: inline-block">
+                                    <?php
                                     foreach ($tags as $tag):
-                                ?>
-                                    <a href="#"><?= $tag->value; ?></a>
-                                <?php
+                                        ?>
+                                        <a href="#" style="display:inline-block"><?= $tag->value; ?></a>
+                                        <?php
                                     endforeach;
-                                ?>
+                                    ?>
+                                </div>
                             </div>
                             <div class="tz-share pull-right">
 Share:
@@ -97,7 +99,7 @@ Share:
                             </div>
                         </div>
                         <div class="widget-ca-box">
-                            <?= \frontend\widgets\RecentPostWidget::widget(['count' => 5, 'containerClass'=>'widget-post-box']) ?>
+                            <?= \frontend\widgets\RecentPostWidget::widget(['count' => 5, 'containerClass'=>'widget-post-box', 'contentContainerClass'=>'widget_item_info', 'imageContainerClass'=>'widget_thumbnail']) ?>
                         </div>
                     </div>
 

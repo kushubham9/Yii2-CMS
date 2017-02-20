@@ -132,4 +132,40 @@ class Post extends BasePost
     {
         $item = ucfirst(strtolower(trim($item)));
     }
+
+    public function beforeSave($insert)
+    {
+        if (parent::beforeSave($insert)){
+            $this->content = $this->updateImageSrc($this->content);
+            return true;
+        }
+        return false;
+    }
+
+    private function updateImageSrc($content)
+    {
+        $nContent = $content;
+        preg_match_all('/<img[^>]+>/i',$content, $imgTags);
+
+        for ($i = 0; $i < count($imgTags[0]); $i++) {
+            // get the source string
+            preg_match('/src="([^"]+)/i',$imgTags[0][$i], $imgage);
+
+            // remove opening 'src=' tag, can`t get the regex right
+            $origImageSrc[] = str_ireplace( 'src="', '',  $imgage[0]);
+
+        }
+
+        $origImageSrc = array_unique($origImageSrc);
+        foreach ($origImageSrc as $imgSrc){
+            $index = strpos($imgSrc,\Yii::$app->imagemanager->mediaPath);
+            if ($index == 0){
+                $nContent = str_replace($imgSrc,Constants::IMAGE_BASE_ADDRESS."/".$imgSrc,$nContent);
+            }
+            elseif ($index == 1){
+                $nContent = str_replace($imgSrc,Constants::IMAGE_BASE_ADDRESS."".$imgSrc,$nContent);
+            }
+        }
+        return $nContent;
+    }
 }

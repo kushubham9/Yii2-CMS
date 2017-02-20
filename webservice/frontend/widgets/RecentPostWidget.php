@@ -17,6 +17,8 @@ class RecentPostWidget extends Widget
     public $count = 5;
     public $displayThumb = true;
     public $containerClass = "";
+    public $imageContainerClass="recent-image";
+    public $contentContainerClass="";
 
     public function init()
     {
@@ -28,7 +30,9 @@ class RecentPostWidget extends Widget
     {
         echo $this->render('recent_post',[
             'post_model'=>$this->post_model,
-            'containerClass' => $this->containerClass
+            'containerClass' => $this->containerClass,
+            'imageContainerClass' => $this->imageContainerClass,
+            'contentContainerClass' => $this->contentContainerClass,
         ]);
     }
 }
