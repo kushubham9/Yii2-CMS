@@ -66,28 +66,31 @@ Share:
                 <div class="col-md-3 blog-sidebar">
                     <div class="widget widget_search">
                         <form>
-                            <input type="text" name="s" value="" placeholder="Search by words">
+                        <?= \yii\bootstrap\Html::beginForm(\yii\helpers\Url::to('/news'),'get'); ?>
+                            <input type="text" name="q" value="" placeholder="Search Articles">
                             <i class="icon-search fa fa-search"></i>
-                        </form>
+                        <?= \yii\bootstrap\Html::endForm(); ?>
                     </div>
-                    <div class="widget widget_categories">
-                        <ul>
-                            <li>
-                                <a href="page-blog.html">All Homepages</a>
-                            </li>
-                            <li>
-                                <a href="page-blog.html">Categories</a>
-                            </li>
 
-                            <li>
-                                <a href="about-us.html">About</a>
-                            </li>
-                            <li>
-                                <a href="contact.html">Contact</a>
-                            </li>
 
-                        </ul>
-                    </div>
+<!--                    <div class="widget widget_categories">-->
+<!--                        <ul>-->
+<!--                            <li>-->
+<!--                                <a href="page-blog.html">All Homepages</a>-->
+<!--                            </li>-->
+<!--                            <li>-->
+<!--                                <a href="page-blog.html">Categories</a>-->
+<!--                            </li>-->
+<!---->
+<!--                            <li>-->
+<!--                                <a href="about-us.html">About</a>-->
+<!--                            </li>-->
+<!--                            <li>-->
+<!--                                <a href="contact.html">Contact</a>-->
+<!--                            </li>-->
+<!---->
+<!--                        </ul>-->
+<!--                    </div>-->
 
                     <div class="widget">
                         <div class="tz-title-filter">
