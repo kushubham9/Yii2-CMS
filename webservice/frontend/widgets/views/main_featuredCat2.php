@@ -38,35 +38,37 @@ $formatter = \Yii::$app->formatter;
         <!--Box content two columns-->
         <div class="cat-box-two-columns">
             <?php for ($j = 0; $j < 2; $j++){ ?>
-            <div class="col-md-6">
-                <?php
-                for ($i=0; $i<$post_count/2; $i++){
-                $post = array_shift($post_model);
-                $data = ($post) ? Posts::getPostInformation($post): false;
-                if ($data):
-                ?>
-                <!--Item thumbnail wrap-->
-                <div class="<?php echo $i ? 'item-small': 'item-thumbnail-wrap';?> ">
-                    <div class="tz-thumbnail">
-                        <a href="<?= $data['postUrl'] ?>">
-                            <img src="<?= $data['imageUrl'] ?>" alt="<?= $data['postTitle'] ?>">
-                        </a>
-                        <?php echo $i ? '</div>' : ''; ?>
-                        <div class="tz-infomation">
-                            <h3 class="tz-post-title"><a href="<?= $data['postUrl'] ?>"> <?= $data['postTitle'] ?> </a></h3>
-                            <span class="meta">by <a href="<?= $data['authorUrl'] ?>"> <?= $data['authorName']; ?> / </a>  <?= $data['postDate'] ?> </span>
-                        </div>
-                    </div>
-                    <?php echo $i ? '' : '</div>'; ?>
+                <div class="col-md-6">
+                    <?php
+                    for ($i=0; $i<3; $i++){
+                        $post = array_shift($post_model);
+                        if (!$post){
+                            continue;
+                        }
 
+                        $data = ($post) ? Posts::getPostInformation($post): false;
+
+                    ?>
+                        <!--Item thumbnail wrap-->
+                        <div class="<?php echo $i ? 'item-small': 'item-thumbnail-wrap';?> ">
+                            <div class="tz-thumbnail">
+                                <a href="<?= $data['postUrl'] ?>">
+                                    <img src="<?= $data['imageUrl'] ?>" alt="<?= $data['postTitle'] ?>">
+                                </a>
+                            <?php echo $i ? '</div>' : ''; ?>
+                            <div class="tz-infomation">
+                                <h3 class="tz-post-title"><a href="<?= $data['postUrl'] ?>"> <?= $data['postTitle'] ?> </a></h3>
+                                <span class="meta">by <a href="<?= $data['authorUrl'] ?>"> <?= $data['authorName']; ?> / </a>  <?= $data['postDate'] ?> </span>
+                            </div>
+                        <?php echo $i ? '' : '</div>'; ?>
+                        </div>
+<!--                        </div>-->
 
                     <?php
-                    endif;
-                    }
+                        }
                     ?>
                 </div>
-                <?php } ?>
-            </div>
+            <?php } ?>
             <!--End box content two columns-->
 
         </div>
@@ -74,4 +76,4 @@ $formatter = \Yii::$app->formatter;
 
     </div>
 </div>
-<!--This is a Commecnt-->
+<!--Box 2 Ends Here-->

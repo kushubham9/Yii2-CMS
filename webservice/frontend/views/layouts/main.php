@@ -32,7 +32,7 @@ AppAsset::register($this);
     <![endif]-->
 
 </head>
-<body>
+<body class="theme-darkblue">
 <?php $this->beginBody() ?>
 
 <div class="site">
@@ -74,7 +74,7 @@ AppAsset::register($this);
         <div class="tz-header-content">
             <div class="tz-header-logo pull-left">
                 <a href="<?= Url::to(['/']); ?>">
-                    <img src="<?= Constants::LOGO_URL ?>" style="max-height: 130px;" alt="<?= Constants::SITE_TITLE ?>">
+                    <img src="<?= Constants::LOGO_URL ?>" style="max-height: 115px;" alt="<?= Constants::SITE_TITLE ?>">
                 </a>
             </div>
 
@@ -96,6 +96,9 @@ AppAsset::register($this);
                         <li>
                             <a href="<?= Url::to(['/']); ?>">
                                 HOME
+                            </a>
+                            <a href="<?= Url::to(['/news']); ?>">
+                                NEWS
                             </a>
 <!--                            <ul class="sub-menu">-->
 <!--                                <li>-->

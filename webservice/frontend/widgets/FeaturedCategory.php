@@ -17,7 +17,8 @@ class FeaturedCategory extends Widget
     public $category = [];
     public $count = 5;
     public $post_model = null;
-    public $title = null;
+    private $defaultTitle = 'Featured Articles';
+    public $title = '';
     public $type = 1;
 
     public function init()
@@ -42,6 +43,14 @@ class FeaturedCategory extends Widget
 
                 $this->post_model = $query->orderBy('created_at DESC')->limit($this->count)->all();
             }
+        }
+
+        else{
+            $query = Post::find()->where(['type'=>Constants::TYPE_POST, 'status'=>Constants::DEFAULT_POST_STATUS]);
+            $this->post_model = $query->orderBy('created_at DESC')->limit($this->count)->all();
+
+            if (!$this->title)
+                $this->title = $this->defaultTitle;
         }
     }
 

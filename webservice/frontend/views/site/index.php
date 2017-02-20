@@ -28,11 +28,11 @@ $this->title = \common\models\Constants::SITE_TITLE ." | ".\common\models\Consta
             <!--Wrap element-->
             <div class="theiaStickySidebar">
 
-                <?= FeaturedCategory::widget(['type'=>1, 'category' => [1]]); ?>
+                <?= FeaturedCategory::widget(['type'=>1, 'category' => []]); ?>
 
-                <?= FeaturedCategory::widget(['type'=>2, 'count' => 6, 'category' => [1]]); ?>
+                <?= FeaturedCategory::widget(['type'=>2, 'count' => 6, 'category' => []]); ?>
 
-                <?= FeaturedCategory::widget(['type'=>3, 'count' => 6, 'category' => [6]]); ?>
+                <?= FeaturedCategory::widget(['type'=>3, 'count' => 6, 'category' => []]); ?>
 
             </div>
         </div>
@@ -42,3 +42,4 @@ $this->title = \common\models\Constants::SITE_TITLE ." | ".\common\models\Consta
         </div>
     </div>
 </div>
+<!--Custom Container Ends Here-->
