@@ -48,13 +48,13 @@ $formatter = \Yii::$app->formatter;
                 <!--Item thumbnail wrap-->
                 <div class="<?php echo $i ? 'item-small': 'item-thumbnail-wrap';?> ">
                     <div class="tz-thumbnail">
-                        <a href="<?= Url::to(['/post/'.$post->slug]); ?>">
-                            <img src="<?= $data['imageUrl'] ?>" alt="<?= $post->title ?>">
+                        <a href="<?= $data['postUrl'] ?>">
+                            <img src="<?= $data['imageUrl'] ?>" alt="<?= $data['postTitle'] ?>">
                         </a>
                         <?php echo $i ? '</div>' : ''; ?>
                         <div class="tz-infomation">
-                            <h3 class="tz-post-title"><a href="<?= Url::to(['/post/'.$post->slug]); ?>"> <?= $post->title ?></a></h3>
-                            <span class="meta">by <a href="<?= Url::to(['/user/'.$post->user->username]); ?>"> <?= $data['authorName']; ?> / </a>  <?= $formatter->asDate($post->created_at,'long') ?></span>
+                            <h3 class="tz-post-title"><a href="<?= $data['postUrl'] ?>"> <?= $data['postTitle'] ?> </a></h3>
+                            <span class="meta">by <a href="<?= $data['authorUrl'] ?>"> <?= $data['authorName']; ?> / </a>  <?= $data['postDate'] ?> </span>
                         </div>
                     </div>
                     <?php echo $i ? '' : '</div>'; ?>
@@ -74,3 +74,4 @@ $formatter = \Yii::$app->formatter;
 
     </div>
 </div>
+<!--This is a Commecnt-->

@@ -30,6 +30,9 @@ $formatter = \Yii::$app->formatter;
                             <?php $count = 0;
                             for ($i=0; $i < $post_count; $i++) {
                                 $post = array_shift($post_model);
+                                if (!$post){
+                                    continue;
+                                }
                                 $data = Posts::getPostInformation($post);
                                 ?>
 

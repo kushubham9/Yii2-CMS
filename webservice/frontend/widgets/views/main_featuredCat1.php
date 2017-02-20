@@ -41,16 +41,16 @@ $formatter = \Yii::$app->formatter;
                 <div class="item-large">
                     <div class="tz-thumbnail">
                         <a href="<?= Url::to(['/post/'.$post->slug]); ?>">
-                            <img src="<?= $data['imageUrl'] ?>" alt="<?= $post->title ?>">
+                            <img src="<?= $data['imageUrl'] ?>" alt="<?= $data['postTitle'] ?>" title="<?= $data['postTitle'] ?>">
                         </a>
                     </div>
                     <div class="tz-infomation">
-                        <h3 class="tz-post-title"><a href="<?= Url::to(['/post/'.$post->slug]); ?>"><?= $post->title ?></a></h3>
+                        <h3 class="tz-post-title"><a href="<?= $data['postUrl'] ?>"><?= $data['postTitle'] ?> </a></h3>
 
                         <span class="meta">
-                                    <a href="<?= Url::to(['/user/'.$post->user->username]); ?>"> <?= $data['authorName'] ?></a> / <?= $formatter->asDate($post->created_at,'long') ?>
+                                    <a href="<?= $data['authorUrl'] ?>"> <?= $data['authorName'] ?></a> / <?= $data['postDate'] ?>
                                 </span>
-                        <p> <?= substr($post->content, 0, 150) ?>...</p>
+                        <p> <?= $data['postContent'] ?></p>
                     </div>
                 </div>
             <?php endif; ?>
