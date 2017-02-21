@@ -1,6 +1,7 @@
 <?php
 namespace backend\controllers;
 
+use backend\models\Images;
 use common\models\Comment;
 use Yii;
 use yii\web\Controller;
@@ -25,11 +26,11 @@ class SiteController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['login', 'error'],
+                        'actions' => ['login', 'error','post-image'],
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index'],
+                        'actions' => ['logout', 'index','post-image'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -104,5 +105,14 @@ class SiteController extends Controller
     {
         Yii::$app->user->logout();
         return $this->goHome();
+    }
+
+    public function actionPostImage(){
+        return Images::getImageSrc
+            (
+                Yii::$app->request->get('imageId'),
+                Yii::$app->request->get('imageWidth'),
+                Yii::$app->request->get('imageHeight')
+            );
     }
 }

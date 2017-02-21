@@ -45,9 +45,13 @@ $formatter = \Yii::$app->formatter;
                         if (!$post){
                             continue;
                         }
+                        if ($i){
+                            $data = ($post) ? Posts::getPostInformation($post,['thumb'=>true]): false;
+                        }
 
-                        $data = ($post) ? Posts::getPostInformation($post): false;
-
+                        else{
+                            $data = ($post) ? Posts::getPostInformation($post,['imageWidth'=>600, 'imageHeight'=>400]): false;
+                        }
                     ?>
                         <!--Item thumbnail wrap-->
                         <div class="<?php echo $i ? 'item-small': 'item-thumbnail-wrap';?> ">

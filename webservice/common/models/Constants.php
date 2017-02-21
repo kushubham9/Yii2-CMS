@@ -16,7 +16,8 @@ class Constants
     const SITE_DESCRIPTION = "This is a test description of the website.";
 
     const FRONTEND_ADDRESS = "http://www.dailyhawker.com";
-    const BACKEND_ADDRESS = "http://backend.dailyhawker.com";
+//    const BACKEND_ADDRESS = "http://backend.dailyhawker.com";
+    const BACKEND_ADDRESS = "http://backend.cms.build";
     const IMAGE_BASE_ADDRESS = "http://backend.dailyhawker.com";
     const LOGO_URL = "http://iamroy.in/client/blog/dist/img/logo.png";
 
@@ -46,4 +47,9 @@ class Constants
     const DEFAULT_POST_STATUS = 3;
     const DEFAULT_POST_CATEGORY = 1;
     const DEFAULT_COMMENT_ENABLE = 1;
+
+    const MAX_IMAGE_WIDTH = 660;
+    const MAX_IMAGE_HEIGHT = 440;
+    const THUMB_HEIGHT = 120;
+    const THUMB_WIDTH = 180;
 }

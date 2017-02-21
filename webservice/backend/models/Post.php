@@ -146,6 +146,7 @@ class Post extends BasePost
     {
         $nContent = $content;
         preg_match_all('/<img[^>]+>/i',$content, $imgTags);
+        $origImageSrc = [];
 
         for ($i = 0; $i < count($imgTags[0]); $i++) {
             // get the source string

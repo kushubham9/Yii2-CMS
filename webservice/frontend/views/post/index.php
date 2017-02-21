@@ -102,7 +102,7 @@ Share:
                             </div>
                         </div>
                         <div class="widget-ca-box">
-                            <?= \frontend\widgets\RecentPostWidget::widget(['count' => 5, 'containerClass'=>'widget-post-box', 'contentContainerClass'=>'widget_item_info', 'imageContainerClass'=>'widget_thumbnail']) ?>
+                            <?= \frontend\widgets\RecentPostWidget::widget(['count' => 5, 'containerClass'=>'widget-post-box', 'contentContainerClass'=>'widget_item_info', 'imageContainerClass'=>'widget_thumbnail', 'options'=>['showDate'=>false]]) ?>
                         </div>
                     </div>
 

@@ -32,7 +32,7 @@ $formatter = \Yii::$app->formatter;
                         {
                             continue;
                         }
-                        $data = ($post) ? Posts::getPostInformation($post): false;
+                        $data = ($post) ? Posts::getPostInformation($post,['thumb'=>true]): false;
 
                         if ($data):
                             ?>

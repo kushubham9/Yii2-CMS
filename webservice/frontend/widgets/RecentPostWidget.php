@@ -19,6 +19,7 @@ class RecentPostWidget extends Widget
     public $containerClass = "";
     public $imageContainerClass="recent-image";
     public $contentContainerClass="";
+    public $options = ['showDate'=>true, 'showAuthor'=>true];
 
     public function init()
     {
@@ -33,6 +34,7 @@ class RecentPostWidget extends Widget
             'containerClass' => $this->containerClass,
             'imageContainerClass' => $this->imageContainerClass,
             'contentContainerClass' => $this->contentContainerClass,
+            'options' => $this->options
         ]);
     }
 }

@@ -9,15 +9,20 @@ use yii\helpers\Url;
     <?php
         foreach($post_model as $post):
     ?>
+            <?php
+                $data = \frontend\models\Posts::getPostInformation($post,['thumb'=>true]);
+            ?>
         <li>
             <div class="<?= $imageContainerClass ?>">
-                <a href="<?= Url::to(['/post/'.$post->slug]); ?>">
-                    <img src="<?= \Yii::$app->imagemanager->getImagePath($post->featured_image); ?>" alt="<?= $post->title ?>">
+                <a href="<?= $data['postUrl'] ?>">
+                    <img src="<?= $data['imageUrl'] ?>" alt="<?= $post->title ?>">
                 </a>
             </div>
             <div class="<?=$contentContainerClass?>">
-                <h5><a href="<?= Url::to(['/post/'.$post->slug]); ?>"><?= $post->title ?></a></h5>
-                <span class="recent-meta"> by <a href="<?= Url::to(['/user/'.$post->user->username]); ?>"> <?= $post->user->username; ?> /</a> <?= \Yii::$app->formatter->asDate($post->created_at, 'long'); ?> </span>
+                <h5><a href="<?= $data['postUrl'] ?>"><?= $post->title ?></a></h5>
+                <span class="recent-meta"> by <a href="<?= $data['authorUrl'] ?>"><?= $data['authorName']?></a>
+                    <?php if ($options['showDate']) {echo $data['postDate']; }?>
+                </span>
 
             </div>
         </li>
