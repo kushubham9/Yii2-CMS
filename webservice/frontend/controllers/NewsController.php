@@ -16,8 +16,9 @@ class NewsController extends Controller
     public function actionIndex(){
         //Get the Query.
         $searchParam = \Yii::$app->request->queryParams;
+//        die (var_dump($searchParam));
         $pageTitle = "Latest Posts";
-        if (sizeof($searchParam>0)) {
+        if (sizeof($searchParam)>0) {
             $pageTitle = "Search Results";
         }
         try{
