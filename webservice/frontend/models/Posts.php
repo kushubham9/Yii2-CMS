@@ -81,6 +81,24 @@ class Posts extends Post
         $query->joinWith('postCategories category');
         $query->joinWith('postTaxinomies taxinomy');
         // add conditions that should always apply here
+
+        if (isset($params['category'])){
+            if (!is_array($params['category']))
+                $params['category'] = (array)$params['category'];
+            foreach ($params['category'] as $cat_slug){
+                $category = Category::find()->where(['slug'=>$cat_slug])->one();
+                if ($category)
+                    $query->andFilterWhere(['category.category_id'=>$category->id]);
+                else{
+                    throw new \Exception("Invalid Search Query.");
+                }
+            }
+        }
+
+        if (isset($params['q'])){
+            $query->andFilterWhere(['like', 'lower(post.title)', $params['q']]);
+        }
+
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
@@ -94,23 +112,6 @@ class Posts extends Post
                     ]
                 ]
         ]);
-
-        if (isset($params['category'])){
-            if (!is_array($params['category']))
-                $params['category'] = (array)$params['category'];
-            foreach ($params['category'] as $cat_slug){
-                $category = Category::find()->where(['slug'=>$cat_slug])->one();
-                if ($category)
-                    $query->andWhere(['category.category_id'=>$category->id]);
-                else{
-                    throw new \Exception("Invalid Search Query.");
-                }
-            }
-        }
-
-        if (isset($params['q'])){
-            $query->andFilterWhere(['like', 'lower(post.title)', $params['q']]);
-        }
 
         return $dataProvider;
     }
