@@ -13,7 +13,7 @@ use yii\web\NotFoundHttpException;
 
 class NewsController extends Controller
 {
-    public function actionIndex(){
+    public function actionSearch(){
         //Get the Query.
         $searchParam = \Yii::$app->request->queryParams;
         $pageTitle = "Latest Posts";
@@ -31,10 +31,19 @@ class NewsController extends Controller
         // Get the Post from the activeData
         $post_model = $activeData->getModels();
         $pagination = $activeData->getPagination();
-        echo $this->render('index',[
+        echo $this->render('search',[
             'model' => $post_model,
             'pagination' => $pagination,
             'pageTitle' => $pageTitle
+        ]);
+    }
+
+    public function actionIndex()
+    {
+        $featured_post_model = (new Posts())->featured(null)->getModels();
+
+        return $this->render('index',[
+            'featured_post_model'=>$featured_post_model,
         ]);
     }
 }

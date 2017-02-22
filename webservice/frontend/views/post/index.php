@@ -16,8 +16,8 @@ use yii\helpers\Url;
 
 $data = Posts::getPostInformation($post_model);
 
-$this->params['breadcrumbs'][] = ['label'=>'News','url'=>['/news']];
-$this->params['breadcrumbs'][] = ['label'=>$data['primeCategory']->name , 'url'=>['/news?category='.$data['primeCategory']->slug]];
+$this->params['breadcrumbs'][] = ['label'=>'News','url'=>['/news/search']];
+$this->params['breadcrumbs'][] = ['label'=>$data['primeCategory']->name , 'url'=>['/news/search?category='.$data['primeCategory']->slug]];
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
@@ -30,9 +30,9 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="row">
                 <div class="col-md-9 border-right">
                     <article class="single-post">
-                        <div class="tz-single-thumbnail text-center ">
-                            <img src="<?= $data['imageUrl']; ?>" alt="<?= $post_model->title ?>" class="">
-                        </div>
+<!--                        <div class="tz-single-thumbnail text-center ">-->
+<!--                            <img src="" alt="" class="">-->
+<!--                        </div>-->
                         <h1 class="single-title"><?= $post_model->title ?></h1>
                         <span class="post-meta">by <a href="#"><?= $data['authorName']; ?></a> /  <?= $formatter->asDatetime($post_model->created_at,'long'); ?> </span>
                         <div class="post-content">
@@ -67,7 +67,7 @@ Share:
                 </div>
                 <div class="col-md-3 blog-sidebar">
                     <div class="widget widget_search">
-                        <?= Html::beginForm('/news', 'get'); ?>
+                        <?= Html::beginForm('/news/search', 'get'); ?>
                             <input type="text" name="q" value="" placeholder="Search Articles">
                             <i class="icon-search fa fa-search"></i>
                         <?= Html::endForm(); ?>

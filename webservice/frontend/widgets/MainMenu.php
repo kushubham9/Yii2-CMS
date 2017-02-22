@@ -17,7 +17,7 @@ class MainMenu extends Widget
     public $link = [];
     public function init(){
         parent::init();
-        $key = "MENU_LINKS1";
+        $key = "MENU_LINKS2";
         $this->link = \Yii::$app->cache->getOrSet($key,function(){
             return array_merge($this->defaultItems(), $this->loadCategories());
         });
@@ -26,7 +26,7 @@ class MainMenu extends Widget
     private function defaultItems(){
         return [
             'Home' => Url::to(['/']),
-            'News' => Url::to(['/news'])
+            'News' => Url::to(['/news/search'])
         ];
     }
 
@@ -36,7 +36,7 @@ class MainMenu extends Widget
             $links = [];
             $categories = Category::find()->orderBy('name')->all();
             foreach ($categories as $category){
-                $links[$category->name] = Url::to(['/news','category'=>$category->slug]);
+                $links[$category->name] = Url::to(['/news/search','category'=>$category->slug]);
             }
             return $links;
         });

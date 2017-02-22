@@ -129,7 +129,7 @@ class Posts extends Post
             $data['primeCategory'] = $data['categories'][0];
         }
         if ($data['primeCategory']){
-            $data['categoryUrl'] = Url::to(['/news', 'category'=>$data['primeCategory']->slug]);
+            $data['categoryUrl'] = Url::to(['/news/search', 'category'=>$data['primeCategory']->slug]);
         }
         else{
             $data['categoryUrl'] = "";

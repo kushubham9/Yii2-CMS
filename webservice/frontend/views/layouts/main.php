@@ -94,7 +94,7 @@ AppAsset::register($this);
 
                 <!--Start search-->
                 <div class="tz-search pull-right">
-                    <?= Html::beginForm(Url::to(['/news']),'get',['class'=>'tz-form-search']); ?>
+                    <?= Html::beginForm(Url::to(['/news/search']),'get',['class'=>'tz-form-search']); ?>
                         <input type="text" name="q" class="input-width" value="" placeholder="Search...">
                         <i class="fa fa-search tz-button-search"></i>
                     <?= Html::endForm();?>
@@ -190,7 +190,7 @@ AppAsset::register($this);
 
         <div class="tz-copyright">
             <div class="container">
-                <p class="pull-left copyright-content">© Copyrights <?=\Yii::$app->formatter->asDate('now','Y'); ?> <?= Html::a('Tagdabe.com','http://www.tagdabe.com'); ?>. All rights reserved.</p>
+                <p class="pull-left copyright-content">© Copyrights @Crowdix Technologies Pvt. Ltd. All rights reserved.</p>
                 <ul class="pull-right footer-social">
                     <li>
                         <a href="<?= Constants::SOCIAL_FB; ?>"><i class="fa fa-facebook-square"></i></a>
