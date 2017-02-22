@@ -36,7 +36,8 @@
  * -----------------------------------------------------------------------------
  */
 body {
-    font-family: 'Open Sans', sans-serif;
+    /*font-family: 'Open Sans', sans-serif;*/
+    font-family: 'Roboto', sans-serif;
     font-weight: 400;
     font-size: 13px;
     color: #313133;
@@ -75,6 +76,7 @@ h6 {
     margin-top: 20px;
     margin-bottom: 10px;
     font-weight: 700;
+    line-height:1.3;
 }
 h1 {
     font-size: 30px;
@@ -2707,7 +2709,8 @@ ul.tz-breadcrumbs li i {
     background: none;
 }
 .single-title {
-    font-size: 22px;
+    font-size: 26px;
+    /*font-size: 22px;*/
     font-weight: 700;
     line-height: 30.8px;
     padding: 0;
@@ -2734,6 +2737,8 @@ blockquote .fa-quote-left {
 }
 .post-content p {
     margin: 25px 0;
+    font-size:16px;
+    line-height:33px;
 }
 .sing-post-footer {
     border-top: 1px solid #eeeeee;
