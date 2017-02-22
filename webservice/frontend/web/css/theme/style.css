@@ -1075,7 +1075,7 @@ img {
     margin: 0;
 }
 .featured-post li {
-    cursor: e-resize;
+    /*cursor: e-resize;*/
 }
 .featured-post li:after {
     clear: both;
