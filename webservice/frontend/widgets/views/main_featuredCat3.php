@@ -46,6 +46,7 @@ $formatter = \Yii::$app->formatter;
                                 </div>
                                 <div class="tz-infomation">
                                     <h3 class="tz-post-title"><a href="<?= $data['postUrl']?>"><?= $data['postTitle'] ?></a></h3>
+                                    <a class="blue-dark cat_name" href="<?= $data['categoryUrl']?>"><?= $data['primeCategory']->name?></a>
                                     <span class="tz-featured-meta">
                                             <a href="<?= $data['authorUrl'] ?>"> <?= $data['authorName'] ?></a> / <?= $data['postDate'] ?>
                                         </span>

@@ -11,6 +11,8 @@
 $formatter = \Yii::$app->formatter;
 $this->title = $post_model->title;
 use frontend\models\Posts;
+use yii\helpers\Html;
+use yii\helpers\Url;
 
 $data = Posts::getPostInformation($post_model);
 
@@ -65,11 +67,10 @@ Share:
                 </div>
                 <div class="col-md-3 blog-sidebar">
                     <div class="widget widget_search">
-                        <form>
-                        <?= \yii\bootstrap\Html::beginForm(\yii\helpers\Url::to('/news'),'get'); ?>
+                        <?= Html::beginForm('/news', 'get'); ?>
                             <input type="text" name="q" value="" placeholder="Search Articles">
                             <i class="icon-search fa fa-search"></i>
-                        <?= \yii\bootstrap\Html::endForm(); ?>
+                        <?= Html::endForm(); ?>
                     </div>
 
 

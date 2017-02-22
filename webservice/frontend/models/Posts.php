@@ -128,7 +128,12 @@ class Posts extends Post
         if ($data['categories']){
             $data['primeCategory'] = $data['categories'][0];
         }
-
+        if ($data['primeCategory']){
+            $data['categoryUrl'] = Url::to(['/news', 'category'=>$data['primeCategory']->slug]);
+        }
+        else{
+            $data['categoryUrl'] = "";
+        }
         // Get the author of the post.
         $data['author'] = $post->user ? $post->user : null;
 

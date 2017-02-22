@@ -59,10 +59,12 @@ $formatter = \Yii::$app->formatter;
                                 <a href="<?= $data['postUrl'] ?>">
                                     <img src="<?= $data['imageUrl'] ?>" alt="<?= $data['postTitle'] ?>">
                                 </a>
-                            <?php echo $i ? '</div>' : ''; ?>
+                                <?php echo $i ? '</div>' : ''; ?>
                             <div class="tz-infomation">
                                 <h3 class="tz-post-title"><a href="<?= $data['postUrl'] ?>"> <?= $data['postTitle'] ?> </a></h3>
-                                <span class="meta">by <a href="<?= $data['authorUrl'] ?>"> <?= $data['authorName']; ?> / </a>  <?= $data['postDate'] ?> </span>
+                                <a class="blue-dark cat_name" href="<?= $data['categoryUrl']?>"><?= $data['primeCategory']->name?></a>
+                                <span class="meta">by <a href="<?= $data['authorUrl'] ?>"> <?= $data['authorName']; ?> </a>
+                                    <?php // $data['postDate'] ?> </span>
                             </div>
                         <?php echo $i ? '' : '</div>'; ?>
                         </div>

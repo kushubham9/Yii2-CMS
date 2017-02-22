@@ -45,6 +45,7 @@ $formatter = \Yii::$app->formatter;
                         </a>
                     </div>
                     <div class="tz-infomation">
+                        <a class="glod cat_name" href="<?= $data['categoryUrl']?>"><?= $data['primeCategory']->name?></a>
                         <h3 class="tz-post-title"><a href="<?= $data['postUrl'] ?>"><?= $data['postTitle'] ?> </a></h3>
 
                         <span class="meta">
@@ -71,7 +72,7 @@ $formatter = \Yii::$app->formatter;
                     </div>
                     <div class="tz-infomation">
                         <h3 class="tz-post-title"><a href="<?= Url::to(['/post/'.$post->slug]); ?>"><?= $post->title ?></a></h3>
-
+                        <a class="light-coral cat_name" href="<?= $data['categoryUrl']?>"><?= $data['primeCategory']->name?></a>
                         <span class="meta">
                                         <a href="<?= Url::to(['/user/'.$post->user->username]); ?>"> <?= $data['authorName'] ?></a> / <?= $formatter->asDate($post->created_at,'long') ?>
                                     </span>

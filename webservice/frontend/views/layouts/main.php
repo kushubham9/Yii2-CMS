@@ -90,61 +90,7 @@ AppAsset::register($this);
         <div class="tz-header-menu">
             <div class="container">
 
-                <!--Main Menu-->
-                <nav class="nav-menu pull-left">
-                    <ul class="tz-main-menu nav-collapse">
-                        <li>
-                            <a href="<?= Url::to(['/']); ?>">
-                                HOME
-                            </a>
-                            <a href="<?= Url::to(['/news']); ?>">
-                                NEWS
-                            </a>
-<!--                            <ul class="sub-menu">-->
-<!--                                <li>-->
-<!--                                    <a href="home-video.html">-->
-<!--                                        Home Video-->
-<!--                                    </a>-->
-<!--                                </li>-->
-<!--                                <li>-->
-<!--                                    <a href="home-tech.html">-->
-<!--                                        Home Tech-->
-<!--                                    </a>-->
-<!--                                </li>-->
-<!--                                <li>-->
-<!--                                    <a href="home-sport.html">-->
-<!--                                        Home Sport-->
-<!--                                    </a>-->
-<!--                                </li>-->
-<!--                                <li>-->
-<!--                                    <a href="home-fashion.html">-->
-<!--                                        Home Fashion-->
-<!--                                    </a>-->
-<!--                                </li>-->
-<!--                                <li>-->
-<!--                                    <a href="home-rtl.html">-->
-<!--                                        Home RTL-->
-<!--                                    </a>-->
-<!--                                </li>-->
-<!--                            </ul>-->
-                        </li>
-                        <li>
-                            <a href="#">
-                                CATEGORIES
-                                <i class="fa fa-angle-down"></i>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="#">
-                                Pages
-                                <i class="fa fa-angle-down"></i>
-                            </a>
-                        </li>
-
-                    </ul>
-                </nav>
-                <!--End Main menu-->
+               <?= \frontend\widgets\MainMenu::widget(); ?>
 
                 <!--Start search-->
                 <div class="tz-search pull-right">

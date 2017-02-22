@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = "News";
                 ?>
 
                 <?php
-                    $data = \frontend\models\Posts::getPostInformation($post);
+                    $data = \frontend\models\Posts::getPostInformation($post, ['imageWidth'=>400,'imageHeight'=>240]);
                 ?>
                     <div class="col-md-4 col-sm-6">
                         <!--Item blog post-->

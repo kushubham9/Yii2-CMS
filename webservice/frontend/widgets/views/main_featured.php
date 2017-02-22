@@ -38,18 +38,18 @@ $formatter = \Yii::$app->formatter;
 
                                 <div class="<?php echo 'tz-grid-post-' . $count++; ?>">
                                     <div class="tz-featured-thumb">
-                                        <a href="<?= Url::to(['/post/' . $post->slug]); ?>">
+                                        <a href="<?= $data['postUrl'] ?>">
                                             <?= Html::img($data['imageUrl'], ['alt' => $post->title]) ?>
                                         </a>
                                     </div>
                                     <div class="tz-featured-info">
                                         <a class="glod cat_name"
-                                           href="<?= Url::to('/category/' . $data['primeCategory']->slug); ?>"> <?= $data['primeCategory']->name ?> </a>
+                                           href="<?= $data['categoryUrl'] ?>"> <?= $data['primeCategory']->name ?> </a>
                                         <h3>
-                                            <a href="<?= Url::to(['/post/' . $post->slug]); ?>"> <?= $post->title; ?></a>
+                                            <a href="<?= $data['postUrl'] ?>"> <?= $data['postTitle'] ?></a>
                                         </h3>
                                         <span class="tz-featured-meta">
-                                                <a href="<?= Url::to(['/user/' . $post->user->username]); ?>"> <?= $data['authorName'] ?></a> / <?= $formatter->asDate($post->created_at, 'long') ?>
+                                                <a href="<?= $data['authorUrl'] ?>"> <?= $data['authorName'] ?></a> / <?= $data['postDate'] ?>
                                             </span>
                                     </div>
                                 </div>
