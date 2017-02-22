@@ -78,13 +78,13 @@ class Posts extends Post
      */
     public function search($params){
         $query = self::find()->where(['type'=>Constants::TYPE_POST, 'status'=>Constants::DEFAULT_POST_STATUS]);
-        $query->joinWith('postCategories category');
-        $query->joinWith('postTaxinomies taxinomy');
+//        $query->joinWith('postTaxinomies taxinomy');
         // add conditions that should always apply here
 
         if (isset($params['category'])){
             if (!is_array($params['category']))
                 $params['category'] = (array)$params['category'];
+            $query->joinWith('postCategories category');
             foreach ($params['category'] as $cat_slug){
                 $category = Category::find()->where(['slug'=>$cat_slug])->one();
                 if ($category)
