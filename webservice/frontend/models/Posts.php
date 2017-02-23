@@ -130,9 +130,11 @@ class Posts extends Post
         }
         if ($data['primeCategory']){
             $data['categoryUrl'] = Url::to(['/news/search', 'category'=>$data['primeCategory']->slug]);
+            $data['categoryColor'] = $data['primeCategory']->badge_color ? $data['primeCategory']->badge_color :"#00468c";
         }
         else{
             $data['categoryUrl'] = "";
+            $data['categoryColor'] = "#00468c";
         }
         // Get the author of the post.
         $data['author'] = $post->user ? $post->user : null;
@@ -172,7 +174,7 @@ class Posts extends Post
                         ? $options['imageHeight']
                         : ((isset($options['thumb']) && $options['thumb']) ? Constants::THUMB_HEIGHT : Constants::MAX_IMAGE_HEIGHT);
 
-        $url = Constants::BACKEND_ADDRESS.
+        $url = \Yii::$app->params['settings']['image_base_address'].
                 '/site/post-image'.
                 '?imageId='.$imageId.
                 '&imageHeight='.$imageHeight.

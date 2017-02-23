@@ -10,13 +10,28 @@
 <!--Main Menu-->
 <nav class="nav-menu pull-left">
     <ul class="tz-main-menu nav-collapse">
+
         <?php
-            foreach ($links as $key=>$value):
+            foreach ($links as $linkArray):
+        ?>
+        <?php
+            $rootLink = $linkArray['parent'];
+            $childLinks = isset($linkArray['child'])?$linkArray['child']:[];
         ?>
             <li>
-                <a href="<?= $value ?>"><?= $key?></a>
+                <a href="<?= $rootLink['href'] ?>"><?= $rootLink['title'] ?></a>
+
+                <?php
+                foreach ($childLinks as $cLink):
+                ?>
+                    <ul class="sub-menu">
+                        <li>
+                            <a href="<?= $cLink['href'] ?>"><?= $cLink['title'] ?></a>
+                        </li>
+                    </ul>
+                <?php endforeach;?>
             </li>
-         <?php
+        <?php
             endforeach;
          ?>
     </ul>

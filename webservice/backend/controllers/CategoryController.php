@@ -79,7 +79,6 @@ class CategoryController extends Controller
     public function actionCreate()
     {
         $model = new Category();
-
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success','Congratulations, Category created.');
         }

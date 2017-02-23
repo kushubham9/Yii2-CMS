@@ -17,26 +17,52 @@ class MainMenu extends Widget
     public $link = [];
     public function init(){
         parent::init();
-        $key = "MENU_LINKS4";
+//          \Yii::$app->cache->flush();
+        $key = "MENU_LINKS";
         $this->link = \Yii::$app->cache->getOrSet($key,function(){
             return array_merge($this->defaultItems(), $this->loadCategories());
         });
     }
 
     private function defaultItems(){
-        return [
-            'Home' => Url::to(['/']),
-            'News' => Url::to(['/news'])
-        ];
+        return
+            ['home_custom_link' =>
+                [
+                    'parent' =>
+                        [
+                            'title' =>  'Home',
+                            'href'  =>  Url::to(['/'])
+                        ],
+                ],
+
+            'news_custom_link' =>
+                [
+                    'parent' =>
+                    [
+                        'title' =>  'News',
+                        'href'  =>  Url::to(['/news'])
+                    ],
+                ]
+            ];
     }
 
     private function loadCategories(){
         $category_key = "MENU_CATEGORY";
         $categoriesLink = \Yii::$app->cache->getOrSet($category_key, function () {
             $links = [];
-            $categories = Category::find()->orderBy('name')->all();
+            $categories = Category::find()->where(['parent_category'=>null])->orderBy('name')->all();
             foreach ($categories as $category){
-                $links[$category->name] = Url::to(['/news/search','category'=>$category->slug]);
+                $links[$category->slug] = [
+                    'parent' => ['title' => $category->name, 'href' => Url::to(['/news/search','category'=>$category->slug])]
+                ];
+//
+//                $links[$category->name] = Url::to(['/news/search','category'=>$category->slug]);
+                $childCategory = $category->categories;
+                if ($childCategory){
+                    foreach ($childCategory as $cCategory){
+                        $links[$category->slug]['child'][] = ['title' => $cCategory->name, 'href' => Url::to(['/news/search','category'=>$cCategory->slug])];
+                    }
+                }
             }
             return $links;
         });

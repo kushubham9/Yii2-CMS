@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use kartik\grid\GridView;
 use yii\bootstrap\ActiveForm;
+use kartik\color\ColorInput;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\CategorySearch */
@@ -24,8 +25,14 @@ $this->params['breadcrumbs'][] = $this->title;
                     <div class="col-sm-6 col-md-5">
                         <h4>Add New Category</h4>
                         <?php $form = ActiveForm::begin(['action'=>['category/create']]); ?>
-                            <?= $form->field($model, 'name')->textInput(['maxlength' => true])->hint('The name is how it appears on your site.') ?>
+                        <?= $form->errorSummary([$model]); ?>
+                        <?= $form->field($model, 'name')->textInput(['maxlength' => true])->hint('The name is how it appears on your site.') ?>
                             <?= $form->field($model, 'description')->textarea(['maxlength' => true, 'rows'=>3])->hint('The description is not prominent by default.') ?>
+                            <?= $form->field($model, 'parent_category')->dropDownList(\common\models\Category::getRootCategoryDropdown(),['prompt'=>'Select Parent Category'])->hint('Select parent category.') ?>
+                            <?= $form->field($model, 'badge_color')->widget(ColorInput::classname(), [
+                                'options' => ['placeholder' => 'Select color ...'],
+                            ]); ?>
+
                             <div class="form-group">
                                 <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
                             </div>
@@ -40,10 +47,18 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'columns' => [
                                     ['class' => 'yii\grid\SerialColumn'],
                                     'name',
-                                    ['attribute'=>'slug', 'filter' => false],
+//                                    ['attribute'=>'slug', 'filter' => false],
                                     'description',
                                     [
-                                        'label' => 'Count',
+                                        'label' => 'Parent',
+                                        'value' => function($model){
+                                            if ($model->parentCategory)
+                                                return $model->parentCategory->name;
+                                            return "Not Set";
+                                        }
+                                    ],
+                                    [
+                                        'label' => 'Posts',
                                         'value' => function ($model){
                                                 return count($model->posts);
                                             }

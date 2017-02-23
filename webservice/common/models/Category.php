@@ -22,4 +22,8 @@ class Category extends BaseCategory
     {
         return ArrayHelper::map(self::find()->all(), 'id', 'name');
     }
+
+    public static function getRootCategoryDropdown(){
+        return ArrayHelper::map(self::find()->where(['parent_category'=>null])->all(), 'id', 'name');
+    }
 }

@@ -43,7 +43,7 @@ $formatter = \Yii::$app->formatter;
                                         </a>
                                     </div>
                                     <div class="tz-featured-info">
-                                        <a class="glod cat_name"
+                                        <a class="cat_name" style="background-color: <?= $data['categoryColor']; ?>"
                                            href="<?= $data['categoryUrl'] ?>"> <?= $data['primeCategory']->name ?> </a>
                                         <h3>
                                             <a href="<?= $data['postUrl'] ?>"> <?= $data['postTitle'] ?></a>

@@ -12,10 +12,14 @@ use yii\behaviors\SluggableBehavior;
  * @property integer $id
  * @property string $name
  * @property string $slug
- * @property string $description
  * @property string $created_at
  * @property string $updated_at
+ * @property string $description
+ * @property integer $parent_category
+ * @property string $badge_color
  *
+ * @property \common\models\Category $parentCategory
+ * @property \common\models\Category[] $categories
  * @property \common\models\PostCategory[] $postCategories
  * @property \common\models\Post[] $posts
  */
@@ -29,12 +33,10 @@ class Category extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name'], 'required'],
-            [['created_at', 'updated_at'], 'safe'],
+            [['name', 'slug'], 'required'],
+            [['created_at', 'updated_at','parent_category'],'safe'],
             [['name'], 'string', 'max' => 50],
-            [['slug'], 'string', 'max' => 255],
-            [['description'], 'string', 'max' => 255],
-            [['description'], 'default', 'value' => null],
+            [['slug', 'description', 'badge_color'], 'string', 'max' => 255],
             [['slug'], 'unique']
         ];
     }
@@ -56,16 +58,34 @@ class Category extends \yii\db\ActiveRecord
             'id' => 'ID',
             'name' => 'Name',
             'slug' => 'Slug',
-            'description' => 'Description'
+            'description' => 'Description',
+            'parent_category' => 'Parent Category',
+            'badge_color' => 'Badge Color',
         ];
     }
     
     /**
      * @return \yii\db\ActiveQuery
      */
+    public function getParentCategory()
+    {
+        return $this->hasOne(\common\models\Category::className(), ['id' => 'parent_category']);
+    }
+        
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCategories()
+    {
+        return $this->hasMany(\common\models\Category::className(), ['parent_category' => 'id']);
+    }
+        
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getPostCategories()
     {
-        return $this->hasMany(\common\models\PostCategory::className(), ['category_id' => 'id'])->inverseOf('category');
+        return $this->hasMany(\common\models\PostCategory::className(), ['category_id' => 'id']);
     }
         
     /**
@@ -96,3 +116,5 @@ class Category extends \yii\db\ActiveRecord
         ];
     }
 }
+
+

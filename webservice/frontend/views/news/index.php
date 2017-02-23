@@ -13,7 +13,7 @@ use frontend\widgets\FeaturedCategory;
 
 $formatter = \Yii::$app->formatter;
 
-$this->title = \common\models\Constants::SITE_TITLE ." | ".\common\models\Constants::TAGLINE;
+$this->title = Yii::$app->params['settings']['site_title'].' '.Yii::$app->params['settings']['site_tagline'];
 ?>
 
 <?= FeaturedSectionWidget::widget(['posts_model' => $featured_post_model]); ?>

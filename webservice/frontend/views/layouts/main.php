@@ -51,16 +51,16 @@ AppAsset::register($this);
                 <div class="tz-header-top-right pull-right">
                     <ul class="top-header-social pull-right">
                         <li>
-                            <a href="<?= Constants::SOCIAL_FB; ?>"><i class="fa fa-facebook-square"></i></a>
+                            <a href="<?= Yii::$app->params['settings']['social_fb'] ?>"><i class="fa fa-facebook-square"></i></a>
                         </li>
                         <li>
-                            <a href="<?= Constants::SOCIAL_TWITTER; ?>"><i class="fa fa-twitter"></i></a>
+                            <a href="<?= Yii::$app->params['settings']['social_twitter'] ?>"><i class="fa fa-twitter"></i></a>
                         </li>
                         <li>
-                            <a href="<?= Constants::SOCIAL_GOOGLE; ?>"><i class="fa fa-google"></i></a>
+                            <a href="<?= Yii::$app->params['settings']['social_google'] ?>"><i class="fa fa-google"></i></a>
                         </li>
                         <li>
-                            <a href="<?= Constants::SOCIAL_INSTAGRAM; ?>"><i class="fa fa-instagram"></i></a>
+                            <a href="<?= Yii::$app->params['settings']['social_instagram'] ?>"><i class="fa fa-instagram"></i></a>
                         </li>
 
                     </ul>
@@ -74,7 +74,7 @@ AppAsset::register($this);
         <div class="tz-header-content">
             <div class="tz-header-logo pull-left">
                 <a href="<?= Url::to(['/']); ?>">
-                    <img src="<?= Constants::LOGO_URL ?>" style="max-height: 115px;" alt="<?= Constants::SITE_TITLE ?>">
+                    <img src="<?= Yii::$app->params['settings']['logo_url'] ?>" style="max-height: 115px;" alt="<?= Yii::$app->params['settings']['site_title'] ?>">
                 </a>
             </div>
 
@@ -130,8 +130,8 @@ AppAsset::register($this);
                     <div class="widget">
                         <h4 class="widget_title">About Us</h4>
                         <div class="widget_about">
-                            <h2><?= Constants::SITE_TITLE; ?></h2>
-                            <p><?= Constants::SITE_DESCRIPTION; ?></p>
+                            <h2><?= Yii::$app->params['settings']['site_title'] ?></h2>
+                            <p><?= Yii::$app->params['settings']['site_description'] ?></p>
                             <ul class="widget_about_meta">
                                 <li>
                                     <address>
@@ -190,19 +190,19 @@ AppAsset::register($this);
 
         <div class="tz-copyright">
             <div class="container">
-                <p class="pull-left copyright-content">© Copyrights @Crowdix Technologies Pvt. Ltd. All rights reserved.</p>
+                <p class="pull-left copyright-content">© Copyrights @Crowdix Technology Pvt. Ltd. All rights reserved.</p>
                 <ul class="pull-right footer-social">
                     <li>
-                        <a href="<?= Constants::SOCIAL_FB; ?>"><i class="fa fa-facebook-square"></i></a>
+                        <a href="<?= Yii::$app->params['settings']['social_fb'] ?>"><i class="fa fa-facebook-square"></i></a>
                     </li>
                     <li>
-                        <a href="<?= Constants::SOCIAL_TWITTER; ?>"><i class="fa fa-twitter"></i></a>
+                        <a href="<?= Yii::$app->params['settings']['social_twitter'] ?>"><i class="fa fa-twitter"></i></a>
                     </li>
                     <li>
-                        <a href="<?= Constants::SOCIAL_GOOGLE; ?>"><i class="fa fa-google"></i></a>
+                        <a href="<?= Yii::$app->params['settings']['social_google'] ?>"><i class="fa fa-google"></i></a>
                     </li>
                     <li>
-                        <a href="<?= Constants::SOCIAL_INSTAGRAM; ?>"><i class="fa fa-instagram"></i></a>
+                        <a href="<?= Yii::$app->params['settings']['social_instagram'] ?>"><i class="fa fa-instagram"></i></a>
                     </li>
                 </ul>
             </div>
