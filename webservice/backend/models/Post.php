@@ -161,10 +161,10 @@ class Post extends BasePost
         foreach ($origImageSrc as $imgSrc){
             $index = strpos($imgSrc,\Yii::$app->imagemanager->mediaPath);
             if ($index == 0){
-                $nContent = str_replace($imgSrc,Constants::IMAGE_BASE_ADDRESS."/".$imgSrc,$nContent);
+                $nContent = str_replace($imgSrc,\Yii::$app->params['settings']['image_base_address']."/".$imgSrc,$nContent);
             }
             elseif ($index == 1){
-                $nContent = str_replace($imgSrc,Constants::IMAGE_BASE_ADDRESS."".$imgSrc,$nContent);
+                $nContent = str_replace($imgSrc,\Yii::$app->params['settings']['image_base_address']."".$imgSrc,$nContent);
             }
         }
         return $nContent;

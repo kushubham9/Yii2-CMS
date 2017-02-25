@@ -15,8 +15,9 @@
             foreach ($links as $linkArray):
         ?>
         <?php
-            $rootLink = $linkArray['parent'];
+            $rootLink = isset($linkArray['parent']) ? $linkArray['parent'] : [];
             $childLinks = isset($linkArray['child'])?$linkArray['child']:[];
+            if (sizeof($rootLink) > 0):
         ?>
             <li>
                 <a href="<?= $rootLink['href'] ?>"><?= $rootLink['title'] ?></a>
@@ -32,6 +33,7 @@
                 <?php endforeach;?>
             </li>
         <?php
+            endif;
             endforeach;
          ?>
     </ul>

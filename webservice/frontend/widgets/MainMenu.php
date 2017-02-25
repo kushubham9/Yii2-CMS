@@ -17,7 +17,7 @@ class MainMenu extends Widget
     public $link = [];
     public function init(){
         parent::init();
-//          \Yii::$app->cache->flush();
+        \Yii::$app->cache->flush();
         $key = "MENU_LINKS";
         $this->link = \Yii::$app->cache->getOrSet($key,function(){
             return array_merge($this->defaultItems(), $this->loadCategories());
