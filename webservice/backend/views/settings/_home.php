@@ -17,7 +17,6 @@ use yii\bootstrap\Html;
         Enable Featured Widget
     </div>
     <div class="col-sm-9">
-        <?= Html::dropDownList() ?>
     </div>
 </div>
 
