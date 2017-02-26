@@ -22,6 +22,11 @@ use yii\bootstrap\Tabs;
                                 'content' => $this->render('_general',['settings'=>$settings]),
                                 'active' => true
                             ],
+
+                            [
+                                'label' => 'Home Page',
+                                'content' => $this->render('_home',['settings'=>$settings]),
+                            ],
                             [
                                 'label' => 'Social',
                                 'content' => $this->render('_social',['settings'=>$settings]),

@@ -6,6 +6,7 @@
 
 use yii\helpers\Html;
 use kartik\grid\GridView;
+use yii\helpers\Url;
 
 $this->title = 'Manage Comments';
 
@@ -24,12 +25,13 @@ $this->title = 'Manage Comments';
                         [
                             'label' => 'Author',
                             'attribute' => 'author_name',
+                            'format' => 'raw',
                             'value' => function($model)
                                 {
                                    $content = '<b>'.$model->author_name.'</b><br/>';
-                                   $content += 'Email: '.$model->author_email.'<br/>';
-                                   $content += 'Website: '.$model->author_website.'<br/>';
-                                   $content += 'IP: '.$model->author_IP.'<br/>';
+                                   $content .= 'Email: '.$model->author_email.'<br/>';
+                                   $content .= 'Website: '.$model->author_website.'<br/>';
+                                   $content .= 'IP: '.$model->author_IP.'<br/>';
                                    return $content;
                                 }
                         ],
@@ -43,6 +45,7 @@ $this->title = 'Manage Comments';
                         ],
                         [
                             'label' => 'In Response To',
+                            'format' => 'raw',
                             'value' => function($model)
                             {
                                 return Html::a($model->post->title,['/post/update','id'=>$model->post->id],['class'=>'text-strong']);
@@ -70,6 +73,18 @@ $this->title = 'Manage Comments';
                             'label' => 'Last Updated',
                             'width' => '100px',
                             'format'=>'date'
+                        ],
+                        [
+                            'class' => 'yii\grid\ActionColumn',
+                            'template'=>'{approve}{unapprove}{delete}',
+                            'buttons' => [
+                                'approve' => function($url){
+                                    return Html::a('<i class="fa fa-check">&nbsp;</i>',$url);
+                                },
+                                'unapprove' => function($url){
+                                    return Html::a('<i class="fa fa-close">&nbsp;</i>',$url);
+                                }
+                            ],
                         ],
 
                     ];

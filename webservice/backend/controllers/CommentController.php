@@ -8,6 +8,8 @@
 
 namespace backend\controllers;
 
+use common\models\base\Comment;
+use common\models\Constants;
 use Yii;
 use yii\web\Controller;
 use backend\models\CommentSearch;
@@ -25,7 +27,7 @@ class CommentController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index'],
+                        'actions' => ['index','approve','unapprove'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -44,5 +46,23 @@ class CommentController extends Controller
                 'searchModel' => $searchModel,
                 'dataProvider' => $dataProvider
             ]);
+    }
+
+    public function actionApprove($id){
+        $comment_model = \common\models\Comment::findOne($id);
+        if ($comment_model){
+            $comment_model->status = Constants::ACTIVE_COMMENT_STATUS[0];
+            $comment_model->save();
+        }
+        $this->redirect(['/comment']);
+    }
+
+    public function actionUnapprove($id){
+        $comment_model = \common\models\Comment::findOne($id);
+        if ($comment_model){
+            $comment_model->status = Constants::DEFAULT_COMMENT_STATUS;
+            $comment_model->save();
+        }
+        $this->redirect(['/comment']);
     }
 }

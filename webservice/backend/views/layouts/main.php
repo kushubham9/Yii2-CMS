@@ -140,7 +140,7 @@ IonIcons::register($this);
                             </ul>
                         </li>
 
-                        <li><a href="#"><i class="fa fa-book"></i> <span>Settings</span></a></li>
+                        <li><a href="<?= \yii\helpers\Url::to(['/settings'])?>"><i class="fa fa-book"></i> <span>Settings</span></a></li>
 
                     </ul>
                 </section>

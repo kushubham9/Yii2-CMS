@@ -23,7 +23,7 @@ class Constants
     const AD_STATUS_LIST = [1,2];
 
     const ACTIVE_USERS_STATUS = [1];
-    const ACTIVE_COMMENT_STATUS = [1];
+    const ACTIVE_COMMENT_STATUS = [3];
     const ACTIVE_AD_LOCATION_STATUS = [1];
     const ACTIVE_AD_STATUS = [1];
 
