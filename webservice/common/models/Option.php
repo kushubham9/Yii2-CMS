@@ -14,13 +14,7 @@ class Option extends BaseOption
      */
     public function rules()
     {
-        return array_replace_recursive(parent::rules(),
-	    [
-            [['name'], 'required'],
-            [['value'], 'string'],
-            [['name'], 'string', 'max' => 255],
-            [['name'], 'unique']
-        ]);
+        return parent::rules();
     }
 	
 }

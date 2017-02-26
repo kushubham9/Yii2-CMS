@@ -14,7 +14,7 @@ class Comment extends BaseComment
      */
     public function rules()
     {
-        parent::rules();
+        return parent::rules();
     }
 	
 }

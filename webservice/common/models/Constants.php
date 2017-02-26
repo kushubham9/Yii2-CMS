@@ -23,6 +23,7 @@ class Constants
     const AD_STATUS_LIST = [1,2];
 
     const ACTIVE_USERS_STATUS = [1];
+    const ACTIVE_COMMENT_STATUS = [1];
     const ACTIVE_AD_LOCATION_STATUS = [1];
     const ACTIVE_AD_STATUS = [1];
 
@@ -31,6 +32,7 @@ class Constants
     const DEFAULT_POST_STATUS = 3;
     const DEFAULT_POST_CATEGORY = 1;
     const DEFAULT_COMMENT_ENABLE = 1;
+    const DEFAULT_COMMENT_STATUS = 5;
 
     const MAX_IMAGE_WIDTH = 660;
     const MAX_IMAGE_HEIGHT = 440;

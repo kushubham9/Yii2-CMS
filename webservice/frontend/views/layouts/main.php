@@ -51,16 +51,16 @@ AppAsset::register($this);
                 <div class="tz-header-top-right pull-right">
                     <ul class="top-header-social pull-right">
                         <li>
-                            <a href="<?= Yii::$app->params['settings']['social_fb'] ?>"><i class="fa fa-facebook-square"></i></a>
+                            <a target="_blank" href="<?= Yii::$app->params['settings']['social_fb'] ?>"><i class="fa fa-facebook-square"></i></a>
                         </li>
                         <li>
-                            <a href="<?= Yii::$app->params['settings']['social_twitter'] ?>"><i class="fa fa-twitter"></i></a>
+                            <a target="_blank" href="<?= Yii::$app->params['settings']['social_twitter'] ?>"><i class="fa fa-twitter"></i></a>
                         </li>
                         <li>
-                            <a href="<?= Yii::$app->params['settings']['social_google'] ?>"><i class="fa fa-google"></i></a>
+                            <a target="_blank" href="<?= Yii::$app->params['settings']['social_google'] ?>"><i class="fa fa-google"></i></a>
                         </li>
                         <li>
-                            <a href="<?= Yii::$app->params['settings']['social_instagram'] ?>"><i class="fa fa-instagram"></i></a>
+                            <a target="_blank" href="<?= Yii::$app->params['settings']['social_instagram'] ?>"><i class="fa fa-instagram"></i></a>
                         </li>
 
                     </ul>
@@ -193,16 +193,16 @@ AppAsset::register($this);
                 <p class="pull-left copyright-content">© Copyrights @Crowdix Technology Pvt. Ltd. All rights reserved.</p>
                 <ul class="pull-right footer-social">
                     <li>
-                        <a href="<?= Yii::$app->params['settings']['social_fb'] ?>"><i class="fa fa-facebook-square"></i></a>
+                        <a target="_blank" href="<?= Yii::$app->params['settings']['social_fb'] ?>"><i class="fa fa-facebook-square"></i></a>
                     </li>
                     <li>
-                        <a href="<?= Yii::$app->params['settings']['social_twitter'] ?>"><i class="fa fa-twitter"></i></a>
+                        <a target="_blank" href="<?= Yii::$app->params['settings']['social_twitter'] ?>"><i class="fa fa-twitter"></i></a>
                     </li>
                     <li>
-                        <a href="<?= Yii::$app->params['settings']['social_google'] ?>"><i class="fa fa-google"></i></a>
+                        <a target="_blank" href="<?= Yii::$app->params['settings']['social_google'] ?>"><i class="fa fa-google"></i></a>
                     </li>
                     <li>
-                        <a href="<?= Yii::$app->params['settings']['social_instagram'] ?>"><i class="fa fa-instagram"></i></a>
+                        <a target="_blank" href="<?= Yii::$app->params['settings']['social_instagram'] ?>"><i class="fa fa-instagram"></i></a>
                     </li>
                 </ul>
             </div>

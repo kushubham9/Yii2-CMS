@@ -13,6 +13,9 @@ $this->title = $post_model->title;
 use frontend\models\Posts;
 use yii\helpers\Html;
 use yii\helpers\Url;
+use frontend\widgets\RecentCommentsWidget;
+use frontend\widgets\CommentFormWidget;
+use common\widgets\Alert;
 
 $data = Posts::getPostInformation($post_model);
 
@@ -29,7 +32,9 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="container">
             <div class="row">
                 <div class="col-md-9 border-right">
+
                     <article class="single-post">
+                        <?= Alert::widget() ?>
 <!--                        <div class="tz-single-thumbnail text-center ">-->
 <!--                            <img src="" alt="" class="">-->
 <!--                        </div>-->
@@ -55,13 +60,18 @@ $this->params['breadcrumbs'][] = $this->title;
                                 </div>
                             </div>
                             <div class="tz-share pull-right">
-Share:
+                                Share:
                                 <a href="#" class="fa fa-facebook-square"></a>
                                 <a href="#" class="fa fa-twitter"></a>
                                 <a href="#" class="fa fa-google"></a>
                                 <a href="#" class="fa fa-dribbble"></a>
                                 <a href="#" class="fa fa-behance"></a>
                             </div>
+                        </div>
+
+                        <div class="tz-comment">
+                            <?= RecentCommentsWidget::widget(['postId' => $post_model->id]); ?>
+                            <?= CommentFormWidget::widget(['postId'=>$post_model->id]);?>
                         </div>
                     </article>
                 </div>
