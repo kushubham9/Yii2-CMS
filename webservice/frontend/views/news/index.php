@@ -14,7 +14,7 @@ $this->title = Yii::$app->params['settings']['site_title'] ." | ". Yii::$app->pa
 
 <?php
 if (Yii::$app->params['settings']['enable_featured_widget']){
-    echo FeaturedSectionWidget::widget(['posts_model' => $featured_post_model]);
+    echo FeaturedSectionWidget::widget();
 }
 ?>
 

@@ -12,7 +12,6 @@
 use frontend\models\Posts;
 use yii\bootstrap\Html;
 use yii\helpers\Url;
-$formatter = \Yii::$app->formatter;
 
 ?>
 
@@ -48,9 +47,15 @@ $formatter = \Yii::$app->formatter;
                                         <h3>
                                             <a href="<?= $data['postUrl'] ?>"> <?= $data['postTitle'] ?></a>
                                         </h3>
-                                        <span class="tz-featured-meta">
-                                                <a href="<?= $data['authorUrl'] ?>"> <?= $data['authorName'] ?></a> / <?= $data['postDate'] ?>
-                                            </span>
+                                        <span class="meta">
+                                            <?php if (Yii::$app->params['settings']['featured_widget_display_author']) :?>
+                                                <a href="<?= Url::to(['/user/'.$post->user->username]); ?>"> <?= $data['authorName'] ?></a>
+                                            <?php endif; ?>
+
+                                            <?php if (Yii::$app->params['settings']['featured_widget_display_date']) :?>
+                                                <i><?= $data['postDate'] ?></i>
+                                            <?php endif;?>
+                                        </span>
                                     </div>
                                 </div>
                             <?php
