@@ -134,19 +134,19 @@ AppAsset::register($this);
                         <div class="widget_about">
                             <h2><?= Yii::$app->params['settings']['site_title'] ?></h2>
                             <p><?= Yii::$app->params['settings']['site_description'] ?></p>
-                            <ul class="widget_about_meta">
-                                <li>
-                                    <address>
-                                        122 Baker St, Surat
-                                    </address>
-                                </li>
-                                <li>
-                                    0870 241 3300
-                                </li>
-                                <li>
-                                    <a href="#">support@tagdabe.com</a>
-                                </li>
-                            </ul>
+<!--                            <ul class="widget_about_meta">-->
+<!--                                <li>-->
+<!--                                    <address>-->
+<!--                                        122 Baker St, Surat-->
+<!--                                    </address>-->
+<!--                                </li>-->
+<!--                                <li>-->
+<!--                                    0870 241 3300-->
+<!--                                </li>-->
+<!--                                <li>-->
+<!--                                    <a href="#">support@tagdabe.com</a>-->
+<!--                                </li>-->
+<!--                            </ul>-->
                         </div>
                     </div>
                 </div>
