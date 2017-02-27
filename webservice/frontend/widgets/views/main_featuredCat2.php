@@ -57,14 +57,26 @@ $formatter = \Yii::$app->formatter;
                         <div class="<?php echo $i ? 'item-small': 'item-thumbnail-wrap';?> ">
                             <div class="tz-thumbnail">
                                 <a href="<?= $data['postUrl'] ?>">
-                                    <img src="<?= $data['imageUrl'] ?>" alt="<?= $data['postTitle'] ?>">
+                                    <img src="<?= $data['imageUrl'] ?>" alt="<?= $data['postTitle'] ?>" title="<?= $data['postTitle'] ?>" style="<?php echo $i ? 'max-height: 85px': ''?>">
                                 </a>
                                 <?php echo $i ? '</div>' : ''; ?>
+
+
                             <div class="tz-infomation">
                                 <h3 class="tz-post-title"><a href="<?= $data['postUrl'] ?>"> <?= $data['postTitle'] ?> </a></h3>
-                                <a class="cat_name" style="background-color: <?= $data['categoryColor']; ?>" href="<?= $data['categoryUrl']?>"><?= $data['primeCategory']->name?></a>
-                                <span class="meta">by <a href="<?= $data['authorUrl'] ?>"> <?= $data['authorName']; ?> </a>
-                                    <?php // $data['postDate'] ?> </span>
+                                <span class="meta">
+                                    <?php if (Yii::$app->params['settings']['sticky_widget_2_display_author']) :?>
+                                        <a href="<?= Url::to(['/user/'.$post->user->username]); ?>"> <?= $data['authorName'] ?></a>
+                                    <?php endif; ?>
+
+                                    <?php if (Yii::$app->params['settings']['sticky_widget_2_display_date']) :?>
+                                        <?= $data['postDate'] ?>
+                                    <?php endif;?>
+                                </span>
+                                <div>
+                                    <a class="cat_name" style="background-color: <?= $data['categoryColor']; ?>" href="<?= $data['categoryUrl']?>"><?= $data['primeCategory']->name?></a>
+                                </div>
+
                             </div>
                         <?php echo $i ? '' : '</div>'; ?>
                         </div>

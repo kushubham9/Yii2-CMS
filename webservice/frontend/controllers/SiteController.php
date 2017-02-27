@@ -34,10 +34,5 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $this->redirect(['/news']);
-//        $featured_post_model = (new Posts())->featured(null)->getModels();
-//
-//        return $this->render('index',[
-//            'featured_post_model'=>$featured_post_model,
-//        ]);
     }
 }

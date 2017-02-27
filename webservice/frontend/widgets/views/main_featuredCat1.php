@@ -13,7 +13,6 @@
 
 use yii\helpers\Url;
 use frontend\models\Posts;
-$formatter = \Yii::$app->formatter;
 
 ?>
 <!--    Box 1   -->
@@ -39,8 +38,8 @@ $formatter = \Yii::$app->formatter;
                 <?php $data = Posts::getPostInformation($post); ?>
                 <!--Item large-->
                 <div class="item-large">
-                    <div class="tz-thumbnail">
-                        <a href="<?= Url::to(['/post/'.$post->slug]); ?>">
+                    <div class="tz-thumbnail text-center">
+                        <a href="<?= $data['postUrl']; ?>">
                             <img src="<?= $data['imageUrl'] ?>" alt="<?= $data['postTitle'] ?>" title="<?= $data['postTitle'] ?>">
                         </a>
                     </div>
@@ -49,8 +48,15 @@ $formatter = \Yii::$app->formatter;
                         <h3 class="tz-post-title"><a href="<?= $data['postUrl'] ?>"><?= $data['postTitle'] ?> </a></h3>
 
                         <span class="meta">
-                                    <a href="<?= $data['authorUrl'] ?>"> <?= $data['authorName'] ?></a> / <?= $data['postDate'] ?>
-                                </span>
+                            <?php if (Yii::$app->params['settings']['sticky_widget_1_display_author']) :?>
+                                <a href="<?= Url::to(['/user/'.$post->user->username]); ?>"> <?= $data['authorName'] ?></a>
+                            <?php endif; ?>
+
+                            <?php if (Yii::$app->params['settings']['sticky_widget_1_display_date']) :?>
+                                <?= $data['postDate'] ?>
+                            <?php endif;?>
+                        </span>
+
                         <p> <?= $data['postContent'] ?></p>
                     </div>
                 </div>
@@ -65,17 +71,25 @@ $formatter = \Yii::$app->formatter;
                 ?>
                 <!--Item small-->
                 <div class="item-small">
-                    <div class="tz-thumbnail">
-                        <a href="<?= Url::to(['/post/'.$post->slug]); ?>">
-                            <img src="<?= $data['imageUrl'] ?>" alt="<?= $post->title ?>">
+                    <div class="tz-thumbnail text-center">
+                        <a href="<?= $data['postUrl']; ?>">
+                            <img style="max-height:85px" src="<?= $data['imageUrl'] ?>" alt="<?= $data['postTitle'] ?>" title="<?= $data['postTitle'] ?>">
                         </a>
                     </div>
                     <div class="tz-infomation">
-                        <h3 class="tz-post-title"><a href="<?= Url::to(['/post/'.$post->slug]); ?>"><?= $post->title ?></a></h3>
-                        <a class="cat_name" style="background-color: <?= $data['categoryColor']; ?>" href="<?= $data['categoryUrl']?>"><?= $data['primeCategory']->name?></a>
+                        <h3 class="tz-post-title"><a href="<?= $data['postUrl']; ?>"><?= $post->title ?></a></h3>
                         <span class="meta">
-                                        <a href="<?= Url::to(['/user/'.$post->user->username]); ?>"> <?= $data['authorName'] ?></a> / <?= $formatter->asDate($post->created_at,'long') ?>
-                                    </span>
+                            <?php if (Yii::$app->params['settings']['sticky_widget_1_display_author']) :?>
+                                <a href="<?= Url::to(['/user/'.$post->user->username]); ?>"> <?= $data['authorName'] ?></a>
+                            <?php endif; ?>
+
+                            <?php if (Yii::$app->params['settings']['sticky_widget_1_display_date']) :?>
+                                <i><?= $data['postDate'] ?></i>
+                            <?php endif;?>
+                        </span>
+                        <div>
+                            <a class="cat_name" style="background-color: <?= $data['categoryColor']; ?>" href="<?= $data['categoryUrl']?>"><?= $data['primeCategory']->name?></a>
+                        </div>
                     </div>
                 </div>
                 <!--End item small-->

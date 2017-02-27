@@ -6,17 +6,17 @@
 /* @var $featured_cat_model2 \frontend\models\Posts; */
 /* @var $featured_cat_model3 \frontend\models\Posts; */
 
-use yii\helpers\Url;
-use frontend\models\Posts;
 use frontend\widgets\FeaturedSectionWidget;
 use frontend\widgets\FeaturedCategory;
 
-$formatter = \Yii::$app->formatter;
-
-$this->title = \common\models\Constants::SITE_TITLE ." | ".\common\models\Constants::TAGLINE;
+$this->title = Yii::$app->params['settings']['site_title'] ." | ". Yii::$app->params['settings']['site_tagline'];
 ?>
 
-<?= FeaturedSectionWidget::widget(['posts_model' => $featured_post_model]); ?>
+<?php
+    if (Yii::$app->params['settings']['enable_featured_widget']){
+        echo FeaturedSectionWidget::widget(['posts_model' => $featured_post_model]);
+    }
+?>
 
 
 <!--Content-->
@@ -28,12 +28,25 @@ $this->title = \common\models\Constants::SITE_TITLE ." | ".\common\models\Consta
             <!--Wrap element-->
             <div class="theiaStickySidebar">
 
-                <?= FeaturedCategory::widget(['type'=>1, 'category' => []]); ?>
+                <?php
+                    if (Yii::$app->params['settings']['sticky_widget_1_enable']) {
+                        echo FeaturedCategory::widget(['type'=>1]);
+                    }
+                ?>
 
-                <?= FeaturedCategory::widget(['type'=>2, 'count' => 6, 'category' => []]); ?>
 
-                <?= FeaturedCategory::widget(['type'=>3, 'count' => 6, 'category' => []]); ?>
+                <?php
+                    if (Yii::$app->params['settings']['sticky_widget_2_enable']) {
+                        echo FeaturedCategory::widget(['type'=>2]);
+                    }
+                ?>
 
+
+                <?php
+                    if (Yii::$app->params['settings']['sticky_widget_3_enable']) {
+                        echo FeaturedCategory::widget(['type'=>3]);
+                    }
+                ?>
             </div>
         </div>
 

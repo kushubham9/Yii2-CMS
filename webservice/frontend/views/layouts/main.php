@@ -23,6 +23,7 @@ AppAsset::register($this);
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
     <meta name="google-site-verification" content="sMQDj9Ewv9y9Th0Fo73GWXN7s7x-RrsIHPEHvv_Cak0" />
+    <link rel="shortcut icon" href="http://iamroy.in/client/blog/dist/img/fav.png">
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -49,7 +50,7 @@ AppAsset::register($this);
 
                 </div>
                 <!--End header top left-->
-                <div class="tz-header-top-right pull-right">
+                <div class="pull-right">
                     <ul class="top-header-social pull-right">
                         <li>
                             <a target="_blank" href="<?= Yii::$app->params['settings']['social_fb'] ?>"><i class="fa fa-facebook-square"></i></a>
@@ -65,7 +66,7 @@ AppAsset::register($this);
                         </li>
 
                     </ul>
-                    <div class="tz-hotline pull-right"><i class="fa fa-phone"></i>Call: +(91) 834 903 6366</div>
+<!--                    <div class="tz-hotline pull-right"><i class="fa fa-phone"></i>Call: +(91) 834 903 6366</div>-->
                 </div>
             </div>
         </div>
@@ -191,7 +192,7 @@ AppAsset::register($this);
 
         <div class="tz-copyright">
             <div class="container">
-                <p class="pull-left copyright-content">© Copyrights @Crowdix Technology Pvt. Ltd. All rights reserved.</p>
+                <p class="pull-left copyright-content">Copyrights © Crowdix Technology Pvt. Ltd. All rights reserved.</p>
                 <ul class="pull-right footer-social">
                     <li>
                         <a target="_blank" href="<?= Yii::$app->params['settings']['social_fb'] ?>"><i class="fa fa-facebook-square"></i></a>

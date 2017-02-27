@@ -39,17 +39,26 @@ $formatter = \Yii::$app->formatter;
 
                             <!--Item small two-->
                             <div class="item-small style-two">
-                                <div class="tz-thumbnail">
+                                <div class="tz-thumbnail text-center">
                                     <a href="<?= $data['postUrl'] ?>">
-                                        <img src="<?= $data['imageUrl'];?> " alt="<?= $data['postTitle'] ?>">
+                                        <img src="<?= $data['imageUrl'];?> " alt="<?= $data['postTitle'] ?>" title="<?= $data['postTitle'] ?>" style="max-height:120px">
                                     </a>
                                 </div>
                                 <div class="tz-infomation">
                                     <h3 class="tz-post-title"><a href="<?= $data['postUrl']?>"><?= $data['postTitle'] ?></a></h3>
-                                    <a class="cat_name" style="background-color: <?= $data['categoryColor']; ?>" href="<?= $data['categoryUrl']?>"><?= $data['primeCategory']->name?></a>
-                                    <span class="tz-featured-meta">
-                                            <a href="<?= $data['authorUrl'] ?>"> <?= $data['authorName'] ?></a> / <?= $data['postDate'] ?>
-                                        </span>
+
+                                    <span class="meta">
+                                        <?php if (Yii::$app->params['settings']['sticky_widget_2_display_author']) :?>
+                                            <a href="<?= $data['authorUrl']; ?>"> <?= $data['authorName'] ?></a>
+                                        <?php endif; ?>
+
+                                            <?php if (Yii::$app->params['settings']['sticky_widget_2_display_date']) :?>
+                                                <?= $data['postDate'] ?>
+                                            <?php endif;?>
+                                    </span>
+                                    <div>
+                                        <a class="cat_name" style="background-color: <?= $data['categoryColor']; ?>" href="<?= $data['categoryUrl']?>"><?= $data['primeCategory']->name?></a>
+                                    </div>
                                     <p><?= $data['postContent'] ?></p>
                                 </div>
                             </div>

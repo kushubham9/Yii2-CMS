@@ -28,7 +28,7 @@ class globalsettings implements BootstrapInterface
     public function bootstrap($app) {
 
         //Global Settings Stored as params.
-//          Yii::$app->cache->flush();
+          Yii::$app->cache->flush();
         $settings = $this->db->cache(function($db)
                         {
                             return $db->createCommand("SELECT name,value FROM option")->queryAll();

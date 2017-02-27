@@ -22,6 +22,9 @@ class SettingsController extends Controller
     public function actionUpdate(){
         if (\Yii::$app->request->post()){
             foreach (\Yii::$app->request->post() as $key=>$value){
+                if (is_array($value)){
+                    $value = serialize($value);
+                }
                 $option_model = Option::find()->where(['name'=>$key])->one();
                 if (!$option_model)
                     continue;

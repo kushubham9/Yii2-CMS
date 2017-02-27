@@ -19,7 +19,7 @@
 
         <li>
             <div class="comment-image">
-                <img src="images/data/author.jpg" alt="author">
+                <img src="<?= \yii\helpers\Url::to(['/images/default_user.jpg']); ?>" alt="author">
             </div>
             <div class="comment-block">
                 <cite><?= $comment->author_name ?></cite>
