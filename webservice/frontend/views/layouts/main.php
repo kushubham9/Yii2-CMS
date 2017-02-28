@@ -34,7 +34,7 @@ AppAsset::register($this);
     <![endif]-->
 
 </head>
-<body class="theme-darkblue">
+<body class="home-purple bk-body">
 <?php $this->beginBody() ?>
 
 <div class="site">

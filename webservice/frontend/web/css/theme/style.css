@@ -51,7 +51,7 @@ body {
     border: 0;
 }
 .bk-body {
-    background-image: url("../images/body.jpg");
+    background-image: url("../../images/body.jpg");
     background-position: center center;
     background-repeat: repeat;
 }

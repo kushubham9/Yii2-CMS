@@ -27,17 +27,18 @@ use yii\helpers\Url;
                         <li>
 
                             <?php $count = 0;
+
                             for ($i=0; $i < $post_count; $i++) {
                                 $post = array_shift($post_model);
-                                if (!$post){
+                                $data = $post ? Posts::getPostInformation($post) : false;
+                                if (!$data){
                                     continue;
                                 }
-                                $data = Posts::getPostInformation($post);
                                 ?>
 
                                 <div class="<?php echo 'tz-grid-post-' . $count++; ?>">
                                     <div class="tz-featured-thumb">
-                                        <a href="<?= $data['postUrl'] ?>">
+                                        <a href="<?=  $data['postUrl'] ?>">
                                             <?= Html::img($data['imageUrl'], ['alt' => $post->title]) ?>
                                         </a>
                                     </div>

@@ -23,7 +23,10 @@ class FeaturedSectionWidget extends Widget
         $this->category = $this->category ? $this->category  :  unserialize(\Yii::$app->params['settings']['featured_widget_category']);
         $this->count = $this->count ? $this->count  :(int)\Yii::$app->params['settings']['featured_widget_count'];
 
-        if (sizeof($this->category) > 0 )
+        if ($this->count >5){
+            $this->count = 5;
+        }
+        if (is_array($this->category) && sizeof($this->category) > 0 )
         {
             $query = Post::find()->where(['type'=>Constants::TYPE_POST, 'status'=>Constants::DEFAULT_POST_STATUS]);
             $query->joinWith('postCategories cat');
