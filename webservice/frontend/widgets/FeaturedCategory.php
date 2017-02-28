@@ -28,7 +28,8 @@ class FeaturedCategory extends Widget
         $this->count = $this->count ? $this->count  :(int)\Yii::$app->params['settings']['sticky_widget_'.$this->type.'_count'];
         $this->defaultTitle = $this->defaultTitle ? $this->defaultTitle : \Yii::$app->params['settings']['sticky_widget_'.$this->type.'_default_title'];
 
-        if (sizeof($this->category) > 0 )
+//        if (is_array($this->category))
+        if (is_array($this->category)  && sizeof($this->category)> 0)
         {
             if (!$this->title){
                 $categories = Category::find()->where(['id'=>$this->category])->all();

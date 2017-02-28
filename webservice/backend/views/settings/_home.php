@@ -106,6 +106,7 @@ use yii\bootstrap\Html;
         Categories:
     </div>
     <div class="col-sm-9">
+        <?= Html::input('hidden','sticky_widget_1_category',''); ?>
         <?= Html::dropDownList('sticky_widget_1_category',unserialize($settings['sticky_widget_1_category']),\common\models\Category::getCategoryDropdown(),['class'=>'form-control','multiple'=>'multiple']); ?>
         <p class="help-block">Blank will take all recent articles.</p>
     </div>
@@ -173,6 +174,7 @@ use yii\bootstrap\Html;
         Categories:
     </div>
     <div class="col-sm-9">
+        <?= Html::input('hidden','sticky_widget_2_category',''); ?>
         <?= Html::dropDownList('sticky_widget_2_category',unserialize($settings['sticky_widget_2_category']),\common\models\Category::getCategoryDropdown(),['class'=>'form-control','multiple'=>'multiple']); ?>
         <p class="help-block">Blank will take all recent articles.</p>
     </div>
@@ -240,6 +242,7 @@ use yii\bootstrap\Html;
         Categories:
     </div>
     <div class="col-sm-9">
+        <?= Html::input('hidden','sticky_widget_3_category',''); ?>
         <?= Html::dropDownList('sticky_widget_3_category',unserialize($settings['sticky_widget_3_category']),\common\models\Category::getCategoryDropdown(),['class'=>'form-control','multiple'=>'multiple']); ?>
         <p class="help-block">Blank will take all recent articles.</p>
     </div>
