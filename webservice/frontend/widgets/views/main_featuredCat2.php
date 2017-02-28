@@ -73,9 +73,11 @@ $formatter = \Yii::$app->formatter;
                                         <?= $data['postDate'] ?>
                                     <?php endif;?>
                                 </span>
-                                <div>
-                                    <a class="cat_name" style="background-color: <?= $data['categoryColor']; ?>" href="<?= $data['categoryUrl']?>"><?= $data['primeCategory']->name?></a>
-                                </div>
+                                <?php if (Yii::$app->params['settings']['sticky_widget_2_display_cat_badge']) :?>
+                                    <div>
+                                        <a class="cat_name" style="background-color: <?= $data['categoryColor']; ?>" href="<?= $data['categoryUrl']?>"><?= $data['primeCategory']->name?></a>
+                                    </div>
+                                <?php endif; ?>
 
                             </div>
                         <?php echo $i ? '' : '</div>'; ?>

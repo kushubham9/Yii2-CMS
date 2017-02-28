@@ -20,6 +20,7 @@ class SettingsController extends Controller
     }
 
     public function actionUpdate(){
+//        die (var_dump(\Yii::$app->request->post()));
         if (\Yii::$app->request->post()){
             foreach (\Yii::$app->request->post() as $key=>$value){
                 $option_model = Option::find()->where(['name'=>$key])->one();
@@ -29,8 +30,7 @@ class SettingsController extends Controller
                 if (is_array($value)){
                     $value = serialize($value);
                 }
-
-                $option_model->value = $value ? $value : null;
+                $option_model->value = $value;
                 $option_model->save();
             }
         }

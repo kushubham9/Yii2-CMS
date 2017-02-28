@@ -7,6 +7,7 @@
  */
 
 use yii\bootstrap\Html;
+
 ?>
 
 <?= Html::beginForm('/settings/update','post',['class'=>'form-horizontal']) ?>
@@ -123,6 +124,15 @@ use yii\bootstrap\Html;
 
 <div class="form-group">
     <div class="control-label col-sm-3">
+        Display Category Badge:
+    </div>
+    <div class="col-sm-9">
+        <?= Html::dropDownList('sticky_widget_1_display_cat_badge',$settings['sticky_widget_1_display_cat_badge'],['1'=>'Yes', '0'=>'No'],['class'=>'form-control']); ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="control-label col-sm-3">
         Display Author Name:
     </div>
     <div class="col-sm-9">
@@ -191,6 +201,15 @@ use yii\bootstrap\Html;
 
 <div class="form-group">
     <div class="control-label col-sm-3">
+        Display Category Badge:
+    </div>
+    <div class="col-sm-9">
+        <?= Html::dropDownList('sticky_widget_2_display_cat_badge',$settings['sticky_widget_2_display_cat_badge'],['1'=>'Yes', '0'=>'No'],['class'=>'form-control']); ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="control-label col-sm-3">
         Display Author Name:
     </div>
     <div class="col-sm-9">
@@ -254,6 +273,15 @@ use yii\bootstrap\Html;
     </div>
     <div class="col-sm-9">
         <?= Html::input('number','sticky_widget_3_count',$settings['sticky_widget_3_count'],['class'=>'form-control']); ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="control-label col-sm-3">
+        Display Category Badge:
+    </div>
+    <div class="col-sm-9">
+        <?= Html::dropDownList('sticky_widget_3_display_cat_badge',$settings['sticky_widget_3_display_cat_badge'],['1'=>'Yes', '0'=>'No'],['class'=>'form-control']); ?>
     </div>
 </div>
 

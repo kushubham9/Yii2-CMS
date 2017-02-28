@@ -43,6 +43,9 @@ class m170226_184430_more_settings extends Migration
         $this->insert('option', ['name'=>'sticky_widget_3_count', 'value'=>'6']);
         $this->insert('option', ['name'=>'sticky_widget_3_display_author', 'value'=>'1']);
         $this->insert('option', ['name'=>'sticky_widget_3_display_date', 'value'=>'1']);
+        $this->insert('option', ['name'=>'sticky_widget_1_display_cat_badge', 'value'=>'0']);
+        $this->insert('option', ['name'=>'sticky_widget_2_display_cat_badge', 'value'=>'0']);
+        $this->insert('option', ['name'=>'sticky_widget_3_display_cat_badge', 'value'=>'0']);
     }
 
     public function safeDown()
