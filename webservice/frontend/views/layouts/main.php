@@ -96,7 +96,7 @@ AppAsset::register($this);
 
                 <!--Start search-->
                 <div class="tz-search pull-right">
-                    <?= Html::beginForm(Url::to(['/news/search']),'get',['class'=>'tz-form-search']); ?>
+                    <?= Html::beginForm(Url::to(['/news/search','type'=>'article']),'get',['class'=>'tz-form-search']); ?>
                         <input type="text" name="q" class="input-width" value="" placeholder="Search...">
                         <i class="fa fa-search tz-button-search"></i>
                     <?= Html::endForm();?>

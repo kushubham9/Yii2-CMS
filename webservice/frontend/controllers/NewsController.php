@@ -7,6 +7,7 @@
  */
 
 namespace frontend\controllers;
+use yii\base\InvalidRouteException;
 use yii\web\Controller;
 use frontend\models\Posts;
 use yii\web\NotFoundHttpException;
@@ -14,19 +15,13 @@ use yii\web\NotFoundHttpException;
 class NewsController extends Controller
 {
     public function actionSearch(){
-        //Get the Query.
+        //Get the Query Params.
         $searchParam = \Yii::$app->request->queryParams;
-        $pageTitle = "Latest Posts";
-        if (sizeof($searchParam)>0) {
-            $pageTitle = "Search Results";
+        if (!isset($searchParam['q']) || !isset($searchParam['type'])){
+            throw new InvalidRouteException('Invalid search parameters.');
         }
-        try{
-            $activeData = (new Posts())->search($searchParam);
-        }
-        catch (\Exception $e){
-            $pageTitle = $e->getMessage();
-            throw new NotFoundHttpException($e);
-        }
+
+        $activeData = (new Posts())->search($searchParam);
 
         // Get the Post from the activeData
         $post_model = $activeData->getModels();
@@ -34,7 +29,6 @@ class NewsController extends Controller
         echo $this->render('search',[
             'model' => $post_model,
             'pagination' => $pagination,
-            'pageTitle' => $pageTitle
         ]);
     }
 

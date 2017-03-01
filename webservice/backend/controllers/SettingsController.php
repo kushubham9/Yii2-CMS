@@ -10,9 +10,29 @@ namespace backend\controllers;
 use yii\web\Controller;
 use common\models\Option;
 use yii\helpers\ArrayHelper;
+use yii\filters\AccessControl;
 
 class SettingsController extends Controller
 {
+    /**
+     * @return array
+     */
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'actions' => ['index','update'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
+        ];
+    }
+
     public function actionIndex(){
         $options = ArrayHelper::map(Option::find()->all(),'name','value');
         return $this->render('index',

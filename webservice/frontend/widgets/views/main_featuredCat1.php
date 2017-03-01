@@ -49,7 +49,7 @@ use frontend\models\Posts;
 
                         <span class="meta">
                             <?php if (Yii::$app->params['settings']['sticky_widget_1_display_author']) :?>
-                                <a href="<?= Url::to(['/user/'.$post->user->username]); ?>"> <?= $data['authorName'] ?></a>
+                                <a href="<?= $data['authorUrl'] ?>"> <?= $data['authorName'] ?></a>
                             <?php endif; ?>
 
                             <?php if (Yii::$app->params['settings']['sticky_widget_1_display_date']) :?>
@@ -80,7 +80,7 @@ use frontend\models\Posts;
                         <h3 class="tz-post-title"><a href="<?= $data['postUrl']; ?>"><?= $post->title ?></a></h3>
                         <span class="meta">
                             <?php if (Yii::$app->params['settings']['sticky_widget_1_display_author']) :?>
-                                <a href="<?= Url::to(['/user/'.$post->user->username]); ?>"> <?= $data['authorName'] ?></a>
+                                <a href="<?= $data['authorUrl'] ?>"> <?= $data['authorName'] ?></a>
                             <?php endif; ?>
 
                             <?php if (Yii::$app->params['settings']['sticky_widget_1_display_date']) :?>

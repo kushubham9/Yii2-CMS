@@ -53,10 +53,8 @@ class MainMenu extends Widget
             $categories = Category::find()->where(['parent_category'=>null])->orderBy('name')->all();
             foreach ($categories as $category){
                 $links[$category->slug] = [
-                    'parent' => ['title' => $category->name, 'href' => Url::to(['/news/search','category'=>$category->slug])]
+                    'parent' => ['title' => $category->name, 'href' => Url::to(['/news/search','type'=>'category','q'=>$category->slug])]
                 ];
-//
-//                $links[$category->name] = Url::to(['/news/search','category'=>$category->slug]);
                 $childCategory = $category->categories;
                 if ($childCategory){
                     foreach ($childCategory as $cCategory){

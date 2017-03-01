@@ -50,7 +50,7 @@ use yii\helpers\Url;
                                         </h3>
                                         <span class="meta">
                                             <?php if (Yii::$app->params['settings']['featured_widget_display_author']) :?>
-                                                <a href="<?= Url::to(['/user/'.$post->user->username]); ?>"> <?= $data['authorName'] ?></a>
+                                                <a href="<?= $data['authorUrl']; ?>"> <?= $data['authorName'] ?></a>
                                             <?php endif; ?>
 
                                             <?php if (Yii::$app->params['settings']['featured_widget_display_date']) :?>

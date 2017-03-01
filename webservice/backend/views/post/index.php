@@ -123,7 +123,8 @@ $this->params['breadcrumbs'][] = 'Posts';
                                 return Url::toRoute([$action, 'id' => $model->id]);
                             }
                             elseif ($action === 'view'){
-                                return Url::toRoute([$action, 'id' => $model->id]);
+//                                return Url::toRoute([$action, 'id' => $model->id]);
+                                return Yii::$app->params['settings']['frontend_address'].'/post/'.$model->slug;
                             }
                             elseif ($action === 'delete'){
                                 return Url::toRoute([$action, 'id' => $model->id]);

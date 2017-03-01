@@ -14,6 +14,7 @@ use Yii;
 use yii\web\Controller;
 use backend\models\CommentSearch;
 use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
 
 class CommentController extends Controller
 {
@@ -27,10 +28,16 @@ class CommentController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index','approve','unapprove'],
+                        'actions' => ['index','approve','unapprove','delete'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
+                ],
+            ],
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'delete' => ['post'],
                 ],
             ],
         ];
@@ -46,6 +53,12 @@ class CommentController extends Controller
                 'searchModel' => $searchModel,
                 'dataProvider' => $dataProvider
             ]);
+    }
+
+    public function actionDelete($id){
+        $comment_model = \common\models\Comment::findOne($id);
+        $comment_model->delete();
+        $this->redirect('/comment');
     }
 
     public function actionApprove($id){

@@ -41,25 +41,33 @@ class Posts extends Post
      * Default method to search for posts.
      */
     public function search($params){
-        $query = self::find()->where(['type'=>Constants::TYPE_POST, 'status'=>Constants::DEFAULT_POST_STATUS]);
-//        $query->joinWith('postTaxinomies taxinomy');
-        // add conditions that should always apply here
+        $query = self::find()->where(['post.type'=>Constants::TYPE_POST, 'post.status'=>Constants::DEFAULT_POST_STATUS]);
 
-        if (isset($params['category'])){
-            if (!is_array($params['category']))
-                $params['category'] = (array)$params['category'];
-            $query->joinWith('postCategories category');
-            foreach ($params['category'] as $cat_slug){
-                $category = Category::find()->where(['slug'=>$cat_slug])->one();
-                if ($category)
-                    $query->andFilterWhere(['category.category_id'=>$category->id]);
-                else{
-                    throw new \Exception("Invalid Search Query.");
-                }
-            }
+        // Searching Posts by category
+        if (isset($params['type']) && $params['type'] == 'category'){
+            $query->joinWith('postCategories postCategory');
+            $query->joinWith('categories category');
+
+            $query->andFilterWhere(['category.slug'=>$params['q']]);
         }
 
-        if (isset($params['q'])){
+        // Searching Posts by tags
+        else if (isset($params['type']) && $params['type'] == 'tag'){
+            $query->joinWith('postTaxinomies postTags');
+            $query->joinWith('taxinomies tags');
+
+            $query->andFilterWhere(['tags.slug'=>$params['q']]);
+        }
+
+        // Searching Posts by users
+        else if (isset($params['type']) && $params['type'] == 'user'){
+            $query->joinWith('user user');
+
+            $query->andFilterWhere(['user.username'=>$params['q']]);
+        }
+
+        // Searching Posts by title
+        else if (isset($params['type']) && $params['type'] == 'article'){
             $query->andFilterWhere(['like', 'lower(post.title)', $params['q']]);
         }
 
@@ -93,7 +101,7 @@ class Posts extends Post
             $data['primeCategory'] = $data['categories'][0];
         }
         if ($data['primeCategory']){
-            $data['categoryUrl'] = Url::to(['/news/search', 'category'=>$data['primeCategory']->slug]);
+            $data['categoryUrl'] = Url::to(['/news/search','type'=>'category', 'q'=>$data['primeCategory']->slug]);
             $data['categoryColor'] = $data['primeCategory']->badge_color ? $data['primeCategory']->badge_color :"#00468c";
         }
         else{
@@ -105,6 +113,8 @@ class Posts extends Post
 
         // Author Name.
         $data['authorName'] = ($data['author']->usermeta)?$data['author']->usermeta->first_name.' '.$data['author']->usermeta->last_name : $data['author']->username;
+
+        $data['authorUrl'] = Url::to(['/news/search','type' => 'user', 'q'=>$post->user->username]);
 
         //Get the URL of the image.
 //        $data['imageUrl'] = \Yii::$app->imagemanager->getImagePath($post->featured_image);
@@ -118,7 +128,6 @@ class Posts extends Post
         $data['postTitle'] = $post->title;
         $data['postUrl'] = Url::to(['/post/'.$post->slug]);
         $data['postDate'] = \Yii::$app->formatter->asDate($post->created_at,'long');
-        $data['authorUrl'] = Url::to(['/user/'.$post->user->username]);
         $data['postContent'] = substr(strip_tags($post->content), 0, 125)."...";
 
         return $data;

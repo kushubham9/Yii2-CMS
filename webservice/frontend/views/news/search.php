@@ -11,12 +11,33 @@
 use yii\widgets\LinkPager;
 $this->params['breadcrumbs'][] = "News";
 
+$this->title = Yii::$app->request->get('q') ? 'Search results: '.Yii::$app->request->get('q') : 'Latest Articles';
 ?>
 
 <div class="container">
     <div class="row">
         <div class="col-xs-12">
-            <h1 class="single-title"><?= $pageTitle ?></h1>
+            <h1 class="single-title">
+                <?php
+                    $title = "Latest Articles";
+                    $postTitle = '';
+                    $preTitle = '';
+
+                    if (isset($_GET['q'])){
+                        $title = ucwords($_GET['q']);
+
+                        if (Yii::$app->request->get('category'))
+                            $postTitle = ' Archive';
+
+                        else if (Yii::$app->request->get('user'))
+                            $preTitle = 'User Archive ';
+
+                        else if (Yii::$app->request->get('artile'))
+                            $preTitle = 'Search Query: ';
+                    }
+                ?>
+                <?= $preTitle.' '.$title.' '.$postTitle?>
+            </h1>
         </div>
     </div>
 </div>

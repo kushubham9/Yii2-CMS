@@ -20,7 +20,7 @@ use common\widgets\Alert;
 $data = Posts::getPostInformation($post_model);
 
 $this->params['breadcrumbs'][] = ['label'=>'News','url'=>['/news/search']];
-$this->params['breadcrumbs'][] = ['label'=>$data['primeCategory']->name , 'url'=>['/news/search?category='.$data['primeCategory']->slug]];
+$this->params['breadcrumbs'][] = ['label'=>$data['primeCategory']->name , 'url'=>['/news/search','type'=>'category','q' => $data['primeCategory']->slug]];
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
@@ -38,7 +38,9 @@ $this->params['breadcrumbs'][] = $this->title;
 <!--                        <div class="tz-single-thumbnail text-center ">-->
 <!--                            <img src="" alt="" class="">-->
 <!--                        </div>-->
-                        <h1 class="single-title"><?= $post_model->title ?></h1>
+                        <h1 class="single-title">
+                            <?= $post_model->title ?>
+                        </h1>
                         <span class="post-meta">by <a href="#"><?= $data['authorName']; ?></a> /  <?= $formatter->asDatetime($post_model->created_at,'long'); ?> </span>
                         <div class="post-content">
                            <?= $post_model->content; ?>
@@ -53,7 +55,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     <?php
                                     foreach ($tags as $tag):
                                         ?>
-                                        <a href="#" style="display:inline-block"><?= $tag->value; ?></a>
+                                        <a href="<?= Url::to(['/news/search','type'=>'tag','q'=>$tag->slug])?>" style="display:inline-block"><?= $tag->value; ?></a>
                                         <?php
                                     endforeach;
                                     ?>
@@ -77,7 +79,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
                 <div class="col-md-3 blog-sidebar">
                     <div class="widget widget_search">
-                        <?= Html::beginForm('/news/search', 'get'); ?>
+                        <?= Html::beginForm(['/news/search', 'type'=>'article'], 'get'); ?>
                             <input type="text" name="q" value="" placeholder="Search Articles">
                             <i class="icon-search fa fa-search"></i>
                         <?= Html::endForm(); ?>

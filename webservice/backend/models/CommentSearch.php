@@ -16,7 +16,7 @@ class CommentSearch extends Comment
     {
         return [
             [['id'], 'integer'],
-            [['author_name','author_email','content','user_id','post_id','parent_comment','created_at','updated_at'],'safe']
+            [['author_name','author_email','content','user_id','post_id','parent_comment','created_at','updated_at','status'],'safe']
         ];
     }
 
@@ -27,6 +27,11 @@ class CommentSearch extends Comment
         // add conditions that should always apply here
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort'=>[
+                'defaultOrder' => [
+                    'created_at' => SORT_DESC
+                ]
+            ]
         ]);
 
         $this->load($params);
@@ -37,13 +42,11 @@ class CommentSearch extends Comment
             return $dataProvider;
         }
 
-        $query->andFilterWhere([
-            'id' => $this->id
-        ]);
 
-//        $query->andFilterWhere(['like', 'name', $this->name])
-//            ->andFilterWhere(['like', 'description', $this->description])
-//            ->orderBy('created_at desc');
+
+        $query->andFilterWhere(['like', 'author_name', $this->author_name])
+            ->andFilterWhere(['like', 'content', $this->content])
+            ->andFilterWhere(['status'=>$this->status]);
 
         return $dataProvider;
     }
