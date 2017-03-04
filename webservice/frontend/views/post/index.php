@@ -17,10 +17,11 @@ use frontend\widgets\RecentCommentsWidget;
 use frontend\widgets\CommentFormWidget;
 use common\widgets\Alert;
 
-$data = Posts::getPostInformation($post_model);
+//$data = Posts::getPostInformation($post_model);
 
 $this->params['breadcrumbs'][] = ['label'=>'News','url'=>['/news/search']];
-$this->params['breadcrumbs'][] = ['label'=>$data['primeCategory']->name , 'url'=>['/news/search','type'=>'category','q' => $data['primeCategory']->slug]];
+//$this->params['breadcrumbs'][] = ['label'=>$data['primeCategory']->name , 'url'=>['/news/search','type'=>'category','q' => $data['primeCategory']->slug]];
+$this->params['breadcrumbs'][] = ['label'=>$post_model->categories[0]->name , 'url'=>['/news/search','type'=>'category','q' => $post_model->categories[0]->slug]];
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
@@ -41,7 +42,6 @@ $this->params['breadcrumbs'][] = $this->title;
                         <h1 class="single-title">
                             <?= $post_model->title ?>
                         </h1>
-                        <span class="post-meta">by <a href="#"><?= $data['authorName']; ?></a> /  <?= $formatter->asDatetime($post_model->created_at,'long'); ?> </span>
                         <div class="post-content">
                            <?= $post_model->content; ?>
                         </div>
@@ -115,7 +115,13 @@ $this->params['breadcrumbs'][] = $this->title;
                             </div>
                         </div>
                         <div class="widget-ca-box">
-                            <?= \frontend\widgets\RecentPostWidget::widget(['count' => 5, 'containerClass'=>'widget-post-box', 'contentContainerClass'=>'widget_item_info', 'imageContainerClass'=>'widget_thumbnail', 'options'=>['showDate'=>false]]) ?>
+                            <?= \frontend\widgets\RecentPostWidget::widget(['options'=> [
+                                    'count' => 5,
+                                    'containerClass'=>'widget-post-box',
+                                    'contentContainerClass'=>'widget_item_info',
+                                    'imageContainerClass'=>'widget_thumbnail',
+                                    'showDate'=>false]
+                                ]); ?>
                         </div>
                     </div>
 

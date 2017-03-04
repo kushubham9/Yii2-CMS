@@ -30,21 +30,21 @@ if (Yii::$app->params['settings']['enable_featured_widget']){
 
                 <?php
                 if (Yii::$app->params['settings']['sticky_widget_1_enable']) {
-                    echo FeaturedCategory::widget(['type'=>1]);
+                    echo FeaturedSectionWidget::widget(['options'=>['type'=>1]]);
                 }
                 ?>
 
 
                 <?php
                 if (Yii::$app->params['settings']['sticky_widget_2_enable']) {
-                    echo FeaturedCategory::widget(['type'=>2]);
+                    echo FeaturedSectionWidget::widget(['options'=>['type'=>2]]);
                 }
                 ?>
 
 
                 <?php
                 if (Yii::$app->params['settings']['sticky_widget_3_enable']) {
-                    echo FeaturedCategory::widget(['type'=>3]);
+                    echo FeaturedSectionWidget::widget(['options'=>['type'=>3]]);
                 }
                 ?>
             </div>

@@ -28,7 +28,7 @@ use yii\helpers\Url;
 
                             <?php $count = 0;
 
-                            for ($i=0; $i < $post_count; $i++) {
+                            for ($i=0; $i < $options['count']; $i++) {
                                 $post = array_shift($post_model);
                                 $data = $post ? Posts::getPostInformation($post) : false;
                                 if (!$data){

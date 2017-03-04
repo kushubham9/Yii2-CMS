@@ -25,8 +25,12 @@ $formatter = \Yii::$app->formatter;
                 <!--Start one cat-->
                 <a class="red cat_name" href="#">DON’T MISS</a>
                 <div class="one-cat">
-                    <?php for($j=0; $j<3; $j++)
+                    <?php
+                    $k = 0;
+                    for($j=0; $j<3; $j++)
                     {
+                        if ($k>=$options['count'])
+                            continue;
                         $post = array_shift($post_model);
                         if (!$post)
                         {

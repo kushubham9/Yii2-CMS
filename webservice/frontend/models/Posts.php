@@ -34,6 +34,71 @@ class Posts extends Post
             ]);
     }
 
+    public function searchRecentPosts($option=[]){
+        return self::find()->with('categories','user','user.usermeta')
+            ->where(['type'=>Constants::TYPE_POST, 'status'=> Constants::DEFAULT_POST_STATUS])
+            ->orderBy(isset($option['sort']) ? $option['sort'] : 'created_at DESC, title')
+            ->limit(isset($option['limit']) ? $option['limit'] : 10)
+            ->all();
+    }
+
+
+    public function getSetRecentPosts($option=[]){
+
+        if (Constants::ENABLE_CACHE){
+            $model = \Yii::$app->cache->get(Constants::CACHE_KEY_RECENT_POST);
+//            (isset($option['limit']) && sizeof($model) < $option['limit'])
+            if (!$model){
+                $model = $this->searchRecentPosts($option);
+                $dependency = new \yii\caching\DbDependency(['sql' => "SELECT updated_at FROM post where type = '".Constants::TYPE_POST."' and status = '".Constants::DEFAULT_POST_STATUS."' order by created_at desc limit 1"]);
+                \Yii::$app->cache->set(Constants::CACHE_KEY_RECENT_POST, $model, 36000, $dependency);
+            }
+        }
+
+        else{
+            $model = $this->searchRecentPosts($option);
+        }
+
+        return $model;
+    }
+
+    // Featured Posts.
+
+    public function searchFeaturedPosts($category = [], $option = []){
+        return self::find()->with('categories','user','user.usermeta','comments')
+            ->where(['type'=>Constants::TYPE_POST, 'status'=> Constants::DEFAULT_POST_STATUS])
+            ->orderBy(isset($option['sort']) ? $option['sort'] : 'created_at DESC, title')
+            ->limit(isset($option['limit']) ? $option['limit'] : 10)
+            ->all();
+    }
+
+    /**
+     * @param array $category
+     * @param array $options
+     */
+    public function getSetFeaturedPosts($category = [], $options = [])
+    {
+        sort($category);
+        $key = "FEATURED_".implode('_',$category);
+        if (Constants::ENABLE_CACHE) {
+            $model = \Yii::$app->cache->get($key);
+
+            if (!$model){
+                $model = $this->searchFeaturedPosts($category, $options);
+                $dependency = new \yii\caching\DbDependency(['sql' => "SELECT updated_at FROM post
+                                    INNER JOIN post_category on post.id = post_category.post_id
+                                    where type = '".Constants::TYPE_POST."'
+                                    and status = '".Constants::DEFAULT_POST_STATUS."'
+                                    and post_category.category_id in (".implode(', ', $category).")
+                                    order by created_at desc
+                                    limit 1"]);
+                \Yii::$app->cache->set($key, $model, 36000, $dependency);
+            }
+        } else{
+           $model = $this->searchFeaturedPosts($category, $options);
+        }
+        return $model;
+    }
     /**
      * @param $params
      * @return ActiveDataProvider
@@ -100,7 +165,7 @@ class Posts extends Post
         if ($data['categories']){
             $data['primeCategory'] = $data['categories'][0];
         }
-        if ($data['primeCategory']){
+        if (isset($data['primeCategory']) && $data['primeCategory']){
             $data['categoryUrl'] = Url::to(['/news/search','type'=>'category', 'q'=>$data['primeCategory']->slug]);
             $data['categoryColor'] = $data['primeCategory']->badge_color ? $data['primeCategory']->badge_color :"#00468c";
         }

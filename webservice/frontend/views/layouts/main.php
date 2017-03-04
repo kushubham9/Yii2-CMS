@@ -156,7 +156,7 @@ AppAsset::register($this);
                 <div class="col-md-4 col-sm-6">
                     <div class="widget recent_post">
                         <h4 class="widget_title">Recent Posts</h4>
-                        <?= \frontend\widgets\RecentPostWidget::widget(['count' => 3]) ?>
+                        <?= \frontend\widgets\RecentPostWidget::widget(['options' => ['count' => 3]]) ?>
                     </div>
                 </div>
                 <!--End Footer two-->
@@ -192,10 +192,10 @@ AppAsset::register($this);
 
         <div class="tz-copyright">
             <div class="container">
-                <p class="pull-left copyright-content">Copyrights © Crowdix Technology Pvt. Ltd. All rights reserved.</p>
+                <p class="pull-left copyright-content">Copyright© Crowdix Technology Pvt. Ltd. All rights reserved.</p>
                 <ul class="pull-right footer-social">
                     <li>
-                        <a target="_blank" href="<?= Yii::$app->params['settings']['social_fb'] ?>"><i class="fa fa-facebook-square"></i></a>
+                        <a target="_blank"  href="<?= Yii::$app->params['settings']['social_fb'] ?>"><i class="fa fa-facebook-square"></i></a>
                     </li>
                     <li>
                         <a target="_blank" href="<?= Yii::$app->params['settings']['social_twitter'] ?>"><i class="fa fa-twitter"></i></a>

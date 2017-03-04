@@ -20,7 +20,7 @@ use frontend\models\Posts;
     <!--Title-->
     <div class="tz-title-filter">
         <h3 class="tz-title">
-            <span><?=$title?></span>
+            <span><?= $options['title'] ?></span>
         </h3>
         <div class="tz-cat-filter">
             <span>All</span>
@@ -32,6 +32,7 @@ use frontend\models\Posts;
     <div class="row">
         <div class="col-md-6">
             <?php
+
             $post = array_shift($post_model);
             if ($post):
                 ?>
@@ -65,9 +66,12 @@ use frontend\models\Posts;
         </div>
 
         <div class="col-md-6">
-            <?php foreach ($post_model as $post): ?>
-                <?php
-                $data = Posts::getPostInformation($post);
+            <?php for ($i=1; $i<$options['count']; $i++){
+                    $post = array_shift($post_model);
+                    if (!$post)
+                        continue;
+
+                    $data = Posts::getPostInformation($post);
                 ?>
                 <!--Item small-->
                 <div class="item-small">
@@ -96,7 +100,7 @@ use frontend\models\Posts;
                 </div>
                 <!--End item small-->
 
-                <?php unset($data); endforeach; ?>
+                <?php unset($data); } ?>
         </div>
     </div>
 </div>

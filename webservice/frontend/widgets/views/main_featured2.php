@@ -24,7 +24,7 @@ $formatter = \Yii::$app->formatter;
     <!--Title-->
     <div class="tz-title-filter">
         <h3 class="tz-title">
-            <span><?= $title ?></span>
+            <span><?= $options['title'] ?></span>
         </h3>
         <div class="tz-cat-filter">
             <span>All</span>
@@ -37,10 +37,14 @@ $formatter = \Yii::$app->formatter;
 
         <!--Box content two columns-->
         <div class="cat-box-two-columns">
-            <?php for ($j = 0; $j < 2; $j++){ ?>
+            <?php
+                $k = 0;
+                for ($j = 0; $j < 2; $j++){ ?>
                 <div class="col-md-6">
                     <?php
                     for ($i=0; $i<3; $i++){
+                        if ($k >= $options['count'])
+                            continue;
                         $post = array_shift($post_model);
                         if (!$post){
                             continue;

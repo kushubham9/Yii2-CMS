@@ -18,7 +18,11 @@ class PostController extends Controller
     public $defaultAction = 'view';
     public function actionView($slug)
     {
-        $post_model = Post::find()->where(['post.slug'=>$slug, 'post.status'=>Constants::DEFAULT_POST_STATUS])->one();
+        $post_model = Post::find()->with('taxinomies')->with('categories')->where(['post.slug'=>$slug, 'post.status'=>Constants::DEFAULT_POST_STATUS])
+//                            joinWith('taxinomies',true)->joinWith('categories',true)
+//            ->asArray()
+            ->one();
+//        die (print_r($post_model));
         if (!$post_model)
             throw new NotFoundException("Invalid post specified.");
 

@@ -38,4 +38,7 @@ class Constants
     const MAX_IMAGE_HEIGHT = 440;
     const THUMB_HEIGHT = 120;
     const THUMB_WIDTH = 180;
+
+    const ENABLE_CACHE = true;
+    const CACHE_KEY_RECENT_POST = 'recent_posts';
 }
