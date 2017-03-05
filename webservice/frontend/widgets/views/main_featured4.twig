@@ -1,0 +1,31 @@
+<section class="trending-posts widget">
+    <div class="container">
+        <div class="widget-title">
+            <h2>Trending Posts</h2>
+        </div>
+        <div class="widget-content">
+            <div class="slider">
+                {% for post in post_model %}
+                    <div class="item">
+                        <div class="post">
+                            <div class="post-thumb">
+                                <a href="{{ post['postUrl'] }}">
+                                    <img src="{{ post['imageUrl'] }}" alt="{{ post['postTitle'] }}" />
+                                </a>
+                            </div>
+                            <div class="post-content">
+                                <div class="post-category">
+                                    <a href="{{ post['categoryUrl'] }}">{{ post['categoryName'] }}</a>
+                                </div>
+                                <h6 class="post-title">
+                                    <a href="{{ post['postUrl'] }}">{{ post['postTitle'] }}</a>
+                                </h6>
+                            </div>
+                        </div><!-- Post -->
+                    </div>
+                {% endfor %}
+            </div><!-- Items -->
+            <div id="trendNav" class="slider-nav"></div>
+        </div>
+    </div><!-- Container -->
+</section><!-- Trending Post -->

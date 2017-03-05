@@ -157,7 +157,7 @@ class Posts extends Post
      * @param $post self
      */
 
-    public static function getPostInformation($post, $options = false)
+    public static function getPostInformation($post, $options = [])
     {
         $data = [];
         //Get The First Category.
@@ -166,6 +166,7 @@ class Posts extends Post
             $data['primeCategory'] = $data['categories'][0];
         }
         if (isset($data['primeCategory']) && $data['primeCategory']){
+            $data['categoryName'] = $data['primeCategory']->name;
             $data['categoryUrl'] = Url::to(['/news/search','type'=>'category', 'q'=>$data['primeCategory']->slug]);
             $data['categoryColor'] = $data['primeCategory']->badge_color ? $data['primeCategory']->badge_color :"#00468c";
         }

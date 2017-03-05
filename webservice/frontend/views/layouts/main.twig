@@ -1,0 +1,113 @@
+{{ register_asset_bundle('frontend/assets/AppAsset') }}
+{{ use('frontend/widgets/MainMenu') }}
+
+{{ void(this.beginPage()) }}
+<html lang="{{ app.language }}">
+<head>
+    <meta charset="{{ app.charset }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {{ html.csrfMetaTags() | raw }}
+    <link rel="shortcut icon" href="http://iamroy.in/client/blog/dist/img/fav.png">
+
+    <title>{{ html.encode (this.title) }}</title>
+    {{ this.head() }}
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body class="wide">
+{{ void(this.beginBody()) }}
+
+    <div id="loader">
+        <div class="loading">
+            <div class="spinner">
+                <div class="rect1"></div>
+                <div class="rect2"></div>
+                <div class="rect3"></div>
+                <div class="rect4"></div>
+                <div class="rect5"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="wrapper">
+        <div class="search-modal">
+            <div class="container">
+                <form action="page-search.html" method="get">
+                    <input type="text" name="q" value="Search.." />
+                    <span class="search-close"></span>
+                </form>
+            </div>
+        </div>
+        <header class="header" id="layout1">
+            <div class="topbar">
+                <div class="container">
+                    {#<nav class="topmenu">#}
+                        {#<ul>#}
+                            {#<li><a href="page-about.html">About Us</a></li>#}
+                            {#<li><a href="page-contact.html">Contact Us</a></li>#}
+                            {#<li><a href="https://themeforest.net/user/infinyteam/portfolio?ref=infinyteam">Buy Template</a></li>#}
+                        {#</ul>#}
+                    {#</nav><!-- Top Menu -->#}
+                    <nav class="social-links">
+                        <ul>
+                            <li><a href="#" class="facebook"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#" class="twitter"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#" class="gplus"><i class="fa fa-google-plus"></i></a></li>
+                            <li><a href="#" class="instagram"><i class="fa fa-instagram"></i></a></li>
+                            <li><a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a></li>
+                            <li><a href="#" class="pinterest"><i class="fa fa-pinterest"></i></a></li>
+                            <li><a href="#" class="behance"><i class="fa fa-behance"></i></a></li>
+                            <li><a href="#" class="vimeo"><i class="fa fa-vimeo"></i></a></li>
+                            <li><a href="#" class="rss"><i class="fa fa-rss"></i></a></li>
+                        </ul>
+                    </nav><!-- Social Links -->
+                </div><!-- Container -->
+            </div><!-- Top Bar -->
+
+            <div class="header-content">
+                <div class="container">
+                    <div class="logo-container">
+                        <div class="logo">
+                            <a href="{{ url(['/']) }}">
+                                <img style="max-height:90px" src="{{ app.params['settings']['logo_url'] }}" alt="{{ [app.params['settings']['site_title'], app.params['settings']['site_tagline']] | join(' | ')  }}" />
+                            </a>
+                        </div><!-- Logo -->
+                    </div><!-- Logo Container -->
+
+                    <div class="ad-container">
+                        <div class="advertisment">
+
+                        </div><!-- Advertisment -->
+                    </div><!-- Ad Container -->
+                </div><!-- Container -->
+            </div><!-- Header Content -->
+            <div class="mainmenu">
+                <div class="container">
+                    <nav class="menu">
+                        {{ main_menu_widget() }}
+                    </nav>
+
+                    <!-- Menu -->
+                    <span class="menu-tigger js-slideout-toggle">
+							<i class="fa fa-bars"></i> Menu
+						</span><!-- Menu Tigger -->
+
+                    <span class="search-tigger">
+							<i class="fa fa-search"></i>
+						</span><!-- Search Tigger -->
+                </div><!-- Container -->
+            </div><!-- Main Menu -->
+        </header><!-- Header -->
+
+        {{ content | raw }}
+
+    </div>
+{{ void(this.endBody()) }}
+</body>
+
+</html>
+{{ void(this.endPage()) }}

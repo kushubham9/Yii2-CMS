@@ -9,6 +9,7 @@
 namespace frontend\controllers;
 
 use Aws\Sns\Exception\NotFoundException;
+use frontend\models\Posts;
 use yii\web\Controller;
 use common\models\Post;
 use common\models\Constants;
@@ -27,8 +28,10 @@ class PostController extends Controller
             throw new NotFoundException("Invalid post specified.");
 
         $post_model->updateCounters(['views'=>1]);
-        echo $this->render('index',[
-            'post_model' => $post_model
+        $post_array = Posts::getPostInformation($post_model);
+        $post_array['model'] = $post_model;
+        echo $this->render('index.twig',[
+            'post' => $post_array
         ]);
     }
 }

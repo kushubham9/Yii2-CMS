@@ -1,0 +1,35 @@
+{{ use ('frontend/widgets/RecentPostWidget') }}
+{{ use('frontend/widgets/FeaturedSectionWidget') }}
+
+{#{% set this.title = app.params['settings']['site_title'] %}#}
+{{ set(this, 'title', app.params['settings']['site_title']) }}
+
+{#Featured Section#}
+{% if app.params['settings']['enable_featured_widget'] %}
+    {{ featured_section_widget_widget() }}
+    {#{{ featured_section_widget_widget({'options': {'type':4}}) }}#}
+{% endif %}
+
+<section id="main-area">
+    <div class="container">
+        <div class="row">
+            <section id="main" class="main col-md-8">
+                {% if app.params['settings']['sticky_widget_1_enable'] %}
+                    {{ featured_section_widget_widget({'options': {'type':1}}) }}
+                {% endif %}
+
+                {% if app.params['settings']['sticky_widget_2_enable'] %}
+                    {{ featured_section_widget_widget({'options': {'type':2}}) }}
+                {% endif %}
+
+                {% if app.params['settings']['sticky_widget_3_enable'] %}
+                    {{ featured_section_widget_widget({'options': {'type':3}}) }}
+                {% endif %}
+            </section>
+
+            <aside id="sidebar" class="sidebar col-md-4">
+                {{ recent_post_widget_widget({'options': {'count':5}}) }}
+            </aside>
+        </div>
+    </div>
+</section>

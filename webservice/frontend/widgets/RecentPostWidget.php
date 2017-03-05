@@ -60,8 +60,17 @@ class RecentPostWidget extends Widget
 
     public function run()
     {
-        echo $this->render('recent_post',[
-            'post_model'=>$this->post_model,
+        $post_array = [];
+        for ($i=0; $i<$this->options['count'];$i++){
+            $post = $this->post_model[$i];
+            if ($post){
+                $post_array [] = Posts::getPostInformation($post);
+            }
+        }
+
+        echo $this->render('recent_post.twig',[
+//            'post_model'=>$this->post_model,
+            'posts'=>$post_array,
             'options' => $this->options
         ]);
     }

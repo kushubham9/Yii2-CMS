@@ -26,14 +26,25 @@ class NewsController extends Controller
         // Get the Post from the activeData
         $post_model = $activeData->getModels();
         $pagination = $activeData->getPagination();
-        echo $this->render('search',[
-            'model' => $post_model,
+
+        $post_array = [];
+        foreach ($post_model as $post){
+            $post_array [] = Posts::getPostInformation($post);
+        }
+
+        echo $this->render('search.twig',[
+//            'model' => $post_model,
+            'posts' => $post_array,
             'pagination' => $pagination,
         ]);
     }
 
     public function actionIndex()
     {
-        return $this->render('index');
+        return $this->render('index.twig');
+    }
+
+    public function actionTest(){
+        return $this->render('test');
     }
 }

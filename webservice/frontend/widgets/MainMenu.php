@@ -69,7 +69,7 @@ class MainMenu extends Widget
 
     public function run()
     {
-        echo $this->render('menu_items',[
+        echo $this->render('menu_items.twig',[
             'links' => $this->link
         ]);
     }

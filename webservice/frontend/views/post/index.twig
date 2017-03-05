@@ -1,0 +1,276 @@
+{{ use ('frontend/widgets/RecentPostWidget') }}
+{{ set(this, 'title', post['postTitle']) }}
+
+<section id="main-area" >
+    <div class="container" >
+        <div class="row" >
+            <section id="main" class="main col-md-8">
+                <div class="blog-posts hfeed">
+                    <article class="post single-post">
+                        <div class="post-header">
+
+                            <div class="post-category">
+                                <a href="{{ post['categoryUrl'] }}">{{ post['categoryName'] }}</a>
+                            </div>
+                            <h1 class="post-title">{{ post['postTitle'] }}</h1><!-- Post Title -->
+                            <ul class="post-meta">
+                                <li><img class="avatar" width="24" height="24" src="" alt="{{ post['authorName'] }}">by <a href="{{ post['authorUrl'] }}">{{ post['authorName'] }}</a></li>
+                                <li><i class="fa fa-clock-o"></i> {{ post['postDate'] }}</li>
+                                <li><i class="fa fa-comment-o"></i> {{ post['model'].comments|length }} </li>
+                                <li class="right"><i class="fa fa-eye"></i> {{ post['model'].views }}</li>
+                                <li class="right"><a href="#print"><i class="fa fa-print"></i> Print This Post</a></li>
+                            </ul><!-- Post Meta -->
+                        </div><!-- Post Header -->
+
+                        <div class="post-share">
+                            <div class="addthis_inline_share_toolbox"></div>
+                        </div><!-- Post Share -->
+
+                        <div class="post-thumb text-center">
+                            <img src="{{ post['imageUrl'] }}" alt="{{ post['postTitle'] }}">
+                            <p>&nbsp;</p>
+                        </div><!-- Post Image -->
+
+                        <div class="post-body">
+                            {{ post['model'].content | raw}}
+                        </div>
+
+                        <div class="post-footer">
+
+                            <div class="post-tags">
+                                <span>Tags</span>
+                                {% for tag in post['model'].taxinomies %}
+                                    <a href="{{ url('/news/search',{'type':'tag','q': tag['slug'] }) }}">{{ tag['value'] }}</a>
+                                {%  endfor %}
+                            </div>
+
+                            <div class="post-author">
+                                <div class="author-avatar">
+                                    <img src="images/author.jpg" alt="Author Avatar Image">
+                                </div>
+                                <div class="author-content">
+                                    <div class="name">
+                                        <span>Written By</span>
+                                        <a class="author" href="{{ post['authorUrl'] }}">{{ post['authorName'] }}</a>
+                                    </div>
+                                    <p>{{ post['model'].user.usermeta.about }}</p>
+                                    <ul class="author-social">
+                                        <li><a href="{{ post['model'].user.usermeta.website }}" title="My Website"><i class="fa fa-globe"></i></a></li>
+                                        <li><a href="{{ post['model'].user.usermeta.social_fb }}" title="Follow me on facebook"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a href="{{ post['model'].user.usermeta.social_google }}" title="Follow me on twitter"><i class="fa fa-google"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div><!-- Post Footer -->
+                    </article><!-- Post -->
+                </div><!-- Blog posts -->
+            </section><!-- Main -->
+
+            <aside id="sidebar" class="sidebar col-md-4">
+
+                {#<div class="widget LinkList">#}
+                    {#<div class="widget-title">#}
+                        {#<h2>Follow Us</h2>#}
+                    {#</div>#}
+                    {#<div class="widget-content social-counter">#}
+                        {#<a href="#" class="facebook">#}
+                        {#<a href="#" class="facebook">#}
+                            {#<i class="fa fa-facebook"></i>#}
+                            {#<span class="count">1.42k</span>#}
+                            {#<span class="label">Fans</span>#}
+                        {#</a>#}
+                        {#<a href="#" class="twitter">#}
+                            {#<i class="fa fa-twitter"></i>#}
+                            {#<span class="count">4,13k</span>#}
+                            {#<span class="label">Followers</span>#}
+                        {#</a>#}
+                        {#<a href="#" class="gplus">#}
+                            {#<i class="fa fa-google-plus"></i>#}
+                            {#<span class="count">542</span>#}
+                            {#<span class="label">In Circle</span>#}
+                        {#</a>#}
+                        {#<a href="#" class="instagram">#}
+                            {#<i class="fa fa-instagram"></i>#}
+                            {#<span class="count">32,5k</span>#}
+                            {#<span class="label">Followers</span>#}
+                        {#</a>#}
+                        {#<a href="#" class="dribbble">#}
+                            {#<i class="fa fa-dribbble"></i>#}
+                            {#<span class="count">1,05k</span>#}
+                            {#<span class="label">Followers</span>#}
+                        {#</a>#}
+                        {#<a href="#" class="snapchat">#}
+                            {#<i class="fa fa-snapchat-ghost"></i>#}
+                            {#<span class="count">870</span>#}
+                            {#<span class="label">Followers</span>#}
+                        {#</a>#}
+                    {#</div>#}
+                {#</div><!-- Widget : Social Counter -->#}
+
+
+                {{ recent_post_widget_widget({'options': {'count':5}}) }}
+
+                {#<div class="widget FollowByEmail">#}
+                    {#<div class="widget-title">#}
+                        {#<h2>Newsletter</h2>#}
+                    {#</div>#}
+                    {#<div class="widget-content">#}
+                        {#<div class="follow-by-email-inner">#}
+                            {#<form action="https://feedburner.google.com/fb/a/mailverify" method="post" onsubmit="window.open(&quot;https://feedburner.google.com/fb/a/mailverify?uri=TheStyle-LifeStyleBloggerTemplate&quot;, &quot;popupwindow&quot;, &quot;scrollbars=yes,width=550,height=520&quot;); return true" target="popupwindow">#}
+                                {#<table>#}
+                                    {#<tbody>#}
+                                    {#<tr>#}
+                                        {#<td>#}
+                                            {#<input class="follow-by-email-address" name="email" placeholder="Your Email Adress..." type="text">#}
+                                        {#</td>#}
+                                        {#<td>#}
+                                            {#<input class="follow-by-email-submit" type="submit" value="Subscribe">#}
+                                        {#</td>#}
+                                    {#</tr>#}
+                                    {#</tbody>#}
+                                {#</table>#}
+                                {#<input name="uri" type="hidden" value="TheStyle-LifeStyleBloggerTemplate">#}
+                                {#<input name="loc" type="hidden" value="en_US">#}
+                            {#</form>#}
+                        {#</div>#}
+                    {#</div>#}
+                {#</div><!-- Widget : Follow By Email -->#}
+
+                {#<div class="widget LinkList">#}
+                    {#<div class="widget-title">#}
+                        {#<h2>Stay Connected</h2>#}
+                    {#</div>#}
+                    {#<div class="widget-content social-icons">#}
+                        {#<a class="facebook" href="#"><i class="fa fa-facebook"></i></a>#}
+                        {#<a class="twitter" href="#"><i class="fa fa-twitter"></i></a>#}
+                        {#<a class="instagram" href="#"><i class="fa fa-instagram"></i></a>#}
+                        {#<a class="google-plus" href="#"><i class="fa fa-google-plus"></i></a>#}
+                        {#<a class="snapchat-ghost" href="#"><i class="fa fa-snapchat-ghost"></i></a>#}
+                        {#<a class="dribbble" href="#"><i class="fa fa-dribbble"></i></a>#}
+                    {#</div>#}
+                {#</div><!-- Widget : Social Icons -->#}
+
+                {#<div class="widget Label">#}
+                    {#<div class="widget-title">#}
+                        {#<h2>Categories</h2>#}
+                    {#</div>#}
+                    {#<div class="widget-content list-label-widget-content">#}
+                        {#<ul>#}
+                            {#<li>#}
+                                {#<a dir="ltr" href="page-category.html">Fashion</a>#}
+                                {#<span dir="ltr">(4)</span>#}
+                            {#</li>#}
+                            {#<li>#}
+                                {#<a dir="ltr" href="page-category.html">Girls</a>#}
+                                {#<span dir="ltr">(4)</span>#}
+                            {#</li>#}
+                            {#<li>#}
+                                {#<a dir="ltr" href="page-category.html">Life Style</a>#}
+                                {#<span dir="ltr">(4)</span>#}
+                            {#</li>#}
+                            {#<li>#}
+                                {#<a dir="ltr" href="page-category.html">Music</a>#}
+                                {#<span dir="ltr">(2)</span>#}
+                            {#</li>#}
+                            {#<li>#}
+                                {#<a dir="ltr" href="page-category.html">Travel</a>#}
+                                {#<span dir="ltr">(9)</span>#}
+                            {#</li>#}
+                        {#</ul>#}
+                    {#</div>#}
+                {#</div><!-- Widget : Categories -->#}
+                {#<div class="widget HTML">#}
+                    {#<div class="widget-title">#}
+                        {#<h2>@instagram</h2>#}
+                    {#</div>#}
+                    {#<div class="widget-content">#}
+                        {#<div class="instagram-feeds row-gallery">#}
+                            {#<a href="#" class="col-sm-4 col-xs-3"><img src="images/gallery/1.jpg" alt="Instagram Image"></a>#}
+                            {#<a href="#" class="col-sm-4 col-xs-3"><img src="images/gallery/2.jpg" alt="Instagram Image"></a>#}
+                            {#<a href="#" class="col-sm-4 col-xs-3"><img src="images/gallery/3.jpg" alt="Instagram Image"></a>#}
+                            {#<a href="#" class="col-sm-4 col-xs-3"><img src="images/gallery/4.jpg" alt="Instagram Image"></a>#}
+                            {#<a href="#" class="col-sm-4 col-xs-3"><img src="images/gallery/5.jpg" alt="Instagram Image"></a>#}
+                            {#<a href="#" class="col-sm-4 col-xs-3"><img src="images/gallery/6.jpg" alt="Instagram Image"></a>#}
+                            {#<a href="#" class="col-sm-4 col-xs-3"><img src="images/gallery/7.jpg" alt="Instagram Image"></a>#}
+                            {#<a href="#" class="col-sm-4 col-xs-3"><img src="images/gallery/8.jpg" alt="Instagram Image"></a>#}
+                            {#<a href="#" class="col-sm-4 col-xs-3"><img src="images/gallery/1.jpg" alt="Instagram Image"></a>#}
+                        {#</div>#}
+                    {#</div>#}
+                {#</div><!-- Widget : Instagram -->#}
+
+                <div class="widget adblockd">
+                    <div class="widget-title">
+                        <h2>Advertisment</h2>
+                    </div>
+                    <div class="widget-content">
+
+                    </div>
+                </div><!-- Widget : Advertisment -->
+
+                {#<div class="widget BlogArchive">#}
+                    {#<div class="widget-title">#}
+                        {#<h2>Blog Archive</h2>#}
+                    {#</div>#}
+                    {#<div class="widget-content">#}
+                        {#<div id="ArchiveList">#}
+                            {#<select>#}
+                                {#<option value="">Blog Archive</option>#}
+                                {#<option value="page-archive.html">January, 2017 (10)</option>#}
+                                {#<option value="page-archive.html">December, 2016 (8)</option>#}
+                                {#<option value="page-archive.html">September, 2016 (5)</option>#}
+                                {#<option value="page-archive.html">October, 2016 (24)</option>#}
+                            {#</select>#}
+                        {#</div>#}
+                    {#</div>#}
+                {#</div><!-- Blog Archive -->#}
+                {#<div class="widget Label">#}
+                    {#<div class="widget-title">#}
+                        {#<h2>Tags Cloud</h2>#}
+                    {#</div>#}
+                    {#<div class="widget-content cloud-label-widget-content">#}
+                        {#<ul>#}
+                            {#<li>#}
+                                {#<a dir="ltr" href="page-category.html">Fashion</a>#}
+                                {#<span dir="ltr">4</span>#}
+                            {#</li>#}
+                            {#<li>#}
+                                {#<a dir="ltr" href="page-category.html">Girls</a>#}
+                                {#<span dir="ltr">8</span>#}
+                            {#</li>#}
+                            {#<li>#}
+                                {#<a dir="ltr" href="page-category.html">Life Style</a>#}
+                                {#<span dir="ltr">3</span>#}
+                            {#</li>#}
+                            {#<li>#}
+                                {#<a dir="ltr" href="page-category.html">Music</a>#}
+                                {#<span dir="ltr">2</span>#}
+                            {#</li>#}
+                            {#<li>#}
+                                {#<a dir="ltr" href="page-category.html">Blogging</a>#}
+                                {#<span dir="ltr">9</span>#}
+                            {#</li>#}
+                            {#<li>#}
+                                {#<a dir="ltr" href="page-category.html">Music</a>#}
+                                {#<span dir="ltr">4</span>#}
+                            {#</li>#}
+                            {#<li>#}
+                                {#<a dir="ltr" href="page-category.html">People</a>#}
+                                {#<span dir="ltr">8</span>#}
+                            {#</li>#}
+                            {#<li>#}
+                                {#<a dir="ltr" href="page-category.html">Tech</a>#}
+                                {#<span dir="ltr">3</span>#}
+                            {#</li>#}
+                            {#<li>#}
+                                {#<a dir="ltr" href="page-category.html">News</a>#}
+                                {#<span dir="ltr">2</span>#}
+                            {#</li>#}
+                        {#</ul>#}
+                    {#</div>#}
+                </div><!-- Facebook Page -->
+            </aside><!-- Sidebar -->
+
+        </div><!-- Row -->
+    </div><!-- Container -->
+</section>

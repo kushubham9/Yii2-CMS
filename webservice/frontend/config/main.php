@@ -11,6 +11,7 @@ return [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log','common\config\globalsettings'],
     'controllerNamespace' => 'frontend\controllers',
+    'layout' => 'main.twig',
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-frontend',
@@ -45,6 +46,24 @@ return [
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
             ),
+        ],
+        'view' => [
+            'class' => 'yii\web\View',
+            'renderers' => [
+                'twig' => [
+                    'class' => 'yii\twig\ViewRenderer',
+                    'cachePath' => '@runtime/Twig/cache',
+                    // Array of twig options:
+                    'options' => [
+                        'auto_reload' => true,
+                    ],
+                    'globals' => [
+                        'Url' => ['class' => '\yii\helpers\Url'],
+                        'html' => '\yii\helpers\Html',
+                    ], // *THIS LINE*
+                    'uses' => ['yii\bootstrap'],
+                ],
+            ],
         ],
     ],
     'params' => $params,

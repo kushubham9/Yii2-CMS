@@ -42,8 +42,11 @@ $this->params['breadcrumbs'][] = $this->title;
                         <h1 class="single-title">
                             <?= $post_model->title ?>
                         </h1>
+                        <div class="addthis_inline_share_toolbox"></div>
                         <div class="post-content">
                            <?= $post_model->content; ?>
+                            <div class="addthis_inline_share_toolbox"></div>
+                            <div class="addthis_relatedposts_inline"></div>
                         </div>
                         <div class="sing-post-footer">
                             <div class="meta-tags pull-left">

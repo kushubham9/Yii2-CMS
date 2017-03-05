@@ -1,0 +1,16 @@
+<ul>
+    {% for linkArray in links %}
+        {% set rootLink = linkArray['parent'] %}
+        {% set childLinks = linkArray['child'] %}
+        {% if rootLink|length > 0 %}
+            <li>
+                <a href="{{ rootLink['href'] }}">{{ rootLink['title'] }}</a>
+                {% for cLink in childLinks %}
+                    <ul>
+                        <a href="{{ cLink['href'] }}">{{ cLink['title'] }}</a>
+                    </ul>
+                {% endfor %}
+            </li>
+        {% endif %}
+    {% endfor %}
+</ul>

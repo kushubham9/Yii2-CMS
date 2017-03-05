@@ -1,0 +1,52 @@
+<div class="blog-layout layout-6 tiny-thumb" style="display: block">
+    <div class="blog-title">
+        <h2>{{ options['title'] }}</h2>
+    </div><!-- Blog title -->
+
+    <div class="blog-wrapper row">
+        {% for post in post_model %}
+            {% if loop.first %}
+                <div class="col col-sm-12" style="">
+                    <article class="post first">
+                        <div class="post-thumb">
+                            <a href="{{ post['postUrl'] }}">
+                                <img class="lazy" src="{{ post['imageUrl'] }}" data-src="{{ post['imageUrl'] }}" alt="{{ post['postTitle'] }}">
+                            </a>
+                        </div><!-- Post Image -->
+                        <div class="post-content">
+                            <h4 class="post-title">
+                                <a href="{{ post['postUrl'] }}">{{ post['postTitle'] }}</a>
+                            </h4><!-- Post Title -->
+                            <p class="post-entry">{{ post['postContent'] }}</p><!-- Post Entry -->
+                            <ul class="post-meta">
+                                <li><i class="fa fa-clock-o"></i> {{ post['postDate'] }}</li>
+                                <li><i class="fa fa-comment-o"></i> 240</li>
+                            </ul><!-- Post Meta -->
+                        </div><!-- Post Content -->
+                    </article><!-- Post -->
+                </div><!-- Column -->
+            {% endif %}
+        {% endfor %}
+        <div class="col col-sm-12" style="">
+            {% for post in post_model %}
+                {% if not loop.first %}
+                    <article class="post">
+                        <div class="post-thumb">
+                            <a href="{{ post['postUrl'] }}">
+                                <img class="lazy" src="{{ post['imageUrl'] }}" data-src="{{ post['imageUrl'] }}" alt="{{ post['postTitle'] }}" style="opacity: 1;">
+                            </a>
+                        </div><!-- Post Image -->
+                        <div class="post-content">
+                            <h6 class="post-title">
+                                <a href="{{ post['postUrl'] }}">{{ post['postTitle'] }}</a>
+                            </h6><!-- Post Title -->
+                            <ul class="post-meta">
+                                <li><i class="fa fa-clock-o"></i> {{ post['postDate'] }}</li>
+                            </ul><!-- Post Meta -->
+                        </div><!-- Post Content -->
+                    </article><!-- Post -->
+                {% endif %}
+            {% endfor %}
+        </div><!-- Column -->
+    </div><!-- Blog Wrapper -->
+</div>

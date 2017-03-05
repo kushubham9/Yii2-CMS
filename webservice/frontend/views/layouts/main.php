@@ -22,9 +22,13 @@ AppAsset::register($this);
     <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
+
     <meta name="google-site-verification" content="sMQDj9Ewv9y9Th0Fo73GWXN7s7x-RrsIHPEHvv_Cak0" />
     <link rel="shortcut icon" href="http://iamroy.in/client/blog/dist/img/fav.png">
     <title><?= Html::encode($this->title) ?></title>
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-58bbb75e60d024fe" async="async"></script>
+    <!--    <script type="text/javascript" data-cfasync="false" src="//dsms0mj1bbhn4.cloudfront.net/assets/pub/shareaholic.js" data-shr-siteid="6bcae693f50b72e6bfabf257e2c9d6f7" async="async"></script>-->
     <?php $this->head() ?>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

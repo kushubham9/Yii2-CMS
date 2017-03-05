@@ -1,0 +1,30 @@
+<div class="blog-layout layout-1 has-caption2" style="display: block">
+    <div class="blog-title">
+        <h2>{{ options['title'] }}</h2>
+    </div><!-- Blog title -->
+    <div class="blog-wrapper row">
+        {% for post in post_model %}
+
+            <div class="col col-sm-6">
+                <article class="post">
+                    <div class="post-thumb">
+                        <a href="{{ post['postUrl'] }}">
+                            <img class="lazy" src="{{ post['imageUrl'] }}" data-src="{{ post['imageUrl'] }}" alt="{{ post['postTitle'] }}">
+                        </a>
+
+                    </div><!-- Post Image -->
+                    <div class="post-content">
+                        <h5 class="post-title">
+                            <a href="{{ post['postUrl'] }}">{{ post['postTitle'] }}</a>
+                        </h5><!-- Post Title -->
+                        <p class="post-entry">{{ post['postContent'] }}</p><!-- Post Entry -->
+                        <ul class="post-meta">
+                            <li><i class="fa fa-clock-o"></i> {{ post['postDate'] }}</li>
+                        </ul><!-- Post Meta -->
+                    </div><!-- Post Content -->
+                </article><!-- Post -->
+            </div><!-- Column -->
+
+        {% endfor %}
+    </div><!-- Blog Wrapper -->
+</div>

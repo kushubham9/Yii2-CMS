@@ -24,27 +24,27 @@ if (Yii::$app->params['settings']['enable_featured_widget']){
     <!--Start row-->
     <div class="row border-bottom2">
         <!--Content left-->
-        <div class="col-md-9 col-sm-8 style-box1 tzcontent">
+        <div class="col-md- col-sm-8 style-box1 tzcontent">
             <!--Wrap element-->
             <div class="theiaStickySidebar">
 
                 <?php
                 if (Yii::$app->params['settings']['sticky_widget_1_enable']) {
-                    echo FeaturedSectionWidget::widget(['options'=>['type'=>1]]);
+//                    echo FeaturedSectionWidget::widget(['options'=>['type'=>1]]);
                 }
                 ?>
 
 
                 <?php
                 if (Yii::$app->params['settings']['sticky_widget_2_enable']) {
-                    echo FeaturedSectionWidget::widget(['options'=>['type'=>2]]);
+//                    echo FeaturedSectionWidget::widget(['options'=>['type'=>2]]);
                 }
                 ?>
 
 
                 <?php
                 if (Yii::$app->params['settings']['sticky_widget_3_enable']) {
-                    echo FeaturedSectionWidget::widget(['options'=>['type'=>3]]);
+//                    echo FeaturedSectionWidget::widget(['options'=>['type'=>3]]);
                 }
                 ?>
             </div>

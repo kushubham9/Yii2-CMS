@@ -8,8 +8,7 @@
 ?>
 
 <!--Main Menu-->
-<nav class="nav-menu pull-left">
-    <ul class="tz-main-menu nav-collapse">
+    <ul class="">
 
         <?php
             foreach ($links as $linkArray):
@@ -37,5 +36,4 @@
             endforeach;
          ?>
     </ul>
-</nav>
 <!--End Main menu-->

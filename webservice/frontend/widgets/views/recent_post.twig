@@ -1,0 +1,26 @@
+<div class="widget HTML">
+    <div class="widget-title">
+        <h2>Recent Posts</h2>
+    </div>
+    <div class="widget-content">
+        <ul class="recent-posts">
+            {% for post in posts %}
+                <li class="post">
+                    <div class="post-thumb">
+                        <a href="{{ post['postUrl'] }}">
+                            <img class="lazy" src="{{ post['imageUrl'] }}" data-src="{{ post['imageUrl'] }}" alt="{{ post['postTitle'] }}" style="opacity: 1;">
+                        </a>
+                    </div><!-- Post Image -->
+                    <div class="post-content">
+                        <h6 class="post-title">
+                            <a href="{{ post['postUrl'] }}">{{ post['postTitle'] }}</a>
+                        </h6><!-- Post Title -->
+                        <ul class="post-meta">
+                            <li><i class="fa fa-clock-o"></i> {{ post['postDate'] }}</li>
+                        </ul><!-- Post Meta -->
+                    </div><!-- Post Content -->
+                </li><!-- Post -->
+            {% endfor %}
+        </ul>
+    </div>
+</div>

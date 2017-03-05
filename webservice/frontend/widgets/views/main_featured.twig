@@ -1,0 +1,32 @@
+{% set class = ['first col-md-6 col-sm-12', 'col-md-3 col-sm-4', 'col-md-3 col-sm-4', 'col-md-6 col-sm-4'] %}
+
+<section class="featured-posts layout3">
+    <div class="container">
+        <div class="row-gallery">
+            {% for post in post_model %}
+
+                <div class="{{ class[loop.index0] }}">
+                    <div class="post has-caption" style="background-image: url({{ post['imageUrl'] }});">
+
+                        <div class="post-content">
+                            <div class="post-category">
+                                <a href="{{ post['categoryUrl'] }}">{{ post['categoryName'] }}</a>
+                            </div>
+                            <h3 class="post-title">
+                                <a href="{{ post['postUrl'] }}">{{ post['postTitle'] }}</a>
+                            </h3>
+                            {% if loop.first %}
+                                <ul class="post-meta">
+                                    <li>by <strong>{{ post['authorName'] }}</strong></li>
+                                    <li><i class="fa fa-clock-o"></i> {{ post['postDate'] }}</li>
+                                    <li><i class="fa fa-comment-o"></i> 240</li>
+                                </ul>
+                            {% endif %}
+                        </div>
+                    </div><!-- Post -->
+                </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</section>
