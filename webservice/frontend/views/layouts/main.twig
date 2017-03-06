@@ -1,5 +1,7 @@
 {{ register_asset_bundle('frontend/assets/AppAsset') }}
 {{ use('frontend/widgets/MainMenu') }}
+{{ use ('frontend/widgets/RecentPostWidget') }}
+{{ use ('frontend/widgets/CategoryWidget') }}
 
 {{ void(this.beginPage()) }}
 <html lang="{{ app.language }}">
@@ -55,10 +57,10 @@
                     {#</nav><!-- Top Menu -->#}
                     <nav class="social-links">
                         <ul>
-                            <li><a href="{{ app.params['settings']['social_fb'] }}" class="facebook"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="{{ app.params['settings']['social_twitter'] }}" class="twitter"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="{{ app.params['settings']['social_google'] }}" class="gplus"><i class="fa fa-google-plus"></i></a></li>
-                            <li><a href="{{ app.params['settings']['social_instagram'] }}" class="instagram"><i class="fa fa-instagram"></i></a></li>
+                            <li><a target="_blank" href="{{ app.params['settings']['social_fb'] }}" class="facebook"><i class="fa fa-facebook"></i></a></li>
+                            <li><a target="_blank" href="{{ app.params['settings']['social_twitter'] }}" class="twitter"><i class="fa fa-twitter"></i></a></li>
+                            <li><a target="_blank" href="{{ app.params['settings']['social_google'] }}" class="gplus"><i class="fa fa-google-plus"></i></a></li>
+                            <li><a target="_blank" href="{{ app.params['settings']['social_instagram'] }}" class="instagram"><i class="fa fa-instagram"></i></a></li>
                             {#<li><a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a></li>#}
                             {#<li><a href="#" class="pinterest"><i class="fa fa-pinterest"></i></a></li>#}
                             {#<li><a href="#" class="behance"><i class="fa fa-behance"></i></a></li>#}
@@ -105,6 +107,122 @@
         </header><!-- Header -->
 
         {{ content | raw }}
+
+        <footer id="footer">
+            <div class="container">
+                <div class="footer-columns row">
+                    <div class="footer-col col-md-4">
+                        <div class="widget HTML">
+                            {{ recent_post_widget_widget({'options': {'count':3}}) }}
+                        </div><!-- Widget : Advertisment -->
+                    </div><!-- Footer Column -->
+
+
+                    <div class="footer-col col-md-4">
+                        <div class="widget">
+                            {{ category_widget_widget() }}
+                        </div><!-- Widget : Categories -->
+                    </div><!-- Footer Column -->
+
+                    <div class="footer-col col-md-4">
+                        <div class="widget HTML">
+                            <div class="widget-title">
+                                <h2>@instagram</h2>
+                            </div>
+                            <div class="widget-content">
+                                <div class="instagram-feeds row-gallery">
+                                    {#<a href="#" class="col-sm-3 col-xs-3"><img src="images/gallery/8.jpg" alt="Instagram Image"></a>#}
+                                    {#<a href="#" class="col-sm-3 col-xs-3"><img src="images/gallery/7.jpg" alt="Instagram Image"></a>#}
+                                    {#<a href="#" class="col-sm-3 col-xs-3"><img src="images/gallery/3.jpg" alt="Instagram Image"></a>#}
+                                    {#<a href="#" class="col-sm-3 col-xs-3"><img src="images/gallery/4.jpg" alt="Instagram Image"></a>#}
+                                    {#<a href="#" class="col-sm-3 col-xs-3"><img src="images/gallery/5.jpg" alt="Instagram Image"></a>#}
+                                    {#<a href="#" class="col-sm-3 col-xs-3"><img src="images/gallery/6.jpg" alt="Instagram Image"></a>#}
+                                    {#<a href="#" class="col-sm-3 col-xs-3"><img src="images/gallery/1.jpg" alt="Instagram Image"></a>#}
+                                    {#<a href="#" class="col-sm-3 col-xs-3"><img src="images/gallery/2.jpg" alt="Instagram Image"></a>#}
+                                </div>
+                            </div>
+                        </div><!-- Widget : Instagram -->
+                        <div class="widget FollowByEmail">
+                            <div class="widget-title">
+                                <h2>Follow By Email</h2>
+                            </div>
+                            <div class="widget-content">
+                                <div class="follow-by-email-inner">
+                                    <form action="https://feedburner.google.com/fb/a/mailverify" method="post" onsubmit="window.open(&quot;https://feedburner.google.com/fb/a/mailverify?uri=TheStyle-LifeStyleBloggerTemplate&quot;, &quot;popupwindow&quot;, &quot;scrollbars=yes,width=550,height=520&quot;); return true" target="popupwindow">
+                                        <table>
+                                            <tbody>
+                                            <tr>
+                                                <td>
+                                                    <input class="follow-by-email-address" name="email" placeholder="Your Email Adress..." type="text">
+                                                </td>
+                                                <td>
+                                                    <input class="follow-by-email-submit" type="submit" value="Subscribe">
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                        <input name="uri" type="hidden" value="TheStyle-LifeStyleBloggerTemplate">
+                                        <input name="loc" type="hidden" value="en_US">
+                                    </form>
+                                </div>
+                            </div>
+                        </div><!-- Widget : Follow By Email -->
+                    </div><!-- Footer Column -->
+                </div><!-- Row -->
+                <div class="footer-columns row">
+                    <div class="footer-col col-md-6 col-sm-6 col-xs-12">
+                        <div class="widget Text">
+                            <div class="widget-content about-widget">
+                                <p>{{ app.params['settings']['site_description'] }}</p>
+                            </div>
+                        </div><!-- Widget : About Theme -->
+                    </div><!-- Footer Column -->
+                    <div class="footer-col col-md-6 col-sm-6 col-xs-12">
+                        <div class="widget LinkList">
+                            <div class="widget-title">
+                                <h2>Connect With Us</h2>
+                            </div>
+                            <div class="widget-content social-icons">
+                                <li><a target="_blank" href="{{ app.params['settings']['social_fb'] }}" class="facebook"><i class="fa fa-facebook"></i></a></li>
+                                <li><a target="_blank" href="{{ app.params['settings']['social_twitter'] }}" class="twitter"><i class="fa fa-twitter"></i></a></li>
+                                <li><a target="_blank" href="{{ app.params['settings']['social_google'] }}" class="gplus"><i class="fa fa-google-plus"></i></a></li>
+                                <li><a target="_blank" href="{{ app.params['settings']['social_instagram'] }}" class="instagram"><i class="fa fa-instagram"></i></a></li>
+
+                                {#<a class="facebook" href="#"><i class="fa fa-facebook"></i></a>#}
+                                {#<a class="twitter" href="#"><i class="fa fa-twitter"></i></a>#}
+                                {#<a class="instagram" href="#"><i class="fa fa-instagram"></i></a>#}
+                                {#<a class="google-plus" href="#"><i class="fa fa-google-plus"></i></a>#}
+                                {#<a class="snapchat-ghost" href="#"><i class="fa fa-snapchat-ghost"></i></a>#}
+                                {#<a class="dribbble" href="#"><i class="fa fa-dribbble"></i></a>#}
+                                {#<a class="vimeo" href="#"><i class="fa fa-vimeo"></i></a>#}
+                                {#<a class="behance" href="#"><i class="fa fa-behance"></i></a>#}
+                                {#<a class="rss" href="#"><i class="fa fa-rss"></i></a>#}
+                            </div>
+                        </div><!-- Widget : Social Icons -->
+                    </div><!-- Footer Column -->
+                </div><!-- Row -->
+            </div><!-- Container -->
+        </footer><!-- Footer -->
+
+
+        <div id="copyrights">
+            <div class="container">
+                <div class="copytext">
+                    Copyright <i class="fa fa-copyright"></i> Crowdix Technology Pvt. Ltd. All rights reserved. Developed by <a href="http://www.tagdabe.com">TagdaBe.com</a>
+                </div>
+                <div class="pages">
+                    <div class="widget PageList">
+                        <div class="widget-content">
+                            <a href="{{ url('/') }}">Home</a>
+                            <a href="#">Terms of Use</a>
+                            <a href="#">Advertise</a>
+                            <a href="#">Contact Us</a>
+                        </div>
+                    </div><!-- Widget : Pages -->
+                </div>
+                <div class="totop" style="display: block;"><i class="fa fa-angle-up"></i></div>
+            </div>
+        </div>
 
     </div>
 {{ void(this.endBody()) }}

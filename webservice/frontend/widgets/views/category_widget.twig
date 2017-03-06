@@ -1,0 +1,13 @@
+<div class="widget-title">
+    <h2>Categories</h2>
+</div>
+<div class="widget-content list-label-widget-content">
+    <ul>
+        {% for cat in category %}
+            <li>
+                <a dir="ltr" href="{{ cat.url }}">{{ cat.name }}</a>
+                <span dir="ltr">({{ cat.count }})</span>
+            </li>
+        {% endfor %}
+    </ul>
+</div>

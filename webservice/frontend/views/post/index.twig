@@ -36,6 +36,9 @@
                         </div>
 
                         <div class="post-footer">
+                            <div class="post-share">
+                                <div class="addthis_inline_share_toolbox"></div>
+                            </div><!-- Post Share -->
 
                             <div class="post-tags">
                                 <span>Tags</span>
@@ -55,9 +58,9 @@
                                     </div>
                                     <p>{{ post['model'].user.usermeta.about }}</p>
                                     <ul class="author-social">
-                                        <li><a href="{{ post['model'].user.usermeta.website }}" title="My Website"><i class="fa fa-globe"></i></a></li>
-                                        <li><a href="{{ post['model'].user.usermeta.social_fb }}" title="Follow me on facebook"><i class="fa fa-facebook"></i></a></li>
-                                        <li><a href="{{ post['model'].user.usermeta.social_google }}" title="Follow me on twitter"><i class="fa fa-google"></i></a></li>
+                                        <li><a target="_blank" href="{{ post['model'].user.usermeta.website }}" title="My Website"><i class="fa fa-globe"></i></a></li>
+                                        <li><a target="_blank" href="{{ post['model'].user.usermeta.social_fb }}" title="Follow me on facebook"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a target="_blank" href="{{ post['model'].user.usermeta.social_google }}" title="Follow me on twitter"><i class="fa fa-google"></i></a></li>
                                     </ul>
                                 </div>
                             </div>

@@ -4031,3 +4031,7 @@ header.header#layout3 .mainmenu .menu>ul>li>a:before,
         height: 220px
     }
 }
+
+.fa{
+    line-height: inherit;
+}

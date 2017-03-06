@@ -17,6 +17,11 @@
                             <a href="{{ post['postUrl'] }}">{{ post['postTitle'] }}</a>
                         </h4><!-- Post Title -->
                         <ul class="post-meta">
+                            <li>
+                                <div class="post-category">
+                                    <a href="{{ post['categoryUrl'] }}">{{ post['categoryName'] }}</a>
+                                </div>
+                            </li>
                             <li><i class="fa fa-clock-o"></i> {{ post['postDate'] }}</li>
                         </ul><!-- Post Meta -->
                         <p class="post-entry">{{ post['postContent'] }}</p><!-- Post Entry -->
