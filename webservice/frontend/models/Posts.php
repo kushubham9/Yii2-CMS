@@ -192,7 +192,7 @@ class Posts extends Post
 
         $data['imageUrl'] = (new Posts())->getImagePath($post->featured_image, $options);
         $data['postTitle'] = $post->title;
-        $data['postUrl'] = Url::to(['/post/'.$post->slug]);
+        $data['postUrl'] = Url::to(['/post/'.$post->slug],true);
         $data['postDate'] = \Yii::$app->formatter->asDate($post->created_at,'long');
         $data['postContent'] = substr(strip_tags($post->content), 0, 125)."...";
 
