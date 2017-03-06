@@ -27,7 +27,7 @@ class AppAsset extends AssetBundle
 //        '/theme2/js/smoothscroll.js',
 //        '/theme2/js/prettify.js',
         '/theme2/js/main.js',
-        '<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-58bbb75e60d024fe" async="async"></script>'
+        'http://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-58bbb75e60d024fe'
     ];
 
     public $depends = [
