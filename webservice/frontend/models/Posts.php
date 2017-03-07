@@ -179,7 +179,7 @@ class Posts extends Post
 
         // Author Name.
         $data['authorName'] = ($data['author']->usermeta)?$data['author']->usermeta->first_name.' '.$data['author']->usermeta->last_name : $data['author']->username;
-
+        $data['authorImage'] = ($data['author']->usermeta)?(new Posts())->getImagePath($data['author']->usermeta->profile_pic,[]):'http://jnrgym.com/wp-content/uploads/2013/08/Facebook-no-profile-picture-icon-620x389.jpg';
         $data['authorUrl'] = Url::to(['/news/search','type' => 'user', 'q'=>$post->user->username]);
 
         //Get the URL of the image.

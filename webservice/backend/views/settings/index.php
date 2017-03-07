@@ -32,19 +32,19 @@ use yii\bootstrap\Tabs;
                                 'content' => $this->render('_social',['settings'=>$settings]),
                             ],
 
-                            [
-                                'label' => 'Dropdown',
-                                'items' => [
-                                    [
-                                        'label' => 'DropdownA',
-                                        'content' => 'DropdownA, Anim pariatur cliche...',
-                                    ],
-                                    [
-                                        'label' => 'DropdownB',
-                                        'content' => 'DropdownB, Anim pariatur cliche...',
-                                    ],
-                                ],
-                            ],
+//                            [
+//                                'label' => 'Dropdown',
+//                                'items' => [
+//                                    [
+//                                        'label' => 'DropdownA',
+//                                        'content' => 'DropdownA, Anim pariatur cliche...',
+//                                    ],
+//                                    [
+//                                        'label' => 'DropdownB',
+//                                        'content' => 'DropdownB, Anim pariatur cliche...',
+//                                    ],
+//                                ],
+//                            ],
                         ],
                     ]);
                     ?>

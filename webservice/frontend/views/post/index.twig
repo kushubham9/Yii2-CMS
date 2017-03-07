@@ -14,7 +14,7 @@
                             </div>
                             <h1 class="post-title">{{ post['postTitle'] }}</h1><!-- Post Title -->
                             <ul class="post-meta">
-                                <li><img class="avatar" width="24" height="24" src="" alt="{{ post['authorName'] }}">by <a href="{{ post['authorUrl'] }}">{{ post['authorName'] }}</a></li>
+                                <li><img class="avatar" width="24" height="24" src="{{ post['authorImage'] }}" alt="{{ post['authorName'] }}">by <a href="{{ post['authorUrl'] }}">{{ post['authorName'] }}</a></li>
                                 <li><i class="fa fa-clock-o"></i> {{ post['postDate'] }}</li>
                                 <li><i class="fa fa-comment-o"></i> {{ post['model'].comments|length }} </li>
                                 <li class="right"><i class="fa fa-eye"></i> {{ post['model'].views }}</li>
@@ -49,7 +49,7 @@
 
                             <div class="post-author">
                                 <div class="author-avatar">
-                                    <img src="images/author.jpg" alt="Author Avatar Image">
+                                    <img src="{{ post['authorImage'] }}" alt="Author Avatar Image">
                                 </div>
                                 <div class="author-content">
                                     <div class="name">

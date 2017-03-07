@@ -47,10 +47,10 @@
     <div id="wrapper">
         <div class="search-modal">
             <div class="container">
-                <form action="page-search.html" method="get">
+                {{ html.beginForm(url('/news/search',{'type':'article'}), 'get')|raw }}
                     <input type="text" name="q" value="Search.." />
                     <span class="search-close"></span>
-                </form>
+                {{ html.endForm()|raw }}
             </div>
         </div>
         <header class="header" id="layout1">
