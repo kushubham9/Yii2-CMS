@@ -7,7 +7,9 @@
                 <a href="{{ rootLink['href'] }}">{{ rootLink['title'] }}</a>
                 {% for cLink in childLinks %}
                     <ul>
-                        <a href="{{ cLink['href'] }}">{{ cLink['title'] }}</a>
+                        <li>
+                            <a href="{{ cLink['href'] }}">{{ cLink['title'] }}</a>
+                        </li>
                     </ul>
                 {% endfor %}
             </li>
