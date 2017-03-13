@@ -12,7 +12,7 @@ use yii\bootstrap\ActiveForm;
     <?php $form = ActiveForm::begin(); ?>
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'script')->textarea(['rows' => 6]) ?>
-    <?= $form->field($model, 'location')->dropDownList(\common\models\AdLocation::getAdLocationDropDown(\common\models\Constants::ACTIVE_AD_LOCATION_STATUS),['prompt'=>'Select Container']); ?>
+    <?= $form->field($model, 'location')->dropDownList(\common\models\AdLocation::getAdLocationDropDown(),['prompt'=>'Select Container']); ?>
     <?= $form->field($model, 'status')->dropDownList(\common\models\Status::getStatusDropDown(\common\models\Constants::AD_STATUS_LIST)) ?>
     <?= $form->field($model, 'display_order')->input('number') ?>
     <?= $form->field($model, 'display_mobile')->checkbox()->label('Mobile Enabled') ?>

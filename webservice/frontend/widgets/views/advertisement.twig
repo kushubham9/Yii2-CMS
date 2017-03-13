@@ -1,0 +1,28 @@
+{% set containerStyle = "" %}
+{% if config['max_width'] %}
+    {% set containerStyle = " max-width: "~config['max_width']~"px;" %}
+{% endif %}
+
+{% if config['max_height'] %}
+    {% set containerStyle = containerStyle ~ " max-height: "~config['max_height']~"px;" %}
+{% endif %}
+
+<div class="{{ type }}" style="{{ containerStyle }}">
+    {% for ad in ads %}
+        {% set containerClass = 'ad'~ad.id %}
+
+        {% if ad.display_mobile == 0  %}
+            {% set containerClass = containerClass ~ ' hidden-xs ' %}
+        {% endif %}
+
+        {% if ad.display_desktop == 0  %}
+            {% set containerClass = containerClass ~ ' hidden-sm hidden-md hidden-lg ' %}
+        {% endif %}
+
+
+        <div class="{{ containerClass }}">
+            {{ ad.script | raw}}
+        </div>
+
+    {% endfor %}
+</div>

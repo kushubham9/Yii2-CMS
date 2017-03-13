@@ -84,6 +84,14 @@ class Status extends \yii\db\ActiveRecord
     {
         return $this->hasMany(\common\models\AdLocation::className(), ['status' => 'id'])->inverseOf('status0');
     }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAdvertisements()
+    {
+        return $this->hasMany(\common\models\Advertisement::className(), ['status' => 'id'])->inverseOf('status0');
+    }
     
 /**
      * @inheritdoc

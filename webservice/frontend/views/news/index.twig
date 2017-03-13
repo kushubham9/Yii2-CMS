@@ -1,4 +1,5 @@
 {{ use ('frontend/widgets/RecentPostWidget') }}
+{{ use ('frontend/widgets/AdvertisementWidget') }}
 {{ use('frontend/widgets/FeaturedSectionWidget') }}
 
 {#{% set this.title = app.params['settings']['site_title'] %}#}
@@ -9,6 +10,13 @@
     {{ featured_section_widget_widget() }}
     {#{{ featured_section_widget_widget({'options': {'type':4}}) }}#}
 {% endif %}
+
+<div class="container">
+    <div class="col-xs-12">
+        {{ advertisement_widget_widget({'type':'below-featured'}) | raw}}
+    </div>
+</div>
+
 
 <section id="main-area">
     <div class="container">
@@ -28,6 +36,7 @@
             </section>
 
             <aside id="sidebar" class="sidebar col-md-4">
+                {{ advertisement_widget_widget({'type':'right-widget'}) | raw}}
                 {{ recent_post_widget_widget({'options': {'count':5}}) }}
             </aside>
         </div>

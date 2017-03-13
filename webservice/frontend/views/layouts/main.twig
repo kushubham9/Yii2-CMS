@@ -2,6 +2,7 @@
 {{ use('frontend/widgets/MainMenu') }}
 {{ use ('frontend/widgets/RecentPostWidget') }}
 {{ use ('frontend/widgets/CategoryWidget') }}
+{{ use ('frontend/widgets/AdvertisementWidget') }}
 
 {{ void(this.beginPage()) }}
 <html lang="{{ app.language }}">
@@ -91,7 +92,7 @@
 
                     <div class="ad-container">
                         <div class="advertisment">
-
+                            {{ advertisement_widget_widget({'type':'body-header'}) | raw}}
                         </div><!-- Advertisment -->
                     </div><!-- Ad Container -->
                 </div><!-- Container -->
@@ -133,12 +134,12 @@
                     </div><!-- Footer Column -->
 
                     <div class="footer-col col-md-4">
-                        <div class="widget HTML">
-                            <div class="widget-title">
-                                <h2>@instagram</h2>
-                            </div>
-                            <div class="widget-content">
-                                <div class="instagram-feeds row-gallery">
+                        {#<div class="widget HTML">#}
+                            {#<div class="widget-title">#}
+                                {#<h2>@instagram</h2>#}
+                            {#</div>#}
+                            {#<div class="widget-content">#}
+                                {#<div class="instagram-feeds row-gallery">#}
                                     {#<a href="#" class="col-sm-3 col-xs-3"><img src="images/gallery/8.jpg" alt="Instagram Image"></a>#}
                                     {#<a href="#" class="col-sm-3 col-xs-3"><img src="images/gallery/7.jpg" alt="Instagram Image"></a>#}
                                     {#<a href="#" class="col-sm-3 col-xs-3"><img src="images/gallery/3.jpg" alt="Instagram Image"></a>#}
@@ -147,9 +148,11 @@
                                     {#<a href="#" class="col-sm-3 col-xs-3"><img src="images/gallery/6.jpg" alt="Instagram Image"></a>#}
                                     {#<a href="#" class="col-sm-3 col-xs-3"><img src="images/gallery/1.jpg" alt="Instagram Image"></a>#}
                                     {#<a href="#" class="col-sm-3 col-xs-3"><img src="images/gallery/2.jpg" alt="Instagram Image"></a>#}
-                                </div>
-                            </div>
-                        </div><!-- Widget : Instagram -->
+                                {#</div>#}
+                            {#</div>#}
+                        {#</div><!-- Widget : Instagram -->#}
+
+
                         <div class="widget FollowByEmail">
                             <div class="widget-title">
                                 <h2>Follow By Email</h2>
@@ -172,6 +175,12 @@
                                         <input name="uri" type="hidden" value="TheStyle-LifeStyleBloggerTemplate">
                                         <input name="loc" type="hidden" value="en_US">
                                     </form>
+                                </div>
+                            </div>
+
+                            <div class="widget HTML">
+                                <div class="widget-content">
+                                    {{ advertisement_widget_widget({'type':'footer'}) | raw}}
                                 </div>
                             </div>
                         </div><!-- Widget : Follow By Email -->

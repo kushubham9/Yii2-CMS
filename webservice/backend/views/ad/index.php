@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'title',
                                 [
                                     'attribute' => 'location',
-                                    'value' => function($mode){
+                                    'value' => function($model){
                                             return $model->location0->name;
                                     },
                                     'filter' => Html::activeDropDownList($searchModel,'location',
@@ -49,7 +49,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     'attribute' => 'display_mobile',
                                     'format' => 'raw',
                                     'label' => 'Mobile',
-                                    'value' => function($mode){
+                                    'value' => function($model){
                                         if ($model->display_mobile == null)
                                             return 'Not Set';
                                         return $model->display_mobile == 1
@@ -64,7 +64,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     'attribute' => 'display_desktop',
                                     'label' => 'Desktop',
                                     'format' => 'raw',
-                                    'value' => function($mode){
+                                    'value' => function($model){
                                         if ($model->display_mobile == null)
                                             return 'Not Set';
                                         return $model->display_mobile == 1
@@ -80,7 +80,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     'format' => 'raw',
                                     'value' => function ($model)
                                     {
-                                        if ($model->status0 == null)
+                                        if ($model->status == null)
                                             return 'Not Set';
                                         return in_array($model->status, \common\models\Constants::ACTIVE_AD_LOCATION_STATUS)
                                             ?'<span class="label label-success">'.$model->status0->name.'</span>'

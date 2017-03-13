@@ -1,4 +1,5 @@
 {{ use ('frontend/widgets/RecentPostWidget') }}
+{{ use ('frontend/widgets/AdvertisementWidget') }}
 {{ set(this, 'title', post['postTitle']) }}
 
 <section id="main-area" >
@@ -22,6 +23,8 @@
                             </ul><!-- Post Meta -->
                         </div><!-- Post Header -->
 
+                        {{ advertisement_widget_widget({'type':'above-post'}) | raw}}
+
                         <div class="post-share">
                             <div class="addthis_inline_share_toolbox"></div>
                         </div><!-- Post Share -->
@@ -36,6 +39,9 @@
                         </div>
 
                         <div class="post-footer">
+
+                            {{ advertisement_widget_widget({'type':'below-post'}) | raw}}
+
                             <div class="post-share">
                                 <div class="addthis_inline_share_toolbox"></div>
                             </div><!-- Post Share -->
@@ -129,6 +135,7 @@
                     {#</div>#}
                 {#</div><!-- Widget : Social Counter -->#}
 
+                {{ advertisement_widget_widget({'type':'right-widget'}) | raw}}
 
                 {{ recent_post_widget_widget({'options': {'count':5}}) }}
 
