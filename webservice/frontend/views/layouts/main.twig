@@ -10,7 +10,7 @@
     <meta charset="{{ app.charset }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {{ html.csrfMetaTags() | raw }}
-    <link rel="shortcut icon" href="http://iamroy.in/client/blog/dist/img/fav.png">
+    <link rel="shortcut icon" href="{{ url(['/images/fav.png']) }}">
 
     <title>{{ html.encode (this.title) }}</title>
     {{ this.head() }}
