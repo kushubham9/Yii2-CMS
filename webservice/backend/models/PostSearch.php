@@ -42,8 +42,7 @@ class PostSearch extends Post
         $query->select([
                 'post.*',
             ])
-            ->joinWith('categories cat')
-            ->orderBy('post.id DESC');
+            ->joinWith('categories cat');
 
         // add conditions that should always apply here
 
@@ -66,17 +65,18 @@ class PostSearch extends Post
             return $dataProvider;
         }
 
+        if ($this->updated_at)
+            $this->updated_at = date('Y-m-d',strtotime($this->updated_at));
         // grid filtering conditions
         $query->andFilterWhere([
             'post.id' => $this->id,
-            'post.updated_at' => $this->updated_at,
+            'DATE(post.updated_at)' => $this->updated_at,
             'cat.id' => $this->getAttribute('cat.id'),
             'post.status' => $this->status,
             'post.user_id' => $this->user_id,
         ]);
 
         $query->andFilterWhere(['like', 'post.title', $this->title]);
-
         return $dataProvider;
     }
 }

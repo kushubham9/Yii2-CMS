@@ -34,56 +34,79 @@ class Posts extends Post
             ]);
     }
 
+    /**
+     * @param array $option
+     * @return array|\yii\db\ActiveRecord[]
+     * This method looks for recent posts in the database.
+     */
     public function searchRecentPosts($option=[]){
         return self::find()->with('categories','user','user.usermeta')
             ->where(['type'=>Constants::TYPE_POST, 'status'=> Constants::DEFAULT_POST_STATUS])
             ->orderBy(isset($option['sort']) ? $option['sort'] : 'created_at DESC, title')
-            ->limit(isset($option['limit']) ? $option['limit'] : 10)
+            ->limit(isset($option['count']) ? $option['count'] : 10)
             ->all();
     }
 
-
-    public function getSetRecentPosts($option=[]){
-
+    /**
+     * @param array $options
+     * @return array|mixed|\yii\db\ActiveRecord[]
+     * The method looks for catched recent posts. If not found, or if new posts have been added/updated, it fetches new set of results.
+     */
+    public function getSetRecentPosts($options=[]){
         if (Constants::ENABLE_CACHE){
             $model = \Yii::$app->cache->get(Constants::CACHE_KEY_RECENT_POST);
-//            (isset($option['limit']) && sizeof($model) < $option['limit'])
-            if (!$model){
-                $model = $this->searchRecentPosts($option);
+            $cached_size = \Yii::$app->cache->get(Constants::CACHE_KEY_RECENT_POST.'_COUNT');
+            $options['count'] = isset($options['count']) ? $options['count'] : 10;
+
+            if (!$model || !$cached_size || $options['count'] > $cached_size){
+                $model = $this->searchRecentPosts($options);
                 $dependency = new \yii\caching\DbDependency(['sql' => "SELECT updated_at FROM post where type = '".Constants::TYPE_POST."' and status = '".Constants::DEFAULT_POST_STATUS."' order by created_at desc limit 1"]);
-                \Yii::$app->cache->set(Constants::CACHE_KEY_RECENT_POST, $model, 36000, $dependency);
+                \Yii::$app->cache->set(Constants::CACHE_KEY_RECENT_POST, $model, Constants::DEFAULT_CACHE_TIME, $dependency);
+                \Yii::$app->cache->set(Constants::CACHE_KEY_RECENT_POST.'_COUNT', $options['count'], Constants::DEFAULT_CACHE_TIME);
             }
         }
 
         else{
-            $model = $this->searchRecentPosts($option);
+            $model = $this->searchRecentPosts($options);
         }
 
         return $model;
     }
 
-    // Featured Posts.
 
+    /**
+     * @param array $category
+     * @param array $option
+     * @return array|\yii\db\ActiveRecord[]
+     * Gets the featured posts from the database.
+     */
     public function searchFeaturedPosts($category = [], $option = []){
         return self::find()->with('categories','user','user.usermeta','comments')
             ->where(['type'=>Constants::TYPE_POST, 'status'=> Constants::DEFAULT_POST_STATUS])
             ->orderBy(isset($option['sort']) ? $option['sort'] : 'created_at DESC, title')
-            ->limit(isset($option['limit']) ? $option['limit'] : 10)
+            ->limit($option['count'])
             ->all();
     }
 
     /**
      * @param array $category
      * @param array $options
+     * @return array|mixed|\yii\db\ActiveRecord[]
+     * Looks for the featured posts in the cache. If not gets the result and sets the cache.
      */
     public function getSetFeaturedPosts($category = [], $options = [])
     {
         sort($category);
         $key = "FEATURED_".implode('_',$category);
+
+        $key_count = $key."_COUNT";
+        $options['count'] = isset($options['count']) ? $options['count'] : 10;
+
         if (Constants::ENABLE_CACHE) {
+            $cacheCount = \Yii::$app->cache->get($key_count);
             $model = \Yii::$app->cache->get($key);
 
-            if (!$model){
+            if (!$cacheCount || !$model || $options['count'] > $cacheCount){
                 $model = $this->searchFeaturedPosts($category, $options);
                 $dependency = new \yii\caching\DbDependency(['sql' => "SELECT updated_at FROM post
                                     INNER JOIN post_category on post.id = post_category.post_id
@@ -92,13 +115,15 @@ class Posts extends Post
                                     and post_category.category_id in (".implode(', ', $category).")
                                     order by created_at desc
                                     limit 1"]);
-                \Yii::$app->cache->set($key, $model, 36000, $dependency);
+                \Yii::$app->cache->set($key, $model, Constants::DEFAULT_CACHE_TIME, $dependency);
+                \Yii::$app->cache->set($key_count, $options['count'], Constants::DEFAULT_CACHE_TIME);
             }
         } else{
            $model = $this->searchFeaturedPosts($category, $options);
         }
         return $model;
     }
+
     /**
      * @param $params
      * @return ActiveDataProvider

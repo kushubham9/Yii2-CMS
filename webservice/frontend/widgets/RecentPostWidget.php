@@ -42,6 +42,7 @@ class RecentPostWidget extends Widget
         $db_model = new Posts();
         static $cachedModel;
 
+        // Set the default defined values.
         foreach ($this->default as $key=>$value){
             if (!isset($this->options[$key])){
                 $this->options[$key] = $value;
@@ -50,7 +51,7 @@ class RecentPostWidget extends Widget
 
         if (!$cachedModel){
             $cachedModel = $db_model->getSetRecentPosts([
-                'limit' => ($this->options['count'] > $this->maxLimit) ? $this->options['count'] : $this->maxLimit,
+                'count' => ($this->options['count'] > $this->maxLimit) ? $this->options['count'] : $this->maxLimit,
                 'sort' => 'created_at DESC, title',
             ]);
         }
@@ -61,7 +62,8 @@ class RecentPostWidget extends Widget
     public function run()
     {
         $post_array = [];
-        for ($i=0; $i<$this->options['count'];$i++){
+        $model_size = sizeof($this->post_model);
+        for ($i=0; $i<$this->options['count'] && $i < $model_size;$i++){
             $post = $this->post_model[$i];
             if ($post){
                 $post_array [] = Posts::getPostInformation($post);

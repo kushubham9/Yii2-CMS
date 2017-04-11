@@ -4929,3 +4929,8 @@ table.text-center th {
     white-space: normal !important;
   }
 }
+
+
+.text-strong{
+  font-weight: bold;
+}

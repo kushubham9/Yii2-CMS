@@ -26,7 +26,7 @@ IonIcons::register($this);
         <?php $this->head() ?>
     </head>
 
-    <body class="hold-transition skin-blue layout-boxed sidebar-mini">
+    <body class="hold-transition skin-blue sidebar-mini">
         <?php $this->beginBody() ?>
         <div class="wrapper">
             <header class="main-header">

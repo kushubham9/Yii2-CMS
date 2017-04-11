@@ -41,4 +41,8 @@ class Constants
 
     const ENABLE_CACHE = true;
     const CACHE_KEY_RECENT_POST = 'recent_posts';
+
+    const STATUS_HIDDEN = 5;
+    const STATUS_PUBLISHED = 3;
+    const DEFAULT_CACHE_TIME = 36000;
 }
